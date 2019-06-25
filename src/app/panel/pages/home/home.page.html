@@ -1,0 +1,53 @@
+<ion-header no-border class="show-top-menu">
+  <nano-navbar title="Dashboard">
+  </nano-navbar>
+</ion-header>
+<!-- HOME DO PAINEL -->
+<ion-content>
+  <div class="relative-left">
+      <div>
+          <ul>
+              <li>
+                  <h1>Olá, 
+                      <!-- <span class="my-font-bold">{{shared?.company?.name || shared?.filial?.name}}</span> -->
+                      <span class="my-font-bold">{{company?.name || "Nanocode"}}</span>
+                  </h1>
+              </li>
+              <li>
+                  <h3>Bem-vindo ao Facilita Entrega</h3>
+              </li>
+          </ul>
+      </div>
+      <order-graph *ngIf="isTEAM || company?.delivery"></order-graph>
+      <ion-card padding no-margin margin-top>
+        <h2 class="my-font-bold">Módulo de pedidos automatizado</h2>
+        <h5>
+            Organização de contas por mesas, garçom poder organizar pedidos por um aplicativo, pedidos feitos em uma mesa por meio de um TABLET, a partir do aplicativo Facilita e de um QR code na mesa, o consumidor poder fazer pedidos para própria mesa por meio de um aplicativo.
+        </h5>
+        <h6>
+            Gostou dessa novidade? Entre em contato com nosso suporte e receba essa atualização antes de todos.
+        </h6>
+      </ion-card>
+      <ion-card padding no-margin margin-top>
+        <h2 class="my-font-bold">Módulo estatístico</h2>
+        <h5>
+            Gráficos e informações sobre: Público alvo, produtos consumidos, lucros sobre o uso da aplicação
+        </h5>
+        <h6>
+            Gostou dessa novidade? Entre em contato com nosso suporte e receba essa atualização antes de todos.
+        </h6>
+      </ion-card>
+      <ion-card padding no-margin margin-top>
+        <h2 class="my-font-bold">Site personalizado</h2>
+        <h5>
+            Todos seus produtos disponívieis para visualização e compra por meio de um Link no qual você poderá compartilhar em todas suas redes sociais.
+        </h5>
+        <h6>
+            Gostou dessa novidade? Entre em contato com nosso suporte e receba essa atualização antes de todos.
+        </h6>
+      </ion-card>
+  </div>
+
+
+
+</ion-content>

@@ -1,0 +1,223 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Detalhes do pedido
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" color="extralight" fill="clear">
+        <span ion-text>Cancel</span>
+        <ion-icon name="md-close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngFor="let entry of order.entries;">
+    <ion-badge class="notifications-badge" color="danger">x{{ entry.quantity }}</ion-badge>
+    <card-product [product]="entry.product" [entry]="entry"> </card-product>
+    <div class="shadow shadow-light-2 text-complements" *ngIf="entry.complement_resume && entry.complement_resume.length > 0">
+      <h4 ion-text>Complementos escolhidos: </h4>
+      <p ion-text class="list-complement" color="discret">
+        <span ion-text *ngFor="let resume of entry.complement_resume; let i = index">
+          {{resume}}</span>
+      </p>
+    </div>
+    <div class="shadow shadow-light-2 text-complements" *ngIf="entry.observation">
+      <h3>Observações do pedido</h3>
+      <p ion-text color="discret">
+        {{entry.observation}}
+      </p>
+    </div>
+
+    <div class="print">
+      <span>
+        {{entry.quantity}}x {{entry.product.name}}
+      </span>
+      <div *ngIf="entry.complement_resume && entry.complement_resume.length > 0">
+        <span ion-text>Complementos escolhidos: </span>
+        <br />
+        <span ion-text class="list-complement">
+          <span ion-text *ngFor="let resume of entry.complement_resume; let i = index">
+            {{resume}}
+            <br />
+          </span>
+        </span>
+      </div>
+      <span *ngIf="entry.observation">
+        Obs: {{entry.observation}}</span>
+    </div>
+  </div>
+
+  <div text-right class="total-value">
+    <h6 ion-text no-margin margin-top><strong>Subtotal:</strong> {{order.price.subtotal | currency:'BRL':'symbol':'1.2' |
+      formatCurrency}}</h6>
+    <h6 ion-text no-margin><strong>Taxa de entrega:</strong> {{order.price.delivery | currency:'BRL':'symbol':'1.2' |
+      formatCurrency}}</h6>
+    <h6 ion-text no-margin *ngIf="order.price.discounts" color="primary">Cupom: &ndash; {{order.price.discounts |
+      currency:'BRL':'symbol':'1.2' | formatCurrency}}</h6>
+    <h6 ion-text no-margin>
+      <strong>Total: {{order.price.subtotal + order.price.delivery - ( order.price.discounts ||
+        0 ) | noNegative | currency:'BRL':'symbol':'1.2' | formatCurrency}}</strong>
+    </h6>
+    <div class="payment-method" text-wrap no-margin>
+      <b>Forma de pagamento: </b>
+      <span [ngSwitch]="order.payment_method" style="margin-top: 5px">
+        <span *ngSwitchCase="'debit_card'">Débito
+          <span> | {{order.payment_cardType | uppercase}} </span>
+        </span>
+        <span *ngSwitchCase="'credit_card'">Crédito
+          <span> | {{order.payment_cardType | uppercase}} </span>
+        </span>
+        <span *ngSwitchCase="'money'">Dinheiro
+          <span *ngIf="order.change">, troco para: {{order.change | number: '1.2-2'}} </span>
+        </span>
+        <span *ngSwitchCase="'food_stamps'">
+          Vale-Alimentação
+          <span> | {{order.payment_cardType | uppercase}} </span>
+        </span>
+        <span *ngSwitchDefault>Outro</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="shipping-address">
+    <p text-wrap no-margin><strong>Endereço de entrega:</strong></p>
+    <p text-wrap no-margin>
+      {{order.location?.district || "sem bairro"}}, {{order.location?.city || "sem cidade"}} -
+      {{order.location?.state_short || "sem estado"}}
+    </p>
+    <p *ngIf="order?.location?.street && order?.location?.number" text-wrap no-margin>
+      {{order.location.street}}, {{order.location.number}}.
+    </p>
+    <p *ngIf="order?.location?.complement" text-wrap no-margin>
+      <strong>Complemento: </strong>{{order.location.complement}}
+    </p>
+    <p *ngIf="order?.location?.landmark" text-wrap no-margin>
+      <strong>Ponto de referência: </strong>{{order.location.landmark}}
+    </p>
+  </div>
+
+  <ion-item *ngIf="order.observation" text-wrap>
+    Observação:
+    <p style="margin-top: 5px">{{order.observation}}</p>
+  </ion-item>
+
+  <ion-button *ngIf="canChangeStatusToIncomplete" color="danger" fill="clear" (click)="changeStautsIncomplete()">
+    Cancelar pedido
+  </ion-button>
+
+  <ion-button expand="block" (click)="print()">IMPRIMIR</ion-button>
+
+</ion-content>
+
+<!-- Conteúdo para impressão -->
+<div id="section-to-print" style="max-width: 6cm !important; margin-bottom: 30px;font-family: 'Sunflower', sans-serif !important;">
+  <style>
+    @page {
+      size: 21cm 29.7cm !important;
+      margin: 30mm 45mm 30mm 45mm !important;
+      /* change the margins as you want them to be. */
+      font-family: 'Sunflower', sans-serif !important;
+    }
+  </style>
+  <p style="border-top: 2px solid gray">
+    <strong>Facilita</strong>
+  </p>
+  <p>
+    <p>
+      <strong>Código: </strong>{{order.code}}
+      <br />
+      <strong>Cliente: </strong>{{order.user_full?.name}}
+      <br />
+      <strong>Telefone: </strong>{{order.user_full?.phone}}
+      <br />
+      <strong>Criado: </strong>{{order.created_at | timestampToDate | date:'shortDate' | uppercase}} às
+      {{order.created_at | timestampToDate | date:'HH:mm'
+      | uppercase}}
+    </p>
+    <p>
+      <strong>Endereço de entrega</strong>
+      <br />
+      {{order.location.district || "sem bairro"}}, {{order.location.city || "sem cidade"}} -
+      {{order.location.state_short || "sem estado"}}
+      <br />
+      <span *ngIf="order?.location?.street && order?.location?.number" style="margin-top: 5px">
+        {{order.location.street}}, {{order.location.number}}
+      </span><br />
+      <span *ngIf="order?.location?.complement">
+        <strong>Complemento: </strong>{{order.location.complement}} <br />
+      </span>
+      <span *ngIf="order.location.landmark">
+        <strong>Ponto de referência: </strong> {{order.location.landmark}} <br />
+      </span>
+    </p>
+    <div>
+      <strong> Pedidos</strong>
+    </div>
+    <div *ngFor="let entry of order.entries;">
+      <ion-row no-padding>
+        <ion-col no-padding>{{entry.quantity}}x {{entry.product.name}}</ion-col>
+        <ion-col col-4 no-padding padding-bottom>
+          {{entry.price * entry.quantity | currency:'BRL':'symbol':'1.2' | formatCurrency}}
+        </ion-col>
+      </ion-row>
+      <div no-padding *ngIf="entry.complement_resume && entry.complement_resume.length > 0">
+        <div>Complementos escolhidos: </div>
+        <div *ngFor="let resume of entry.complement_resume">
+          {{resume}}
+        </div>
+      </div>
+      <div no-padding *ngIf="entry.observation">
+        <strong>Obs: {{entry.observation}}</strong>
+      </div>
+      <div no-padding style="border-top: 2px dotted gray; padding-bottom: 5px; margin-top: 5px;">
+      </div>
+    </div>
+    <div>
+      <strong>Subtotal:</strong> {{order.price.subtotal | currency:'BRL':'symbol':'1.2' | formatCurrency}}
+      <br />
+      <strong>Taxa de entrega:</strong> {{order.price.delivery | currency:'BRL':'symbol':'1.2' | formatCurrency}}
+      <span *ngIf="order.price.discounts">
+        <strong>Cupom:</strong> &ndash; {{order.price.discounts | currency:'BRL':'symbol':'1.2' | formatCurrency}}
+        <br />
+      </span>
+
+    </div>
+    <div style="border-top: 2px dotted gray; margin-top: 3px; padding-top: 10px; padding-bottom: 4px">
+      <strong>Total:</strong> {{order.price.subtotal + order.price.delivery - ( order.price.discounts
+      || 0 ) | noNegative | currency:'BRL':'symbol':'1.2' | formatCurrency}}
+    </div>
+    <div>
+      <strong>Método: </strong>
+      <span [ngSwitch]="order.payment_method" style="margin-top: 5px">
+        <span *ngSwitchCase="'debit_card'">Débito
+          <span> | {{order.payment_cardType | uppercase}} </span>
+        </span>
+        <span *ngSwitchCase="'credit_card'">Crédito
+          <span> | {{order.payment_cardType | uppercase}} </span>
+        </span>
+        <span *ngSwitchCase="'money'">Dinheiro
+          <br />
+          <span *ngIf="order.change">
+            <strong>Pagamento: </strong> {{order.change | currency:'BRL':'symbol':'1.2' | formatCurrency}}</span>
+          <br />
+          <span *ngIf="order.change">
+            <strong>Troco: </strong> {{(order.change | change: order.price.subtotal + order.price.delivery
+            - order.price.discounts | currency:'BRL':'symbol':'1.2' | formatCurrency)}} </span>
+        </span>
+        <span *ngSwitchCase="'food_stamps'">
+          Vale-Alimentação
+          <span> | {{order.payment_cardType | uppercase}} </span>
+        </span>
+        <span *ngSwitchDefault>Outro</span>
+      </span>
+    </div>
+
+    <div *ngIf="order.observation">
+      Observação:
+      <p style="margin-top: 5px">{{order.observation}}</p>
+    </div>
+
+    <br />
+</div>

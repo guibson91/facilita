@@ -1,0 +1,128 @@
+@media(min-width: 1000px){
+    .show-top-menu{
+        display: none;
+    }
+}
+ion-card{
+    --background:white;
+}
+
+ion-content{
+    background-image: url("../../../../assets/img/gg-dark.svg") !important;
+    background-position: center;
+    background-size: cover;
+
+
+    .relative-left{
+        padding: 16px;
+
+        ul {
+
+            padding: 0px !important;
+            list-style: none !important;
+
+            li {
+
+                h1 {
+                    font-size: 2.8em !important;
+                }
+                h3 {
+                    font-size: 1.2em !important;
+                }
+            }
+        }
+
+        .news{
+
+            margin-top: 5%;
+
+            ion-list{
+
+                ion-item{
+
+                    ion-avatar {
+
+                        margin: 0px;
+                        ion-icon{
+                            font-size: 40px;
+                            color: #cb6018 !important;
+                        }
+                    }
+
+
+
+                    &.item-md {
+                        background-color: transparent;
+                    }
+                }
+            }
+
+            /*ion-grid {
+                padding: 0px;
+                margin: -10px;
+
+                ion-col {
+                    padding: 0px;
+                }
+            }*/
+
+        }
+
+
+    }
+}
+
+.inline-button{
+    text-align: center;
+    display: inline-grid;
+    align-items: center;
+    cursor: pointer;
+    margin: 6px;
+    background-color: white;
+    font-size: 16px;
+    width: 10em;
+    height: 15em;
+}
+
+.menus-logo{
+    display: block;
+    width: 100%;
+    max-width: 44em;
+    left: 50%;
+    transform: translateX(-52%);
+    position: relative;
+    margin-bottom: 6%;
+}
+img{
+    margin-top: 7em;
+}
+.icon{
+    font-size: 60px;
+}
+
+.relative-center{
+    text-align: center;
+}
+
+.logout{
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+}
+
+.color-aux {
+    color: #cb6018;
+}
+
+.center-vertical-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/*.relative-center{
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    text-align: center;
+}
+*/

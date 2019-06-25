@@ -1,0 +1,46 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <div class="logo-header" tappable (click)="goHomePage()"></div>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="hideScrollbar">
+
+    <ion-list>
+        <ion-item tappable menuClose class="remove-border-item menu-item" (click)="goHomePage()">
+            <span ion-text class="menu-icon menus-icon-home"></span>
+            <span ion-text>Página Inicial</span>
+        </ion-item>
+        <ion-item tappable menuClose class="remove-border-item menu-item" (click)="goOrder()" *ngIf="isTEAM || company?.delivery">
+            <span ion-text class="menu-icon menus-icon-list" ></span>
+            <span ion-text>Pedidos</span>
+        </ion-item>
+        <ion-item tappable menuClose class="remove-border-item menu-item" (click)="goOrderPromotion()" *ngIf="isTEAM || company?.promotion">
+            <span ion-text class="menu-icon menus-icon-list" ></span>
+            <span ion-text>Promoções geradas</span>
+        </ion-item>
+        <div *ngFor="let config of menuConfigs" [hidden]="!showMenu(config)">
+
+            <ion-item tappable  (click)="config.showSubmenus = !config.showSubmenus" class="remove-border-item super-menu-item"[ngClass]="{'selected-super-item': config.showSubmenus}">
+                <div>
+                    <p ion-text>{{config.title}}</p>
+                    <p ion-text text-wrap class="menu-description" *ngIf="!config.showSubmenus"> {{config.description}}</p>
+                </div>
+            </ion-item>
+
+            <ion-list no-padding no-margin class="submenus"  [ngClass]="{'dropdown': !config.showSubmenus}" *ngIf="permissions">
+                <ion-item tappable menuClose class="remove-border-item menu-item" *ngFor="let page of config.submenus" [hidden]="!showMenu(page)" (click)="clickPage(page)">
+                    <span ion-text [ngClass]="page.class" class="menu-icon"></span>
+                    <span ion-text>{{page.title}}</span>
+                </ion-item>
+            </ion-list>
+
+        </div>
+
+        <ion-item tappable (click)="logout()" class="remove-border-item menu-item">
+            <span ion-text class="menu-icon menus-icon-log-out"></span>
+            <span ion-text>Sair</span>
+        </ion-item>
+
+    </ion-list>
+</ion-content>

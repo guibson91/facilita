@@ -1,0 +1,47 @@
+<ion-header no-border>
+  <nano-navbar title="Cadastrar/Editar produto" icon="menus-icon-ecommerce-43"></nano-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="content-card">
+    <nano-loading [loading]="loading">
+      <!-- Informações gerais do produto -->
+      <form [formGroup]="form" class="form-content">
+        <ion-list>
+          <!--<ion-list class="myformlist" color="light">-->
+
+          <!-- Imagem e barra de progresso -->
+          <nano-uploadimage [form]="this.form" [storagePath]="'products'"></nano-uploadimage>
+
+          <!--Nome-->
+          <ion-item padding-horizontal>
+            <ion-label position="stacked" color="tertiary">Nome</ion-label>
+            <ion-input class="input" formControlName="name" maxlength="50"></ion-input>
+          </ion-item>
+
+          <!--Descrição-->
+          <ion-item padding-horizontal>
+            <ion-label position="stacked" color="tertiary">Descrição</ion-label>
+            <ion-textarea class="input" rows="5" formControlName="description"></ion-textarea>
+          </ion-item>
+          
+          <!-- Categoria -->
+          <div padding-horizontal>
+            <h3 ion-text color="tertiary">Categoria</h3>
+            <h4 ion-text *ngIf="categoryActual">{{categoryActual.name}}</h4>
+            <ion-button class="button-select-category" fill="clear" (click)="selectCategory()">Selecionar categoria</ion-button>
+          </div>
+
+          <!-- Preço -->
+          <ion-item padding-horizontal item-content>
+            <ion-label position="stacked" color="tertiary">Preço base (em R$)</ion-label>
+            <money-input item-content [control]="form.controls['priceBase']"></money-input>
+          </ion-item>
+
+        </ion-list>
+      </form>
+    </nano-loading>
+    <nano-buttons [canSave]="form.valid" [save]="save.bind(this)" [canRemove]="product" [remove]="remove.bind(this)"
+      [cancel]="cancel.bind(this)"></nano-buttons>
+  </ion-card>
+</ion-content>

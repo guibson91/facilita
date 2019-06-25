@@ -1,0 +1,65 @@
+<ion-header no-border class="app">
+  <ion-toolbar class="header-toolbar" color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="ios-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <h3 ion-text text-uppercase color="light" class="my-font-logo">ENDEREÇO</h3>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card class="card-delivery-address" *ngIf="location; else noLocation" (click)="editAddress()" tappable>
+    <ion-icon name="pin"></ion-icon>
+    <div class="info-delivery">
+      <p class="title-delivery" text-wrap>
+        <strong>{{ location.street}}, {{ location.number}}
+          <span *ngIf="location.complement">
+            <br />{{ location.complement}} </span>
+          <span *ngIf="location.landmark">
+            <br />{{ location.landmark}} </span>
+        </strong>
+      </p>
+      <p class="subtitle-delivery">{{ location.district }} - {{ location.city }} </p>
+    </div>
+  </ion-card>
+  <ng-template #noLocation>
+    <p margin-horizontal class="no-address-register" text-center ion-text color="discret">Você ainda não possui nenhum
+      endereço cadastrado</p>
+  </ng-template>
+
+  <ion-button fill="clear" expand="block" margin-top margin-bottom (click)="newAddress()">
+    <ion-label> Adicionar novo endereço </ion-label>
+  </ion-button>
+
+  <ion-item class="divider">
+    <p class="title"> Histórico </p>
+  </ion-item>
+  <div *ngIf="shared?.user?.locations_history?.length > 0; else noLocationHistory" margin-top>
+    <ion-card *ngFor="let location of shared.user.locations_history" class="card-delivery-address historic" tappable (click)="changeLocation(location)">
+      <ion-icon name="pin" slot="start"></ion-icon>
+      <div class="info-delivery">
+        <p class="title-delivery" text-wrap>
+          <strong>{{ location.street}}, {{ location.number}}
+            <span *ngIf="location.complement">
+              <br />{{ location.complement}} </span>
+          </strong>
+        </p>
+        <p class="subtitle-delivery">{{ location.district }} - {{ location.city }} </p>
+      </div>
+      <ion-button fill="clear" (click)="removeLocationHistory(location)">
+        <ion-icon slot="icon-only" name="ios-close"></ion-icon>
+      </ion-button>
+    </ion-card>
+  </div>
+
+  <ng-template #noLocationHistory>
+    <p margin-horizontal class="no-address-register" text-center ion-text color="discret">Você ainda não possui
+      histórico de endereços.</p>
+  </ng-template>
+
+</ion-content>

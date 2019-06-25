@@ -1,0 +1,49 @@
+<ion-header no-border class="app">
+  <ion-toolbar color="primary" hideBackButton="true">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="ios-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="title-default">
+      <h3 ion-text class="my-font-logo" no-margin>PROMOÇÕES</h3>
+    </ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button (click)="openFilter()">
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="loading">
+    <section margin-top class="placeholder" *ngFor="let f of [1, 2, 3, 4]">
+      <aside class="shadow shadow-3">
+        <div class="placeholder-animation image"></div>
+      </aside>
+      <h1 padding-left></h1>
+      <ion-card padding>
+        <p class="placeholder-animation placeholder-text-p-40"></p>
+        <div class="status placeholder-animation placeholder-text-p-20"></div>
+
+        <!-- <article class="special-product">
+          <div class="left-side" col-12>
+            <h2 class="placeholder-animation placeholder-text-p-40"></h2>
+            <p class="placeholder-animation placeholder-text-p-80"></p>
+            <p class="placeholder-animation placeholder-text-p-60"></p>
+          </div>
+        </article> -->
+      </ion-card>
+    </section>
+  </div>
+
+  <div *ngIf="filials">
+    <div *ngFor="let filial of filials | orderBy:['distance']; let i = index">
+      <span style="margin-top: 0.7em" *ngIf="i == 0">&nbsp;</span>
+      <card-promotion [filial]="filial"></card-promotion>
+    </div>
+  </div>
+
+</ion-content>

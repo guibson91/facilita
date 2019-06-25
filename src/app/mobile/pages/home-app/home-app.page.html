@@ -1,0 +1,56 @@
+<ion-header no-border class="app">
+  <ion-toolbar class="header-toolbar" color="primary">
+    <!-- <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="ios-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+    <h3 ion-text text-uppercase color="light" class="my-font-logo">ESCOLHA O QUE DESEJA</h3>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid no-padding margin-top>
+    <ion-row>
+      <ion-col size="6" (click)="clickCategory('restaurant')">
+        <img src="./../../../../assets/images/RESTAURANTES.png" />
+        <h1>RESTAURANTES</h1>
+      </ion-col>
+      <ion-col size="6" (click)="clickCategory('supermarket')" class="opacity">
+        <img src="./../../../../assets/images/SUPERMERCADOS2.png" />
+        <h1>SUPERMERCADOS</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" (click)="clickCategory('drogstore')" class="opacity">
+        <img src="./../../../../assets/images/FARMACIAS2.png" />
+        <h1>FARMÁCIAS</h1>
+      </ion-col>
+      <ion-col size="6" (click)="clickCategory('warehouse')">
+        <img src="./../../../../assets/images/DEPOSITOS.png" />
+        <h1>DEPÓSITOS</h1>
+        <p>(ÁGUA, GÁS E BEBIDAS)</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" (click)="clickCategory('promotion')">
+        <img src="./../../../../assets/images/PROMOCOES.png" />
+        <h1>PROMOÇÕES</h1>
+      </ion-col>
+      <ion-col size="6" (click)="clickCategory('profile')">
+        <img src="./../../../../assets/images/PERFIL.png" />
+        <h1>PERFIL</h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<!-- Float button com informações sobre o pedido-->
+<fab-order></fab-order>
+
+
+<!-- <ion-footer>
+  <ion-button expand="block" color="primary">Acompanhar Pedido</ion-button>
+</ion-footer> -->

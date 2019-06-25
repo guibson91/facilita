@@ -1,0 +1,40 @@
+ion-toolbar {
+    text-align: center;
+}
+
+ion-row {
+    margin-top: 0.5em;
+    ion-col {
+        width: 10vw !important;
+        min-width: 10vw !important;
+        height: 28vh !important;
+        min-height: 28vh !important;
+        padding-top: 1.5em; // border: 1px solid lightgray;
+        display: flex;
+        flex-direction: column;
+        vertical-align: middle;
+        align-items: center;
+        justify-content: center;
+        margin: 0px;
+        padding: 0px;
+        img {    
+            width: 20vw;
+            height: 20vw;
+        }
+        h1 {
+            font-size: 1em;
+            font-weight: bold;
+        }
+        p {
+            color: #555;
+            font-size: 0.6em;
+            font-weight: bold;
+            margin: 0px;
+            margin-top: -8px;
+        }
+    }
+
+    .opacity{
+        opacity: 0.4;
+    }
+}

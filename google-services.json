@@ -1,0 +1,110 @@
+{
+  "project_info": {
+    "project_number": "409247652916",
+    "firebase_url": "https://facilita-production.firebaseio.com",
+    "project_id": "facilita-production",
+    "storage_bucket": "facilita-production.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409247652916:android:0af12ec7ddf10a9a",
+        "android_client_info": {
+          "package_name": "br.com.nanocode.facilita"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409247652916-mpj2kr49hqocehf92hr2993vmvt1lesd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.nanocode.facilita",
+            "certificate_hash": "b4f6d5cf77db647d43b177624fd2a4de5f6547ec"
+          }
+        },
+        {
+          "client_id": "409247652916-pp3ci4j0bansrpv29d09cuvvlqfrhoh5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.nanocode.facilita",
+            "certificate_hash": "a41274aa0c0693d2b52a4391cabfc60375cd5157"
+          }
+        },
+        {
+          "client_id": "409247652916-1eilelpitds4qji5nesajjo8rv6pq431.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.nanocode.facilita",
+            "certificate_hash": "705de7ce82e69fc650f9a1946e1006d78ee33352"
+          }
+        },
+        {
+          "client_id": "409247652916-cn2acel83klnh01jckbfom1g9qilbvpr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.nanocode.facilita",
+            "certificate_hash": "06be28c01b4658978f0eb021ff59386d465a7e90"
+          }
+        },
+        {
+          "client_id": "409247652916-jir73702q0ulbj26vphe3k09f0ceig29.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.nanocode.facilita",
+            "certificate_hash": "5fe32cbf8875e14c1524fe3a90cf48568d6b7cbf"
+          }
+        },
+        {
+          "client_id": "409247652916-n8nb9isoi5611v9udbbk3ntnuai8ekp1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.nanocode.facilita",
+            "certificate_hash": "03c35ff369e3c32ef19e0351cf25d829f6ff6e20"
+          }
+        },
+        {
+          "client_id": "409247652916-om0sbkckar3qu73pcrrqce926g30tjcj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.nanocode.facilita",
+            "certificate_hash": "d743d41378acb39259ae31581139e1f12eb472b9"
+          }
+        },
+        {
+          "client_id": "409247652916-tf7ics6lrietukbld1gf13oqesaopln6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADM4gGpUjyrzrMoXP-K1dWkhhZmV1P5NE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409247652916-4nan68338a4boqlc31f81jj603tqo6r5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "409247652916-2i8ip1jsfvr9ses09hgkd6bpkfpabm3a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.nanocode.facilita"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

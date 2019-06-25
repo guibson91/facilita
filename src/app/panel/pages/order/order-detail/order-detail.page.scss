@@ -1,0 +1,145 @@
+ion-content.content {
+    .scroll-content {
+        background: white !important;
+    }
+}
+
+#section-to-print {
+    position: absolute;
+    z-index: -102010210;
+    font-family: 'Sunflower', sans-serif !important;
+    p {
+        font-family: 'Sunflower', sans-serif !important;
+    }
+    span {
+        font-family: 'Sunflower', sans-serif !important;
+    }
+}
+
+.notifications-badge {
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    border-radius: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px;
+    padding: 0px;
+    z-index: 10;
+}
+
+.header {
+    .label {
+        display: flex;
+        justify-content: space-between;
+        .values {
+            display: flex;
+            justify-content: space-between;
+            span {
+                width: 50px;
+                text-align: center;
+            }
+            .val {
+                width: 75px;
+            }
+        }
+    }
+}
+
+.total-value {
+    margin-top: 10px;
+}
+
+.text-complements {
+    background: white;
+    padding: 16px;
+    p {
+        margin-bottom: 0px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.text-incomplete {
+    margin-top: 0px !important;
+    text-align: center;
+}
+
+card-product {
+    ion-label {
+        h5 {
+            font-size: 1.2em !important;
+        }
+    }
+    nano-thumb {
+        .thumb {
+            height: 48px;
+            width: 48px;
+            max-width: 48px;
+            max-height: 48px;
+        }
+    }
+}
+
+.print {
+    display: none;
+}
+
+@media print {
+    ion-header {
+        display: none !important;
+    }
+    ion-content {
+        margin: 0;
+        color: black !important;
+        padding: 0;
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    }
+    .total-value {
+        margin: 0;
+        padding: 0;
+        h2 {
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            font-size: 14px;
+            color: black;
+            strong {
+                font-weight: normal;
+            }
+        }
+    }
+    .shipping-address,
+    .payment-method {
+        font-size: 14px;
+        padding: 0 !important;
+        margin: 0 !important;
+        .item-inner {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        p {
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            color: black !important;
+        }
+    }
+    .print {
+        display: block;
+        color: black !important;
+    }
+    .text-complements {
+        display: none !important;
+    }
+    card-product {
+        display: none !important;
+    }
+    .notifications-badge {
+        display: none !important;
+    }
+}

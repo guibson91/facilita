@@ -1,0 +1,58 @@
+<ion-item-divider color="primary">
+  <h3 ion-text text-wrap class="my-font-bold">{{complement.title}}
+    <p ion-text class="required my-font-regular" *ngIf="complement.type === TYPE_SINGLE && complement.required">Obrigatório</p>
+    <p ion-text class="required my-font-regular" *ngIf="complement.type !== TYPE_SINGLE && complement.min > 0">Mínimo
+      {{complement.min}}</p>
+  </h3>
+  <div class="counts" slot="end">
+    <h5 ion-text color="primary" class="my-font-bold" *ngIf="complement.type === TYPE_SINGLE">Único</h5>
+    <h5 ion-text color="primary" class="my-font-bold" *ngIf="complement.type !== TYPE_SINGLE">{{(total_sum_quantity||0)}}/{{complement.max}}</h5>
+  </div>
+  <div class="background-toolbar-right"></div>
+  <div class="background-toolbar-right-white"></div>
+</ion-item-divider>
+
+
+<ion-radio-group *ngIf="complement.type === TYPE_SINGLE" [(ngModel)]="option_single_selected" (ionChange)="singleChange($event)">
+  <ion-item no-lines *ngFor="let option of complement.options">
+    <ion-label text-wrap>
+      <h2 ion-text>{{option.name}}</h2>
+      <h3 ion-text *ngIf="option?.price && option.price > 0"><strong class="price-value">+ R$ {{option.price | number :
+          '1.2-2'}}</strong></h3>
+      <p ion-text text-wrap>{{option.description}}</p>
+    </ion-label>
+    <ion-radio [value]="option"></ion-radio>
+  </ion-item>
+</ion-radio-group>
+
+<div *ngIf="complement.type === TYPE_MULTIPLE">
+  <ion-item no-lines *ngFor="let option of complement.options">
+    <ion-label text-wrap>
+      <h2 ion-text>{{option.name}}</h2>
+      <h3 ion-text *ngIf="option?.price && option.price > 0"><strong class="price-value">+ R$ {{option.price | number :
+          '1.2-2'}}</strong></h3>
+      <p ion-text text-wrap>{{option.description}}</p>
+    </ion-label>
+    <ion-checkbox [(ngModel)]="option.quantity" (ionChange)="multipleChange(option, $event)" item-end></ion-checkbox>
+  </ion-item>
+</div>
+
+<div *ngIf="complement.type === TYPE_QUANTITY">
+  <ion-item no-lines *ngFor="let option of complement.options">
+    <ion-label text-wrap>
+      <h2 ion-text>{{option.name}}</h2>
+      <h3 ion-text *ngIf="option?.price && option.price > 0"><strong class="price-value">+ R$ {{option.price | number :
+          '1.2-2'}}</strong></h3>
+      <p ion-text text-wrap>{{option.description}}</p>
+    </ion-label>
+    <div item-right class="quantity-buttons">
+      <ion-button fill="clear" icon-only (click)="quantityChange(option, -1)" *ngIf="option.quantity > 0">
+        <ion-icon name="md-remove"></ion-icon>
+      </ion-button>
+      <p ion-text>{{option.quantity || 0}}</p>
+      <ion-button fill="clear" icon-only (click)="quantityChange(option, 1)">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-item>
+</div>

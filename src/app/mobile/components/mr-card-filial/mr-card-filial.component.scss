@@ -1,0 +1,36 @@
+ion-card.card-filial {
+    background: white;
+    --background: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0px 10px 0;
+    width: 100%;
+    .info-filial {
+        padding: 10px 0;
+        .title {
+            color: #666;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+        .detail {
+            color: black;
+            margin-left: 15px;
+            font-size: 1em;
+            padding: 3px 0;
+            ion-icon {
+                font-size: 1em !important;
+                &.space-right {
+                    margin-right: 3px;
+                }
+            }
+        }
+    }
+    .logo-filial {
+        width: 90px;
+        // margin: 10px 8px 10px 4px
+        margin-right: 1em;
+    }
+}

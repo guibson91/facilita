@@ -1,0 +1,34 @@
+<ion-card *ngIf="loading || ( !loading && _filial )" [ngClass]="{'inside-card': inside}">
+  <nano-loading [loading]="loading">
+    <ion-row class="form">
+      <ion-col size-12 [attr.size-sm-6]="twoColumns || threeColumns ? true : null" [attr.size-lg-4]="threeColumns ? true : null" ion-item>
+        <ion-label text-warp>Funcionamento</ion-label>
+        <ion-select [(ngModel)]="type_open" (ionChange)="detect()">
+          <ion-select-option value="free" text-warp>Livre</ion-select-option>
+          <ion-select-option value="working_hours" text-warp>Horários</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size-12 [attr.size-sm-6]="twoColumns || threeColumns ? true : null" [attr.size-lg-4]="threeColumns ? true : null" ion-item
+        *ngIf="filials && filials.length > 1">
+        <ion-label text-warp>Filial</ion-label>
+        <ion-select [(ngModel)]="_filial" (ionChange)="setFilial($event); detect()">
+          <ion-select-option [value]="f" *ngFor="let f of filials" text-warp>{{f.name}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size-12 [attr.size-sm-6]="twoColumns ? true : null" [attr.size-lg-4]="threeColumns ? true : null" *ngIf="type_open === 'free'">
+          <ion-label>Está aberta?</ion-label>
+          <ion-toggle [(ngModel)]="open_filial" (ionChange)="detect()"></ion-toggle>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="type_open === 'working_hours'">
+      <card-hour-open [businesshours]="business_hours"></card-hour-open>
+      <h6 *ngIf="!business_hours || business_hours.length == 0" padding-start>Esse estabelecimento não será aberto hoje</h6>
+    </ion-row>
+
+    <ion-row class="save-button">
+      <ion-button *ngIf="existChange" color="proceed" (click)="save()">SALVAR</ion-button>
+    </ion-row>
+
+  </nano-loading>
+</ion-card>

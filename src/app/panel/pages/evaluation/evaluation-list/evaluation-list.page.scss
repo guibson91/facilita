@@ -1,0 +1,63 @@
+h2,
+h1 {
+    white-space: normal;
+}
+
+.noEvaluation {
+    display: none;
+    &:first-child {
+        display: block !important;
+    }
+}
+
+.search-order-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    ion-item {
+        border-bottom: solid 2px #dddddd;
+        padding-bottom: 5px;
+        .item-inner {
+            @media(max-width: 420px) {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+    .datetime-md {
+        padding: 7px 8px 7px 0px !important;
+    }
+}
+
+.list-evaluation {
+    .item-evaluation {
+        .item-inner {
+            @media(max-width: 420px) {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+}
+
+.date-filter {
+    width: 300px;
+    .item-inner {
+        border-bottom: 0 !important;
+    }
+}
+
+.more {
+    cursor: pointer;
+    padding-top: 1em;
+    color: purple;
+}
+
+.star-number {
+    color: var(--ion-color-primary) !important;
+    font-size: 15px;
+    ion-icon {
+        margin-right: 5px;
+    }
+}

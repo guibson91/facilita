@@ -1,0 +1,219 @@
+<ion-header no-border>
+  <nano-navbar title="Cadastro de Estabelecimento" icon="menus-icon-shop" [helpPage]="5"></nano-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card class="content-card">
+    <nano-loading [loading]="loading">
+      <form [formGroup]="form" class="form-content">
+        <ion-list>
+          <!-- Imagem da filial -->
+          <p ion-text color="tertiary" padding-horizontal class="complete-address">Foto da filial *</p>
+          <nano-uploadimage [form]="this.form" [storagePath]="'filials'"></nano-uploadimage>
+          <!-- Imagem de capa -->
+          <p ion-text color="tertiary" padding-horizontal class="complete-address">Imagem de capa *</p>
+          <nano-uploadimage [control]="this.form.controls['cover']" [storagePath]="'filials_cover'"></nano-uploadimage>
+
+          <!-- Nome -->
+          <ion-item padding-horizontal>
+            <ion-label position="stacked" color="tertiary">Nome *</ion-label>
+            <ion-input formControlName="name" maxlength="50"></ion-input>
+          </ion-item>
+
+          <!-- Descrição -->
+          <ion-item padding-horizontal>
+            <ion-label position="stacked" color="tertiary">Descrição *</ion-label>
+            <ion-textarea rows="5" formControlName="description" maxlength="300"></ion-textarea>
+          </ion-item>
+
+          <!-- Taxa específica a ser cobrada pela empresa -->
+          <div formGroupName="fee" *ngIf="isTEAM">
+            <ion-item padding-horizontal>
+              <ion-label position="stacked" color="tertiary">Taxa</ion-label>
+              <money-input item-content [control]="form.controls['fee'].controls['to_facilita']"></money-input>
+            </ion-item>
+          </div>
+
+          <!-- Telefones de contato-->
+          <ion-row padding-right class="phones" padding-horizontal padding-top>
+            <ion-col ion-item no-lines col-12 col-sm-6 padding-horizontal>
+              <ion-label position="stacked" color="tertiary"> Telefone1 *</ion-label>
+              <ion-input type="text" formControlName="phone1" minlength="8" maxlength="15" name="phone1" [brmasker]="{form: form.get('phone1'), phone: true}"></ion-input>
+            </ion-col>
+            <ion-col ion-item no-lines col-12 col-sm-6 padding-horizontal>
+              <ion-label position="stacked" color="tertiary"> Telefone2 </ion-label>
+              <ion-input type="text" formControlName="phone2" minlength="8" maxlength="15" name="phone2" [brmasker]="{form: form.get('phone2'), phone: true}"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <!-- Se tem delivery ou não-->
+          <ion-item padding-horizontal>
+            <ion-label color="tertiary">Tem delivery</ion-label>
+            <ion-toggle formControlName="have_delivery" mode="ios"></ion-toggle>
+          </ion-item>
+
+          <ion-item padding-horizontal *ngIf="form?.value?.have_delivery">
+            <ion-label position="stacked" color="tertiary">Pedido mínimo</ion-label>
+            <money-input item-content [control]="form.controls['orderMin']"></money-input>
+          </ion-item>
+
+          <div formGroupName="delivery" *ngIf="form?.value?.have_delivery">
+
+            <div>
+              <h5 ion-text text-center margin padding-top>
+                <strong>TAXA DE ENTREGA
+                  <span *ngIf="!form.value.deliveryByDistrict">POR KM</span>
+                  <span *ngIf="form.value.deliveryByDistrict">POR BAIRRO</span>
+                </strong>
+                <ion-button icon-only fill="clear" (click)="changeDelivery()">
+                  <ion-icon name="git-compare"></ion-icon>
+                </ion-button>
+              </h5>
+
+              <div *ngIf="!form.value.deliveryByDistrict">
+                <ion-item padding-horizontal>
+                  <ion-label position="stacked" color="tertiary">Distância máxima (Km)</ion-label>
+                  <ion-input type="number" formControlName="distanceMax"></ion-input>
+                </ion-item>
+
+                <ion-item padding-horizontal>
+                  <ion-label position="stacked" color="tertiary">Valor por cada km (R$)</ion-label>
+                  <money-input item-content [control]="form.controls['delivery'].controls['fee']"></money-input>
+                </ion-item>
+
+                <ion-item padding-horizontal>
+                  <ion-label position="stacked" color="tertiary">Menor valor (R$)</ion-label>
+                  <money-input item-content [control]="form.controls['delivery'].controls['feeMin']"></money-input>
+                </ion-item>
+
+                <ion-item padding-horizontal>
+                  <ion-label position="stacked" color="tertiary">Maior valor (R$)</ion-label>
+                  <money-input item-content [control]="form.controls['delivery'].controls['feeMax']"></money-input>
+                </ion-item>
+              </div>
+              <div *ngIf="form.value.deliveryByDistrict">
+                <ion-item padding-horizontal>
+                  <ion-label position="stacked" color="tertiary">Informe um bairro para entrega</ion-label>
+                </ion-item>
+                <div class="container-gps">
+                  <div class="container-nanocomplete">
+                    <nano-autocomplete padding-horizontal (updatePlace)="handleDistrict($event)" [isDistrict]="true"></nano-autocomplete>
+                  </div>
+                </div>
+                <div *ngFor="let deliveryDistrict of deliveryDistricts" margin-left style="display: flex">
+                  <ion-button icon-only fill="clear" (click)="removeDistrict(deliveryDistrict)">
+                    <ion-icon name="trash"></ion-icon>
+                  </ion-button>
+                  <ion-badge class="badge-district">{{deliveryDistrict.location.district}}</ion-badge>
+                  <money-input class="input-district" [(number)]="deliveryDistrict.value"></money-input>
+                </div>
+              </div>
+            </div>
+
+            <h5 ion-text text-center margin padding-top>
+              <strong>TEMPO DE ENTREGA</strong>
+            </h5>
+
+            <!-- Tempo de entrega -->
+            <ion-item padding-horizontal>
+              <ion-label position="stacked" color="tertiary">Tempo de entrega mínimo (em minutos)</ion-label>
+              <ion-input type="number" formControlName="timeMin"></ion-input>
+            </ion-item>
+
+            <ion-item padding-horizontal>
+              <ion-label position="stacked" color="tertiary">Tempo de entrega máximo (em minutos)</ion-label>
+              <ion-input type="number" formControlName="timeMax"></ion-input>
+            </ion-item>
+          </div>
+
+          <h5 ion-text text-center margin padding-top>
+            <strong>FORMA DE PAGAMENTO</strong>
+          </h5>
+
+          <ion-item padding-horizontal>
+            <ion-label position="stacked" color="tertiary">Formas de pagamento permitidas *</ion-label>
+            <ion-select [(ngModel)]="paymentMethods" multiple="true" cancelText="Cancelar" okText="Ok" [ngModelOptions]="{standalone: true}">
+              <ion-select-option *ngFor="let type of typesPayment" [value]="type.value">{{type.text}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item *ngIf="hasCard()" padding-horizontal>
+            <ion-label position="stacked" color="tertiary">Bandeiras de cartões</ion-label>
+            <ion-select [(ngModel)]="cards" multiple="true" cancelText="Cancelar" okText="Ok" [ngModelOptions]="{standalone: true}">
+              <ion-select-option *ngFor="let card of cardsFlag" [value]="card.value">{{card.text}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item *ngIf="hasFoodStamps()" padding-horizontal>
+            <ion-label position="stacked" color="tertiary">Bandeiras de vales-alimentação</ion-label>
+            <ion-select [(ngModel)]="cards_food" multiple="true" cancelText="Cancelar" okText="Ok" [ngModelOptions]="{standalone: true}">
+              <ion-select-option *ngFor="let card of cardsFoodFlag" [value]="card.value">{{card.text}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+
+          <h5 ion-text text-center padding-top>
+            <strong>CATEGORIA *</strong>
+          </h5>
+          <ion-radio-group formControlName="type">
+            <ion-item *ngFor="let type of filial_types; let i = index ">
+              <ion-label>{{type.name}}
+                <span ion-text color="medium">{{type.description}}</span>
+              </ion-label>
+              <ion-radio [value]="type.value"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+
+          <h5 ion-text text-center padding-top *ngIf="FilialType.RESTAURANT === form.value.type">
+            <strong>SUB CATEGORIA DE RESTAURANTE *</strong>
+          </h5>
+          <div *ngIf="FilialType.RESTAURANT === form.value.type">
+            <ion-item *ngFor="let type of restaurant_subtypes; let i = index ">
+              <ion-label>{{type.name}}
+                <span ion-text color="medium">{{type.description}}</span>
+              </ion-label>
+              <ion-checkbox [(ngModel)]="type.selected" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+            </ion-item>
+          </div>
+
+          <h5 ion-text text-center padding-top>
+            <strong>HORÁRIOS DE FUNCIONAMENTO</strong>
+          </h5>
+          <p ion-text text-center>Horários em que o estabelecimento ficará aberto.</p>
+          <div *ngFor="let week of ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']; let i = index"
+            padding-horizontal>
+            <h6 ion-text>{{week}}: </h6>
+            <div class="flex flex-wrap">
+              <card-hour-open [businesshours]="business_hours[i]" (selected)="editIntervalHours(i, $event)"></card-hour-open>
+              <ion-card class="card-hour" tappable (click)="editIntervalHours(i)">
+                <ion-icon name="ios-add-circle-outline" color="primary" class="add-interval"></ion-icon>
+              </ion-card>
+            </div>
+          </div>
+
+          <h5 text-center margin padding-top>
+            <strong>ENDEREÇO</strong>
+          </h5>
+
+          <p ion-text color="tertiary" padding-horizontal class="complete-address">Endereço completo</p>
+          <div class="container-gps" *ngIf="!loading">
+            <div class="container-nanocomplete">
+              <nano-autocomplete (updatePlace)="handlePlace($event)"></nano-autocomplete>
+            </div>
+            <div class="button-gps">
+              <ion-button fill="outline" (click)="getCurrentPosition()">Localização por GPS</ion-button>
+            </div>
+          </div>
+
+          <!-- Localização -->
+          <nano-address [form]="form.controls['location']" padding-horizontal></nano-address>
+
+          <nano-buttons [canSave]="form.valid && cardsValid()" [save]="save.bind(this)" [canRemove]="filial" [cancel]="cancel.bind(this)"
+            [remove]="remove.bind(this)"></nano-buttons>
+        </ion-list>
+      </form>
+    </nano-loading>
+  </ion-card>
+
+</ion-content>

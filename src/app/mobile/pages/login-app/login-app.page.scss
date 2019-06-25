@@ -1,0 +1,83 @@
+ion-header {
+    ion-title {
+        font-family: myFontBold !important;
+    }
+    ion-icon {
+        font-size: 1.5rem;
+        margin: 0px 5px;
+    }
+}
+
+ion-content {
+    // font-family: 'Roboto', sans-serif !important;
+    // background-image: url("./../assets/img/bg-login.png") !important;
+    // background-size: cover;
+    // background-position: center;
+}
+
+.scroll-content {
+    display: flex;
+    flex-flow: column;
+}
+
+.background-cover {
+    background-color: rgba(0,0,0,0.65);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1 !important;
+}
+
+.logo-maisrangos {
+    z-index: 2!important;
+    width: 120% !important;
+    margin-left: -10%!important;
+    max-width: 400%!important;
+    height: auto!important;
+}
+
+header {
+    // width: 100%;
+    nano-thumb {            
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        // margin: 30% auto !important;
+        padding-top: 30%;
+    }        
+}
+
+section {
+    flex: 1 1 auto;
+}
+
+
+footer {
+    flex: 0 1 40px;
+    margin-bottom: 40%!important;
+    font-family: 'Roboto', sans-serif !important;
+    width: 80%;
+    margin-left: 10%;
+    // position: relative;
+    // bottom: -10em !important;
+    
+
+    button {
+        border-radius: 5px !important;
+        text-align: center;
+        // padding: 20px!important;
+
+        ion-icon {
+            margin-top: -4px;
+        }
+    }
+}
+
+.text-buttons {
+    color: black;
+    text-align: center;
+    font-size: 1.15em;
+}

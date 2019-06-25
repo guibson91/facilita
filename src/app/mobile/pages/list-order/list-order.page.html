@@ -1,0 +1,24 @@
+<ion-header no-border class="app">
+  <ion-toolbar color="primary" hideBackButton="true">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="icon-only" name="ios-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="title-default">
+      <h3 ion-text class="my-font-logo" no-margin>LISTA DE PEDIDOS</h3>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="orders">
+    <div *ngFor="let order of orders | orderBy: '-created_at'">
+      <mr-card-filial *ngIf="order.filial_full" [filial]="order.filial_full" tappable (click)="goTrackOrder(order)"
+        [order]="order"></mr-card-filial>
+    </div>
+  </div>
+  <br><br>
+
+</ion-content>

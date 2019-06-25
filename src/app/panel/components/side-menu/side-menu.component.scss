@@ -1,0 +1,80 @@
+:host {
+    height: 100%;
+    --ion-toolbar-background: white;
+    --ion-background-color: white;
+}
+
+.logo-header {
+    height: 60px;
+    width: 211px;
+    margin-right: 60px;
+    margin-left: 23px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: url("./../../../../assets/logo/facilita1.png") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.menu-icon {
+    color: var(--ion-color-primary) !important;
+    margin-right: 1em;
+}
+
+.super-menu-item {
+    --border-style: none;
+    --background: transparent;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: .95em;
+    border-bottom: 1px solid var(--ion-color-light-tint) !important;
+    &:hover {
+        background: var(--ion-color-light-tint) !important;
+    }
+    &.selected-super-item{
+        background: var(--ion-color-light-tint) !important;
+    }
+}
+
+.menu-item {
+    --border-style: none;
+    --background: transparent;
+    font-weight: bold;
+    font-size: .95em;
+    cursor: pointer;
+    border-bottom: 1px solid var(--ion-color-light-tint)!important;
+    &:hover {
+        background: var(--ion-color-light-tint) !important;
+    }
+}
+
+.menu-description{
+    text-transform: none;
+    font-weight: 400;
+    font-size: 0.8em !important;
+    color: var(--ion-color-medium-shade);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+
+.submenus {
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    margin: 0px;
+    &.dropdown {
+        display: none;
+        padding: 0px !important;
+        margin: 0px !important;
+        visibility: hidden;
+        opacity: 0;
+        height: 0px;
+        border-bottom: solid 1px var(--ion-color-light-tint) !important;
+    }
+}

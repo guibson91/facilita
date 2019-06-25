@@ -1,0 +1,26 @@
+.button-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+.top-text {
+    font-size: 17px;
+    font-weight: bold;
+}
+.bottom-text {
+    padding-bottom: 20px;
+}
+gain-ranguitos {
+    .img-coin {
+        width: 30px !important;
+    }
+    .value {
+        font-size: 25px !important;
+    }
+    ion-icon.icon {
+        font-size: 40px !important;
+    }
+}
+ion-footer.footer {
+    background-color: #f0f0f0;
+}

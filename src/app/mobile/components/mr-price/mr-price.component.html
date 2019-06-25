@@ -1,0 +1,27 @@
+<ion-card class="total shadow shadow-light">
+  <div class="total-info">
+
+    <p *ngIf="price.subtotal">
+      <strong>Subtotal</strong>
+    </p>
+    <p>Taxa de entrega </p>
+    <p *ngIf="price?.couponDiscounts">Descontos de Cupom</p>
+    <p class="total-text">
+      <strong>Total </strong>
+    </p>
+  </div>
+  <div class="total-price" text-right>
+    <p *ngIf="price.subtotal">
+      <strong> R$ {{price.subtotal | number: '1.2-2'}} </strong>
+    </p>
+    <p class="delivery-price">
+      <strong>+ R$ {{price.delivery | number: '1.2-2'}} </strong>
+    </p>
+    <p class="delivery-price" *ngIf="price.couponDiscounts">
+      <strong>- R$ {{price.couponDiscounts | number: '1.2-2'}} </strong>
+    </p>
+    <p class="total-price-text">
+      <strong>R$ {{ price.total| number: '1.2-2'}} </strong>
+    </p>
+  </div>
+</ion-card>

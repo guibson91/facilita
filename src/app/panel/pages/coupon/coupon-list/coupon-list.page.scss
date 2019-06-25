@@ -1,0 +1,33 @@
+ion-list {
+
+    .container {
+
+        border-bottom: 1px solid #eee;
+        
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+
+        h2 {
+            min-width: 16%;
+            font-weight: bold !important;
+            color: var(--ion-color-primary) !important;
+        }
+
+        h2.inactive, p.inactive {
+            font-weight: normal !important;
+            color: lightgrey !important;
+            text-decoration: line-through !important;
+        }
+
+        ion-item {
+            ion-label {
+                font-size: 1.2em;
+                font-weight: bold;
+                color: var(--ion-color-primary);
+            }
+        }
+
+    }
+
+}

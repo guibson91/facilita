@@ -1,0 +1,20 @@
+<ion-app>
+    <ion-split-pane>
+
+        <!-- Menu Lateral  -->
+        <ion-menu>
+            <side-menu [hidden]="showLoading"></side-menu>
+        </ion-menu>
+
+        <!-- Conteúdo Principal -->
+        <ion-router-outlet main></ion-router-outlet>
+
+        <div class="loading-page" *ngIf="showLoading">
+
+            <div class="back-loading">
+                <img style="width: 5em; height: 5em" src="./assets/img/load_food.gif">
+            </div>
+            <h1 class="my-bold-font">Carregando...</h1>
+        </div>
+    </ion-split-pane>
+</ion-app>

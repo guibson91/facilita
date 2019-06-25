@@ -1,0 +1,58 @@
+ion-content {
+    --background: transparent;
+    background-image: url("./../../../../assets/img/bg-login.jpg") !important;
+    background-size: cover;
+    background-position: center;
+}
+
+.background-cover {
+    background-color: rgba(0, 0, 0, 0.65);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%;
+    height: 100%;
+}
+
+.logo-header {
+    width: auto;
+    margin: 13px;
+    height: 72px;
+    background: url("./../../../../assets/logo/facilita1.png") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+form {
+    margin-top: 3em;
+    .button-inner {
+        .text-md-primary {
+            font-family: myFontBold !important;
+            color: #cb6018 !important;
+        }
+    }
+    ion-input {
+        background-color: transparent !important;
+    }
+}
+
+.center {    
+    width: 350px;
+    padding: 30px 35px;
+    background: var(--ion-color-light);
+}
+
+ion-spinner {
+    width: 35px;
+    height: 35px;
+}
+
+ion-input {
+    border-bottom: 1px solid;
+}
+
+input:focus {
+    outline: none !important;
+}

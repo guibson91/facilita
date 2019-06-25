@@ -1,0 +1,82 @@
+<ion-header no-border class="app">
+  <ion-toolbar color="primary" hideBackButton>
+
+    <ion-buttons slot="start">
+      <ion-button icon-only (click)="dismiss()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title class="title-default">
+      <h3 ion-text class="my-font-logo" no-margin>SEU PEDIDO</h3>
+    </ion-title>
+
+    <!-- <ion-buttons slot="end">
+      <ion-button icon-only (click)="help()">
+        <ion-icon class="help-toolbar" name="md-help" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div class="background-toolbar-right"></div>
+    -->
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <header>
+    <div class="product-name">
+      <h5 text-wrap padding-horizontal class="my-font-bold">{{entry?.product?.name}}</h5>
+    </div>
+    <ion-grid class="info shadow shadow-light" no-padding padding-horizontal no-lines>
+      <ion-row class="money">
+        <ion-col size="12" no-padding>
+          <p class="text-new-price"><strong class="price-value">R$ {{ entry?.price | number : '1.2-2' }}</strong></p>
+        </ion-col>
+        <!-- <ion-col></ion-col> -->
+      </ion-row>
+      <ion-row class="description">
+        <ion-col size="12">
+          <p ion-text text-wrap>{{entry?.product?.description}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <nano-thumb [src]="entry?.product?.image" [product_image]="true" class="product-image shadow shadow-light"></nano-thumb>
+  </header>
+
+  <div class="quantity-card shadow shadow-light">
+    <h6> Quantidade </h6>
+    <div class="quantity-buttons">
+      <ion-button fill="clear" (click)="decrement()">
+        <ion-icon slot="icon-only" name="md-remove"></ion-icon>
+      </ion-button>
+      <span> {{ entry.quantity }} </span>
+      <ion-button fill="clear" (click)="increment()">
+        <ion-icon slot="icon-only" name="md-add"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+  <order-complement-list *ngFor="let complement of entry?.complements" [complement]="complement" (change)="calculateEntry()"></order-complement-list>
+
+  <ion-item no-lines class="obs-product shadow shadow-light">
+    <ion-label position="stacked">Observações do produto</ion-label>
+    <ion-textarea [(ngModel)]="entry.observation" placeholder="Ex: sem verduras e pimenta "></ion-textarea>
+  </ion-item>
+
+</ion-content>
+
+<ion-footer>
+
+  <ion-row class="add-button" tappable color="primary" (click)="addToCart()" color="primary" text-center>
+    <ion-col size="3">
+      <coin-real [value]="totalPriceEntry"></coin-real>
+    </ion-col>
+    <ion-col>
+      <h4 class="my-font-logo">{{ edit || 'ADICIONAR'}} </h4>
+    </ion-col>
+    <ion-col size="3">
+    </ion-col>
+  </ion-row>
+
+</ion-footer>

@@ -1,0 +1,35 @@
+<ion-content>
+
+  <div class="background-cover"></div>
+
+  <div class="center">
+
+    <form (submit)="doLogin()">
+
+      <div class="logo-header"></div>
+
+      <ion-list no-lines [hidden]="loading" class="remove-border-input">
+
+        <ion-item class="remove-border-item">
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+        </ion-item>
+
+        <ion-item class="remove-border-item">
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input autocomplete="new-password" type="password" [(ngModel)]="account.password" name="password"></ion-input>
+        </ion-item>
+
+        <ion-button padding expand="block" (click)="doLogin()">
+          <p ion-text>Entrar</p>
+        </ion-button>
+
+      </ion-list>
+
+      <div class="spinner-center" [hidden]="!loading" padding padding>
+        <ion-spinner></ion-spinner>
+      </div>
+    </form>
+  </div>
+
+</ion-content>

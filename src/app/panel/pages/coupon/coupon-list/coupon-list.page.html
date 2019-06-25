@@ -1,0 +1,43 @@
+<ion-header>
+  <nano-navbar title="Cupons" icon="menus-icon-ecommerce-46"></nano-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card class="content-card">
+    <ion-searchbar [(ngModel)]="searchString" placeholder="Pesquisar">
+    </ion-searchbar>
+    <nano-loading [loading]="loading">
+      <ion-list>
+        <div class="container" no-lines padding *ngFor="let coupon of coupons$ | async | filterBy:['name']:searchString"
+          text-wrap>
+          <h2 class="coupon-name" [ngClass]="{inactive: !coupon?.enable}">{{coupon.name}}<span *ngIf="coupon.fromTeam"
+              style="color:coral"><br />(TEAM)</span></h2>
+          <p [ngClass]="{inactive: !coupon?.enable}">{{coupon.description}}</p>
+          <div>
+            <ion-button fill="clear" (click)="edit(coupon)" color="proceed">
+              <ion-icon name="md-create"></ion-icon> Editar
+            </ion-button>
+          </div>
+          <div>
+            <ion-item>
+              <ion-label>Ativo</ion-label>
+              <ion-toggle [(ngModel)]="coupon.enable" (ionChange)="changeActiveStatus(coupon)"></ion-toggle>
+            </ion-item>
+          </div>
+        </div>
+      </ion-list>
+
+      <ion-item text-center padding *ngIf="!existsCoupons">
+        <p ion-text>Você ainda não possui coupons</p>
+      </ion-item>
+    </nano-loading>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

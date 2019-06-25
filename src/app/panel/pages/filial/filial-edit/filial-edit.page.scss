@@ -1,0 +1,101 @@
+:host {
+    ion-list {
+        color: var(--ion-color-dark-shade);
+    }
+}
+
+.text {
+    margin-top: 0px !important;
+}
+
+.phones {
+    col {
+        background-color: #fff !important;
+    }
+}
+
+ion-content {
+    ion-select {
+        min-width: 15vw;
+    }
+    .district-item {
+        display: flex;
+        ion-icon {
+            margin-left: 10px;
+            line-height: normal;
+        }
+    }
+    ion-searchbar {
+        margin-top: -2.2em;
+        margin-left: 8px;
+    }
+    .container-gps {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        .container-nanocomplete {
+            width: calc(100% - 250px);
+            @media (max-width: 620px) {
+                width: 100% !important;
+            }
+            margin-right: 1em;
+        }
+        .button-gps {
+            display: flex;
+            align-items: center;
+            @media (max-width: 620px) {
+                width: 100%;
+                text-align: center !important;
+            }
+        }
+    }
+    ion-select {
+        padding-left: 8px !important;
+        margin-right: 16px !important;
+    }
+}
+
+.complete-address {
+    color: var(--ion-color-tertiary);
+}
+
+.badge-district {
+    font-size: 1.1em;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 12px 12px;
+    min-width: 150px;
+}
+
+.input-district {
+    max-width: 150px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    @media (max-width: 420px) {
+        width: 100%;
+        text-align: center !important;
+        margin-right: 5px;
+    }
+}
+
+.card-hour {
+    &.open {
+        background: var(--ion-color-success);
+    }
+    &.closed {
+        background: #d63231;
+    }
+    width: auto;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: inline-block;
+    text-align: center;
+    .text {
+        font-weight: bold;
+        color: white;
+    }
+}
+
+.add-interval {
+    font-size: 42px;
+}

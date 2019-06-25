@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "facilita-homologation",
+    "homologation": "facilita-homologation",
+    "production": "facilita-production"
+  }
+}

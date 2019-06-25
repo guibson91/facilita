@@ -1,0 +1,59 @@
+<ion-header no-border>
+  <nano-navbar title="Configurações da empresa" icon="menus-icon-settings-gear"></nano-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="content-card">
+    <nano-loading [loading]="loading">
+      <form [formGroup]="form" class="form-content">
+        <ion-list>
+
+          <!-- Informações da empresa -->
+          <ion-item-divider color="light">
+            <h3 ion-text>Informações da empresa</h3>
+          </ion-item-divider>
+
+          <!--Nome-->
+          <ion-item padding-horizontal>
+            <ion-label position="stacked" color="tertiary">Nome</ion-label>
+            <ion-input formControlName="name" maxlength="50"></ion-input>
+          </ion-item>
+
+          <!-- Ativar ou desativar a empresa -->
+          <ion-item padding-horizontal *ngIf="isTEAM">
+            <ion-label>Empresa ativa</ion-label>
+            <ion-checkbox formControlName="active"></ion-checkbox>
+          </ion-item>
+          <h4>Configurações do menu lateral</h4>
+          <p>Essas opções não impedem os usuários de verem a empresa no setor de delivery ou no setor de promoção</p>
+          <p>São apenas para o controle do que é visível no menu lateral. Muito cuidado ao desativar delivery de uma empresa que possui filiais de delivery abertas em produção.</p>
+          <!-- Ativar ou desativar a empresa -->
+          <ion-item padding-horizontal>
+            <ion-label>Essa empresa faz delivery?</ion-label>
+            <ion-checkbox formControlName="delivery"></ion-checkbox>
+          </ion-item>
+
+          <!-- Ativar ou desativar a empresa -->
+          <ion-item padding-horizontal>
+            <ion-label>Essa empresa faz promoções?</ion-label>
+            <ion-checkbox formControlName="promotion"></ion-checkbox>
+          </ion-item>
+
+          <!-- Taxa específica a ser cobrada pelo restaurante -->
+          <!-- <ion-item padding-horizontal *ngIf="isTEAM">
+            <ion-label stacked color="tertiary">Taxa</ion-label>
+            <money-input item-content [control]="form.controls['tax']"></money-input>
+          </ion-item> -->
+
+          <nano-buttons
+            [cancel]="cancel.bind(this)"
+            [canSave]="form.valid"
+            [save]="save.bind(this)"
+            [canRemove]="company && isTEAM"
+            [remove]="remove.bind(this)"></nano-buttons>
+
+        </ion-list>
+      </form>
+    </nano-loading>
+  </ion-card>
+</ion-content>

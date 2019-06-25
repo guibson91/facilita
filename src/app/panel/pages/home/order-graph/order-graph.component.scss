@@ -1,0 +1,113 @@
+nano-loading.big-loading {
+    ion-spinner.spinner {
+    width: 50px;
+    height: 50px;
+    margin: 60px;
+    }
+}
+ion-card{
+    --background: white;
+    --ion-background-color: white;
+}
+.canvas-chart {
+    height: 300px !important;
+}
+.fast-access {
+    margin-top: 5%;
+    color: white !important;
+    .label-plus {
+    margin-bottom: 24px;
+    }
+    .item-access-grid {
+    .orders-card {
+        padding: 0px !important;
+        margin: 0px !important;
+    }
+    ion-col {
+        .stats {
+        transition: all .5s ease !important;
+        &:hover {
+            border-radius: 5px !important;
+            cursor: pointer !important;
+            background-color: #f4f4f4 !important;
+        }
+        .stat {
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            h2 {
+            font-size: 2.5vw;
+            &.fatured {
+                font-size: 1.8vh;
+            }
+            }
+        }
+        }
+    }
+    .top-card {
+        color: #222 !important;
+        ion-col {
+        min-width: 137px !important;
+        display: inline !important;
+        h2 {
+            font-size: 2em;
+        }
+        }
+        .swap-period {
+        @media (max-width: 420px) {
+            width: 100% !important;
+        }
+        ion-col {
+            min-width: auto !important;
+            @media (max-width: 420px) {
+            display: flex !important;
+            justify-content: space-around !important;
+            }
+            cursor: pointer;
+            p {
+            text-align: center !important;
+            }
+            &:hover {
+            p {
+                color: var(--ion-color-proceed) !important;
+            }
+            }
+            &.selected {
+            p {
+                color: var(--ion-color-proceed) !important;
+            }
+            }
+        }
+        }
+    }
+    .card-middle {
+        .col {
+        min-width: 230px !important;
+        }
+        color: var(--ion-color-proceed) !important; //padding-top: 10%;
+        //padding-bottom: 10%;
+        text-align: center !important;
+        .circle-border {
+        margin-top: 10%;
+        margin-bottom: 10%;
+        .menus-icon-ecommerce-2 {
+            &:before {
+            font-size: 2.0em !important;
+            vertical-align: middle !important;
+            padding: 40px !important;
+            background-color: white;
+            border-radius: 50%;
+            border: solid 3px var(--ion-color-proceed);
+            border-top-style: solid;
+            border-right-style: dotted;
+            border-bottom-style: solid;
+            border-left-style: dotted;
+            padding: 10px;
+            cursor: pointer;
+            transition: all .5s ease;
+            }
+        }
+        }
+    }
+    }
+}

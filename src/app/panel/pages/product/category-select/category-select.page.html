@@ -1,0 +1,44 @@
+<ion-content>
+  <ion-searchbar clear [(ngModel)]="searchString" placeholder="Pesquisar"></ion-searchbar>
+  <nano-loading [loading]="loading">
+
+    <ion-list>
+      <ion-item class="remove-border-item" no-lines no-padding padding-horizontal *ngFor="let category of categories | filterBy:['name', 'description']:searchString as categories"
+        class="category-item">
+        <h2 ion-text text-wrap>{{category.name}}</h2>
+        <div item-right class="actions">
+          <ion-button fill="clear" color="danger" (click)="remove(category)">
+            <ion-icon name="trash"></ion-icon> Remover
+          </ion-button>
+          <ion-button (click)="edit(category)" fill="clear" color="proceed">
+            <ion-icon name="md-create"></ion-icon> Editar
+          </ion-button>
+          <ion-button fill="clear" color="proceed" (click)="dismiss(category)">
+            <ion-icon name="md-checkmark"></ion-icon> Selecionar
+          </ion-button>
+        </div>
+        <!--<div item-right>
+          <button ion-button icon-only clear (click)="toTop(category)">
+            <ion-icon name="arrow-up"></ion-icon>
+          </button>
+          <button ion-button icon-only clear (click)="toBottom(category)">
+            <ion-icon name="arrow-down"></ion-icon>
+          </button>
+        </div>-->
+      </ion-item>
+
+      <ion-item class="remove-border-item" text-center padding *ngIf="!existsCategories">
+        <p>Você não possui nenhuma categoria!</p>
+      </ion-item>
+    </ion-list>
+  </nano-loading>
+</ion-content>
+
+<ion-footer>
+  <ion-button fill="clear" color="danger" (click)="dismiss()">
+    <ion-icon name="close"></ion-icon> Cancelar
+  </ion-button>
+  <ion-button fill="clear" color="proceed" (click)="add()">
+    <ion-icon name="add"></ion-icon> Nova categoria
+  </ion-button>
+</ion-footer>

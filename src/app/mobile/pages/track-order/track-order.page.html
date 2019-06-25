@@ -1,0 +1,25 @@
+<ion-header no-border class="app">
+  <ion-toolbar class="header-toolbar" color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="icon-only" name="ios-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <h3 ion-text text-uppercase color="light" class="my-font-logo">ACOMPANHE SEU PEDIDO</h3>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="filial && order">
+    <mr-card-filial [filial]="filial" [order]="order" [phone]="true"></mr-card-filial>
+  </div>
+  <ion-card class="see-details shadow shadow-light">
+    <ion-button color="primary" fill="clear" (click)="goDetailOrder()" expand="block">Ver detalhes</ion-button>
+  </ion-card>
+
+  <div *ngIf="order">
+    <mr-status-order [order]="order"></mr-status-order>
+  </div>
+
+</ion-content>

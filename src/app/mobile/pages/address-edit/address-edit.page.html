@@ -1,0 +1,180 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="ios-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <h3 ion-text text-uppercase color="light" class="my-font-logo">NOVO ENDEREÇO</h3>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div [ngSwitch]="activeIndex">
+    <div *ngSwitchCase="0">
+      <div class="slide-header" padding>
+        <h6 ion-text no-margin> Brasil</h6>
+        <h5 ion-text class="bold" no-margin margin-top> Qual o seu CEP?</h5>
+        <ion-searchbar type="number" [(ngModel)]="search_address" (ionChange)="searchAddress($event)" class="slide-body search-slide"
+          debounce="700" [ngModelOptions]="{standalone: true}" placeholder="Digite seu CEP"></ion-searchbar>
+        <div class="poweredgoogle">
+          <img src="./assets/img/powered_by_google_on_white.png">
+        </div>
+      </div>
+      <nano-loading [loading]="search_loading"></nano-loading>
+      <p ion-text class="search-error" *ngIf="search_address_error">Por favor verifique sua conexão e tente novamente</p>
+      <ion-item tappable no-lines *ngFor="let address of address_suggestions" (click)="selectAddress(address)" class="slide-body"
+        text-wrap>
+        <h6 margin>{{address.text}}</h6>
+      </ion-item>
+      <ion-button no-lines fill="outline" color="primary" (click)="next()" class="slide-body cep-button" text-wrap>Não
+        sei meu CEP</ion-button>
+      <!-- <button ion-button no-lines fill="clear" block color="firebase-bg-dark" (click)="notFoundAddress()" class="slide-body cep-button more-width"
+        text-wrap *ngIf="address_not_found">Não encontrei meu cep</button> -->
+    </div>
+    <div *ngSwitchCase="1">
+      <ion-content class="slide-content">
+        <div class="slide-header" padding>
+          <h5 ion-text class="bold" no-margin> Qual o seu estado?</h5>
+        </div>
+        <ion-item *ngFor="let state of states" (click)="selectState(state)" class="slide-body">{{state.title}}
+          - {{state.value}}</ion-item>
+      </ion-content>
+    </div>
+    <div *ngSwitchCase="2">
+      <div class="slide-header" padding>
+        <h6 ion-text no-margin> {{form.value.location.state}} - Brasil</h6>
+        <h5 ion-text class="bold" no-margin margin-top> Qual a sua cidade?</h5>
+        <ion-searchbar [(ngModel)]="search_city" (ionChange)="searchCity($event)" class="slide-body search-slide"
+          debounce="700" [ngModelOptions]="{standalone: true}" placeholder="Digite aqui sua cidade"></ion-searchbar>
+        <div class="poweredgoogle">
+          <img src="./assets/img/powered_by_google_on_white.png">
+        </div>
+      </div>
+      <nano-loading [loading]="search_loading"></nano-loading>
+      <p ion-text class="search-error" *ngIf="search_city_error">Por favor verifique sua conexão e tente novamente</p>
+      <ion-button no-lines fill="clear" expand="block" color="primary" (click)="notFoundCity()" class="slide-body"
+        text-wrap *ngIf="city_not_found">Não encontrei minha cidade</ion-button>
+      <ion-item tappable no-lines ion-text *ngFor="let city of city_suggestions" (click)="selectCity(city)" class="slide-body"
+        text-wrap>{{city.name}}</ion-item>
+    </div>
+    <div *ngSwitchCase="3">
+      <div class="slide-header" padding>
+        <h6 ion-text no-margin> {{form.value.location.city}}, {{form.value.location.state}} - Brasil</h6>
+        <h5 ion-text class="bold" no-margin margin-top>Qual o seu bairro?</h5>
+        <ion-searchbar [(ngModel)]="search_district" (ionChange)="searchDistrict($event)" class="slide-body search-slide"
+          [debounce]="700" [ngModelOptions]="{standalone: true}" placeholder="Digite aqui seu bairro"></ion-searchbar>
+        <div class="poweredgoogle">
+          <img src="./assets/img/powered_by_google_on_white.png">
+        </div>
+      </div>
+      <nano-loading [loading]="search_loading"></nano-loading>
+      <p ion-text class="search-error" *ngIf="search_district_error">Por favor verifique sua conexão e tente
+        novamente</p>
+      <ion-button no-lines fill="clear" expand="block" color="primary" (click)="notFoundDistrict()" class="slide-body"
+        text-wrap *ngIf="district_not_found">Não encontrei meu bairro</ion-button>
+      <ion-item tappable no-lines ion-text *ngFor="let district of district_suggestions" (click)="selectDistrict(district)"
+        class="slide-body" text-wrap>{{district.name}}</ion-item>
+    </div>
+    <div *ngSwitchCase="4">
+        <div class="slide-header" padding>
+          <h6 ion-text no-margin>{{form.value.location.district}}, {{form.value.location.city}}, {{form.value.location.state}} -
+              Brasil</h6>
+          <h5 ion-text class="bold" no-margin margin-top> Qual a sua rua?</h5>
+          <ion-searchbar [(ngModel)]="search_street" (ionChange)="searchStreet($event)" class="slide-body search-slide"
+            [debounce]="700" [ngModelOptions]="{standalone: true}" placeholder="Digite aqui a sua rua"></ion-searchbar>
+          <div class="poweredgoogle">
+            <img src="./assets/img/powered_by_google_on_white.png">
+          </div>
+        </div>
+        <nano-loading [loading]="search_loading"></nano-loading>
+        <p ion-text class="search-error" *ngIf="search_street_error">Por favor verifique sua conexão e tente novamente</p>
+        <ion-item tappable no-lines ion-text *ngFor="let street of street_suggestions" (click)="selectStreet(street)"
+          class="slide-body" text-wrap>{{street.name}}</ion-item>
+        <div class="street_not_found">
+          <ion-button no-lines fill="outline" color="primary" (click)="selectStreet({name: search_street})" class="slide-body"
+            text-wrap *ngIf="street_not_found">Não encontrei minha rua</ion-button>
+        </div>
+    </div>
+    <div class="form-slide" *ngSwitchCase="5">
+      <ion-content class="slide-content">
+        <form [formGroup]="form">
+          <ion-card class="form" formGroupName="location">
+            <div class="state-city">
+              <ion-item class="input-small remove-padding-item" tappable>
+                <ion-label position="stacked" color="tertiary" class="disabled"> Estado </ion-label>
+                <ion-input readonly formControlName="state_short"> </ion-input>
+              </ion-item>
+              <ion-item tappable class="remove-padding-item">
+                <ion-label position="stacked" color="tertiary" class="disabled"> Cidade </ion-label>
+                <ion-input readonly formControlName="city"></ion-input>
+              </ion-item>
+            </div>
+            <ion-item tappable>
+              <ion-label position="stacked" color="tertiary" class="disabled"> Bairro </ion-label>
+              <ion-input readonly formControlName="district"></ion-input>
+            </ion-item>
+            <div class="state-city" *ngIf="!formIncomplete">
+              <ion-item class="remove-padding-item">
+                <ion-label position="stacked" color="tertiary"> Rua / Avenida </ion-label>
+                <ion-input formControlName="street"></ion-input>
+              </ion-item>
+              <ion-item class="input-small remove-padding-item">
+                <ion-label position="stacked" color="tertiary"> Número </ion-label>
+                <ion-input type="number" formControlName="number"></ion-input>
+              </ion-item>
+            </div>
+            <ion-item>
+              <ion-label position="stacked" color="tertiary"> Complemento </ion-label>
+              <ion-input formControlName="complement"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked" color="tertiary"> Ponto de referência </ion-label>
+              <ion-input formControlName="landmark"></ion-input>
+            </ion-item>
+          </ion-card>
+        </form>
+      </ion-content>
+    </div>
+  </div>
+  <div #suggestionscity></div>
+</ion-content>
+
+<ion-footer *ngIf="new_address">
+
+  <ion-toolbar color="primary">
+
+    <ion-row class="buttons-footer" no-padding>
+      <ion-col class="prev" no-padding>
+        <ion-button *ngIf="isBeginning" fill="clear" color="extralight" (click)="dismiss()">
+          <ion-icon name="ios-arrow-back" slot="start"></ion-icon>
+          Cancelar
+        </ion-button>
+        <ion-button *ngIf="!isBeginning" fill="clear" color="extralight" class="prev" (click)="prev()">
+          <ion-icon name="ios-arrow-back" slot="start"></ion-icon>
+          Voltar
+        </ion-button>
+      </ion-col>
+      <ion-col no-padding class="next">
+        <ion-button *ngIf="isEnd" fill="clear" color="extralight" (click)="register()">
+          Salvar
+          <ion-icon name="ios-arrow-forward" slot="end"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-toolbar>
+
+</ion-footer>
+
+
+
+<ion-footer *ngIf="!new_address">
+
+  <ion-toolbar color="primary">
+    <ion-button expand="block" color="primary" class="register-button" (click)="register()">SALVAR</ion-button>
+
+  </ion-toolbar>
+
+</ion-footer>

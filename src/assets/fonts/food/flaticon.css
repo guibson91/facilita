@@ -1,0 +1,131 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 22/06/2016 15:18
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}
+
+.flaticon-apple-pie:before { content: "\f100"; }
+.flaticon-apple-with-a-leaf:before { content: "\f101"; }
+.flaticon-apricot:before { content: "\f102"; }
+.flaticon-artichoke:before { content: "\f103"; }
+.flaticon-bacon-strip:before { content: "\f104"; }
+.flaticon-bell-pepper:before { content: "\f105"; }
+.flaticon-big-biscuit:before { content: "\f106"; }
+.flaticon-big-broccoli:before { content: "\f107"; }
+.flaticon-big-carrot:before { content: "\f108"; }
+.flaticon-big-cheeseburger:before { content: "\f109"; }
+.flaticon-big-crab:before { content: "\f10a"; }
+.flaticon-big-cupcake-with-cherry:before { content: "\f10b"; }
+.flaticon-big-eggplant:before { content: "\f10c"; }
+.flaticon-big-gingerbreadman:before { content: "\f10d"; }
+.flaticon-big-hot-dog:before { content: "\f10e"; }
+.flaticon-big-lollipop:before { content: "\f10f"; }
+.flaticon-big-mushroom:before { content: "\f110"; }
+.flaticon-big-mussel:before { content: "\f111"; }
+.flaticon-big-onion:before { content: "\f112"; }
+.flaticon-big-pineapple:before { content: "\f113"; }
+.flaticon-big-pizza-slice:before { content: "\f114"; }
+.flaticon-big-pretzel:before { content: "\f115"; }
+.flaticon-big-pumpkin:before { content: "\f116"; }
+.flaticon-big-raspberry:before { content: "\f117"; }
+.flaticon-big-sandwich:before { content: "\f118"; }
+.flaticon-big-shrimp:before { content: "\f119"; }
+.flaticon-big-strawberry:before { content: "\f11a"; }
+.flaticon-big-tomato:before { content: "\f11b"; }
+.flaticon-birthdaycake-and-candle:before { content: "\f11c"; }
+.flaticon-boiled-egg-on-bowl:before { content: "\f11d"; }
+.flaticon-bowl-with-rice-and-chopsticks:before { content: "\f11e"; }
+.flaticon-bunch-of-grapes:before { content: "\f11f"; }
+.flaticon-canned-food:before { content: "\f120"; }
+.flaticon-chicken-leg:before { content: "\f121"; }
+.flaticon-chocolate-bar:before { content: "\f122"; }
+.flaticon-christmast-candy-cane:before { content: "\f123"; }
+.flaticon-cinnamon-roll:before { content: "\f124"; }
+.flaticon-corn-cob:before { content: "\f125"; }
+.flaticon-cotton-candy-on-a-stick:before { content: "\f126"; }
+.flaticon-croisant-facing-down:before { content: "\f127"; }
+.flaticon-dipping-sauce-with-chips:before { content: "\f128"; }
+.flaticon-doner-kebab-meat-roll:before { content: "\f129"; }
+.flaticon-donut-with-sprinkles:before { content: "\f12a"; }
+.flaticon-fish-facing-left:before { content: "\f12b"; }
+.flaticon-fluffy-pancakes-with-syrup:before { content: "\f12c"; }
+.flaticon-food-box-with-chopsticks:before { content: "\f12d"; }
+.flaticon-french-fries-inside-a-container:before { content: "\f12e"; }
+.flaticon-frozen-yogurt:before { content: "\f12f"; }
+.flaticon-frying-egg:before { content: "\f130"; }
+.flaticon-grilled-steak:before { content: "\f131"; }
+.flaticon-half-avocado:before { content: "\f132"; }
+.flaticon-hot-pepper:before { content: "\f133"; }
+.flaticon-hot-soup-in-a-bowl:before { content: "\f134"; }
+.flaticon-japanese-food:before { content: "\f135"; }
+.flaticon-jar-of-honey:before { content: "\f136"; }
+.flaticon-jar-of-jam:before { content: "\f137"; }
+.flaticon-jelly-on-a-plate:before { content: "\f138"; }
+.flaticon-ketchup-and-mustard:before { content: "\f139"; }
+.flaticon-kiwi-cutted:before { content: "\f13a"; }
+.flaticon-lemon-and-slice:before { content: "\f13b"; }
+.flaticon-lobster:before { content: "\f13c"; }
+.flaticon-mediterranean-salad:before { content: "\f13d"; }
+.flaticon-mexican-burrito:before { content: "\f13e"; }
+.flaticon-mexican-taco:before { content: "\f13f"; }
+.flaticon-noodles-in-a-bowl:before { content: "\f140"; }
+.flaticon-olive-oil-jar:before { content: "\f141"; }
+.flaticon-olives-on-a-branch:before { content: "\f142"; }
+.flaticon-one-bagette:before { content: "\f143"; }
+.flaticon-one-hamburguer:before { content: "\f144"; }
+.flaticon-onion-rings-box:before { content: "\f145"; }
+.flaticon-open-pea-pod:before { content: "\f146"; }
+.flaticon-orange-with-leaf:before { content: "\f147"; }
+.flaticon-pear-with-leaf:before { content: "\f148"; }
+.flaticon-pepper-mill:before { content: "\f149"; }
+.flaticon-pomegranate:before { content: "\f14a"; }
+.flaticon-popcorn-box:before { content: "\f14b"; }
+.flaticon-radish-with-leaf:before { content: "\f14c"; }
+.flaticon-raisin-muffin:before { content: "\f14d"; }
+.flaticon-roast-chicken-on-tray:before { content: "\f14e"; }
+.flaticon-round-cabbage:before { content: "\f14f"; }
+.flaticon-round-lollipop:before { content: "\f150"; }
+.flaticon-salami-cut:before { content: "\f151"; }
+.flaticon-salt-container:before { content: "\f152"; }
+.flaticon-sardindes-can:before { content: "\f153"; }
+.flaticon-skewer:before { content: "\f154"; }
+.flaticon-slice-of-bread:before { content: "\f155"; }
+.flaticon-slice-of-waterlemmon:before { content: "\f156"; }
+.flaticon-soy-sauce:before { content: "\f157"; }
+.flaticon-spaghetti-plate:before { content: "\f158"; }
+.flaticon-sundae-with-cherry:before { content: "\f159"; }
+.flaticon-sushi-and-chopsticks:before { content: "\f15a"; }
+.flaticon-swiss-cheese-slice:before { content: "\f15b"; }
+.flaticon-toaster-with-bread-slices:before { content: "\f15c"; }
+.flaticon-tomato-can:before { content: "\f15d"; }
+.flaticon-two-bananas:before { content: "\f15e"; }
+.flaticon-two-cherries:before { content: "\f15f"; }
+.flaticon-two-macarons:before { content: "\f160"; }
+.flaticon-vinegar-jar:before { content: "\f161"; }
+.flaticon-wrapped-candy:before { content: "\f162"; }
+.flaticon-yogurt-with-spoon:before { content: "\f163"; }

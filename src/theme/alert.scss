@@ -1,0 +1,64 @@
+//Alerts
+ion-alert {
+    &.alert-md [aria-checked=true] .alert-radio-inner {
+        background-color: var(--ion-color-primary)!important;
+    }
+    &.alert-md [aria-checked=true] .alert-radio-label {
+        color: var(--ion-color-primary)!important;
+    }
+    &.alert-ios [aria-checked=true] .alert-radio-label {
+        color: var(--ion-color-primary)!important;
+    }
+    &.alert-ios [aria-checked=true] .alert-radio-inner {
+        background-color: none!important;
+    }
+    .item-md.item-block .item-inner {
+        border-bottom: 0!important;
+    }
+    .item-ios.item-block .item-inner {
+        border-bottom: 0!important;
+    }
+    .alert-md [aria-checked=true] .alert-radio-icon {
+        border-color: var(--ion-color-primary)!important;
+    }
+    .alert-ios [aria-checked=true] .alert-radio-icon {
+        border-color: var(--ion-color-primary)!important;
+    } // -------------------------------------------------
+    // Alert
+    // -------------------------------------------------
+    .alert-wrapper {
+        overflow: hidden!important;
+        background: #000!important;
+        border-radius: 10px!important;
+        box-shadow: $shadow-0!important;
+        background-color: #ffffff!important;
+    }
+    .alert-wrapper h2.alert-title {
+        background: #ffffff!important;
+        background-color: #ffffff!important;
+        font-weight: map-get($font, weight) + 300!important;
+        font-size: map-get($font, size) + 2!important;
+        color: var(--ion-color-medium)!important;
+    }
+    .alert-wrapper div.alert-message {
+        line-height: map-get($font, line-height)!important;
+        font-weight: map-get($font, weight)!important;
+        font-size: map-get($font, size)!important;
+        color: var(--ion-color-medium)!important;
+    }
+    .alert-button-group {
+        background: #f0f0f0!important;
+    }
+    .alert-radio-group,
+    .alert-checkbox-group {
+        border: 0!important;
+    }
+    .alert-radio-label {
+        font-weight: map-get($font, weight)!important;
+        font-size: map-get($font, size)!important;
+        color: var(--ion-color-medium)
+    }
+    .alert-button .button-inner {
+        color: var(--ion-color-primary)!important;
+    }
+}

@@ -1,0 +1,46 @@
+<ion-row [formGroup]="form">
+    <ion-col size="6" ion-item *ngIf="input_show.cep">
+        <ion-label position="stacked" color="tertiary">CEP</ion-label>
+        <ion-input type="tel" formControlName="cep" (input)="handleCepChange($event)"></ion-input>
+    </ion-col>
+    <ion-col size="6" ion-item *ngIf="input_show.street">
+        <ion-label position="stacked" color="tertiary">Rua</ion-label>
+        <ion-input formControlName="street"></ion-input>
+    </ion-col>
+
+    <ion-col size="6" ion-item *ngIf="input_show.number">
+        <ion-label position="stacked" color="tertiary">Nº</ion-label>
+        <ion-input formControlName="number"></ion-input>
+    </ion-col>
+    <ion-col size="6" ion-item *ngIf="input_show.complement">
+        <ion-label position="stacked" color="tertiary">Complemento</ion-label>
+        <ion-input type="text" formControlName="complement"></ion-input>
+    </ion-col>
+
+    <ion-col size="6" ion-item *ngIf="input_show.city">
+        <ion-label position="stacked" color="tertiary">Cidade</ion-label>
+        <ion-input readonly formControlName="city"></ion-input>
+    </ion-col>
+    <ion-col size="6" ion-item *ngIf="input_show.district">
+        <ion-label position="stacked" color="tertiary">Bairro</ion-label>
+        <ion-input readonly type="text" formControlName="district"></ion-input>
+    </ion-col>
+
+    <ion-col size="6" ion-item *ngIf="input_show.state">
+        <ion-label position="stacked" color="tertiary">Estado</ion-label>
+        <ion-input readonly formControlName="state"></ion-input>
+    </ion-col>
+    <ion-col size="6" ion-item *ngIf="input_show.country">
+        <ion-label position="stacked" color="tertiary">País</ion-label>
+        <ion-input readonly formControlName="country"></ion-input>
+    </ion-col>
+
+    <!-- <ion-col col-6 ion-item *ngIf="input_show.latitude">
+    <ion-label position="stacked" color="tertiary">Latitude</ion-label>
+    <ion-input formControlName="latitude"></ion-input>
+</ion-col>
+<ion-col col-6 ion-item *ngIf="input_show.longitude">
+    <ion-label position="stacked" color="tertiary">Longitude</ion-label>
+    <ion-input formControlName="longitude"></ion-input>
+</ion-col> -->
+</ion-row>

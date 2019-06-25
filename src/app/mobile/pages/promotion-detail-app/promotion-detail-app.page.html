@@ -1,0 +1,44 @@
+<ion-header no-border class="app">
+  <ion-toolbar color="primary" hideBackButton="true">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="ios-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="title-default">
+      <h3 ion-text class="my-font-logo" no-margin>{{promotion.name || 'Promoção'}}</h3>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1>LOJA</h1>
+  <mr-card-filial [showDelivery]="false" [filial]="filial"></mr-card-filial>
+
+  <section>
+    <h1 class="info" style="margin-top: -0.4em!important;">INFORMAÇÕES</h1>
+    <p padding-horizontal padding-bottom>{{promotion.description}}</p>
+  </section>
+  <section>
+    <h1>VALOR</h1>
+
+    <p padding-horizontal padding-bottom>De <span class="real-money">{{promotion.priceBase | noNegative |
+        currency:'BRL':'symbol':'1.2'}}</span> por apenas
+      <span class="money" *ngIf="promotion.promotionPercentage">{{ (100 - promotion.promotionPercentage)/100
+        * promotion.priceBase | noNegative |
+        currency:'BRL':'symbol':'1.2'}}</span>
+      <span class="money" *ngIf="promotion.promotionPrice">{{ promotion.priceBase - promotion.promotionPrice
+        | noNegative |
+        currency:'BRL':'symbol':'1.2'}}</span></p>
+  </section>
+
+  <section *ngIf="code">
+    <h1>CÓDIGO DO CUPOM</h1>
+    <p padding-horizontal padding-bottom>Apresente o código <b>{{code}}</b> para o lojista para obter os descontos</p>
+  </section>
+
+  <ion-button *ngIf="!code" expand="block" color="primary" class="do-order-button my-font-logo" (click)="generateCoupon()">
+    GERAR CUPOM
+  </ion-button>
+
+</ion-content>

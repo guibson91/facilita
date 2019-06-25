@@ -1,0 +1,20 @@
+div.container-stars {
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.small {
+    font-size: 1em !important;
+}
+.medium {
+    font-size: 2em !important;
+}
+.large {
+    font-size: 3em !important;
+}
+
+ion-icon {
+    color: goldenrod;   
+}

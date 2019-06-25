@@ -1,0 +1,72 @@
+<section margin-top class="container-filials" [ngClass]="{'closed': !filial.open}" *ngIf="filial?.type">
+    <aside class="shadow shadow-light-2">
+        <nano-thumb [src]="filial.image" large="true" white="true" *ngIf="filial.image"></nano-thumb>
+    </aside>
+
+    <div class="container-name">
+        <h4 ion-text text-wrap padding-horizontal *ngIf="filial.name" class="my-font-bold max-lines max-lines-2">{{filial.name}}</h4>
+    </div>
+    <ion-card padding>
+
+        <h2 *ngIf="filial.type">{{filial.subtype.name}}</h2>
+
+        <div class="container-star">
+            <ion-icon name="star"></ion-icon>
+            <span id="star-number" *ngIf="filial?.rating?.quantity >= 5">{{filial.rating.rate | number : '1.1-1'}}</span>
+            <span class="quantity" *ngIf="filial?.rating?.quantity >= 5">
+                <strong>({{filial?.rating?.quantity | number: '1.0-0'}} {{filial?.rating?.quantity > 1 ? 'avaliações' :
+                    'avaliação'}})</strong>
+            </span>
+            <span class="quantity" *ngIf="!filial?.rating || !filial?.rating?.quantity || filial?.rating?.quantity < 5">
+                <strong class="new-filial-rate">Novo</strong>
+            </span>
+        </div>
+        <p *ngIf="filial.delivery">{{filial.delivery.timeMin}} min ~ {{filial.delivery.timeMax}} min</p>
+        <div class="container-distance-open">
+            <div *ngIf="filial.distance && filial.distance >= 1">
+                <strong>{{filial.distance | number: '1.2-2' }} km</strong>
+            </div>
+            <div *ngIf="filial.distance && filial.distance < 1">
+                <strong>{{filial.distance | formatDistance }} m</strong>
+            </div>
+            <div class="status" [ngClass]="{'closed': !filial.open}" *ngIf="!filial.next_open_hour">
+                <p>{{filial.open ? 'Aberto' : 'Fechado'}}</p>
+            </div>
+            <div class="status hours" *ngIf="filial.next_open_hour">
+                <p ion-text>{{filial.next_open_hour}}</p>
+            </div>
+        </div>
+
+        <!-- Recomendação do Chefe -->
+        <article class="special-product product" *ngIf="filial.product_recomendated">
+
+            <div class="special-product-infos">
+                <div class="left-side" style="margin-bottom: 5px">
+                    <h2>{{filial.product_recomendated.name}}</h2>
+                    <p class="descrition-recomended">{{filial.product_recomendated.description}}</p>
+                    <div class="content value-price-product">
+                        <p *ngIf="!newPrice && filial.product_recomendated?.minimumPrice !== filial.product_recomendated?.priceBase">
+                            <strong>A partir de </strong>
+                            <strong class="price-value">R$ {{ filial.product_recomendated?.minimumPrice | number :
+                                '1.2-2' }}</strong>
+                        </p>
+                        <p *ngIf="!newPrice && !(filial.product_recomendated?.minimumPrice !== filial.product_recomendated?.priceBase)"
+                            class="text-new-price" class="text-new-price">
+                            <strong class="price-value">R$ {{ filial.product_recomendated?.minimumPrice | number :
+                                '1.2-2' }}</strong>
+                        </p>
+                        <p class="value line" *ngIf="newPrice">De
+                            <strong class="price-old-value">R$ {{ filial.product_recomendated?.minimumPrice | number :
+                                '1.2-2' }}</strong> Por
+                            <strong class="price-value">R$ {{ newPrice | number : '1.2-2' }}</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="special-product" *ngIf="!filial.product_recomendated && filial.description">
+            <p ion-text class="special-description max-lines max-lines-3">{{filial.description}}</p>
+        </article>
+    </ion-card>
+</section>

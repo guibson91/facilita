@@ -1,0 +1,44 @@
+<ion-header no-border>
+  <nano-navbar title="Funcionários" icon="menus-icon-servant-outline" [helpPage]="8">
+  </nano-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card class="content-card">
+    <ion-searchbar [(ngModel)]="searchString" placeholder="Pesquisar" (ionChange)="detect()">
+    </ion-searchbar>
+
+    <nano-loading [loading]="loading">
+      <ion-list>
+
+        <ion-item no-lines padding *ngFor="let employee of employees | filterBy:['name']:searchString" text-wrap>
+          <!-- Imagem -->
+          <nano-thumb item-left large="true" [src]="employee.image" [kind]="'person'"></nano-thumb>
+          <!-- Nome -->
+          <h5 ion-text><b>{{employee.name}}</b></h5>
+
+          <!-- Filial alocada -->
+          <h5 ion-text padding-horizontal>{{filials[employee.filial_employee?.id]?.name || "Gerente geral"}}</h5>
+          <!-- Função -->
+          <h5 ion-text padding-horizontal>{{employee.permissions | printPermission}}</h5>
+
+          <ion-button fill="clear" (click)="edit(employee)" color="proceed">
+            <ion-icon name="md-create"></ion-icon> Editar
+          </ion-button>
+        </ion-item>
+
+        <ion-item text-center padding *ngIf="!existsEmployees">
+          <p ion-text>Você ainda não possui nenhum funcionário</p>
+        </ion-item>
+      </ion-list>
+    </nano-loading>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

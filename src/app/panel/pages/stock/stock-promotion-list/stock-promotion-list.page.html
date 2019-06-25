@@ -1,0 +1,42 @@
+<ion-header no-border>
+	<nano-navbar title="Estoque de promoções" icon="menus-icon-ecommerce-45">
+	</nano-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-card class="content-card">
+
+		<div class="myfilter">
+			<ion-searchbar clear [(ngModel)]="searchString" placeholder="Pesquisar" (ionChange)="detect()"></ion-searchbar>
+		</div>
+
+		<nano-loading [loading]="loading">
+
+			<ion-list>
+				<div *ngFor="let promotion of promotionsStock | filterBy:['name', 'description']:searchString; let i = index"
+				 class="promotions">
+					<div class="list-item">
+						<nano-thumb class="promotion-item" [ngClass]="{'inactive': !promotion.active}" [src]="promotion.image" [border]="true"></nano-thumb>
+						<div class="promotion-item" style="flex-grow: 1">
+							<div class="name" [ngClass]="{'inactive': !promotion.active}">
+								{{promotion.name}}
+							</div>
+							<div class="description">{{promotion.description}}</div>
+							<ion-button fill="clear" color="success" *ngIf="!promotion.active" (click)="addPromotion(promotion)">Adicionar</ion-button>
+							<ion-button fill="clear" color="danger" *ngIf="promotion.active" (click)="removePromotion(promotion)">Remover</ion-button>
+						</div>
+						<div class="promotion-item">
+							<ion-button fill="clear" class="price">R$ {{promotion.priceBase | number: '1.2-2'}}</ion-button>
+						</div>
+					</div>
+        </div>
+        
+				<ion-item text-center padding *ngIf="!existsPromotions">
+					<p ion-text>Você ainda não possui nenhuma promoção</p>
+				  </ion-item>
+			</ion-list>
+		</nano-loading>
+
+	</ion-card>
+
+</ion-content>

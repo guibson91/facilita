@@ -1,0 +1,37 @@
+ion-card.total {
+    background: white;
+    --background: white;
+    width: 100% !important;
+    margin-right: 0px;
+    margin-left: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    margin: 10px 0px 5px 0px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    p {
+        margin: 6px 0;
+        margin-left: 0.5em;
+    }
+    .total-text {
+        font-size: 1.2em;
+    }
+    .total-price {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 137px;
+        height: 105%;
+        padding-top: 3px;
+        padding-right: 10px;
+        color: black;
+        .delivery-price {
+            color: #666;
+        }
+        .total-price-text {
+            font-size: 1.2em;
+        }
+    }
+}

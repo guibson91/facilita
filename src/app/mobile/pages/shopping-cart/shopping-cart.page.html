@@ -1,0 +1,158 @@
+<ion-header no-border class="app">
+  <ion-toolbar class="header-toolbar" color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="ios-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <h3 ion-text text-uppercase color="light" class="my-font-logo">CONFIRMAR PEDIDO</h3>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="hideScrollbar" #content>
+
+  <div *ngIf="order.length > 0">
+
+    <mr-card-filial [filial]="filial" [phone]="false"></mr-card-filial>
+
+    <span class="obs-delivery"> A entrega será realizada em:</span>
+
+    <ion-card class=" shadow shadow-light card-delivery-address">
+      <div class="info-delivery">
+        <p class="title-delivery">
+          <strong>{{ location.street }}, {{ location.number }}</strong>
+        </p>
+        <p class="subtitle-delivery" *ngIf="location.complement || location.landmark">
+          {{ location.complement }}
+          <span *ngIf="location.complement && location.landmark">,</span> {{ location.landmark }}
+        </p>
+        <p class="subtitle-delivery">{{ location.district }} - {{ location.city}}
+          <span class="obs-delivery" *ngIf="location?.isGps">(GPS)</span>
+        </p>
+      </div>
+      <ion-button fill="clear" (click)="editLocation()">
+        <ion-icon slot="icon-only" name="md-create"></ion-icon>
+      </ion-button>
+    </ion-card>
+    <div *ngFor="let entry of order; let i = index">
+      <ion-badge class="notifications-badge" color="danger">x{{ entry.quantity }}</ion-badge>
+      <ion-badge class="notifications-badge remove" color="danger" tappable (click)="removeItemCart(entry)">X</ion-badge>
+      <card-product [product]="entry.product" [entry]="entry" [filial]="filial" tappable (click)="entryEdit(entry)">
+      </card-product>
+    </div>
+
+    <ion-button fill="clear" expand="block" size="large" text-center style="margin-top: 10px" (click)="addProduct()">
+      + Adicionar produto
+    </ion-button>
+
+    <ion-card class="shadow shadow-light">
+      <ion-item class="obs-product">
+        <ion-label position="stacked">Observações do Pedido</ion-label>
+        <ion-textarea [(ngModel)]="observation" placeholder="Ex: Campainha não funciona"></ion-textarea>
+      </ion-item>
+    </ion-card>
+
+    <ion-card class="shadow shadow-light">
+      <ion-item class="cupom" *ngIf="!coupon">
+        <ion-label class="label-cupom" position="stacked">Cupom de desconto</ion-label>
+        <ion-input style="text-transform: uppercase !important" [(ngModel)]="couponInput" placeholder="Digite aqui seu cupom"></ion-input>
+        <ion-button slot="end" fill="clear" (click)="verifyCoupon()" *ngIf="couponInput.length > 0">Adicionar</ion-button>
+      </ion-item>
+      <ion-item class="cupom2" *ngIf="coupon">
+        <h3 ion-text> Cupom adicionado: {{coupon.name}}</h3>
+        <ion-button slot="end" ion-button clear (click)="removeCoupon()">Remover</ion-button>
+      </ion-item>
+    </ion-card>
+
+    <mr-price [price]="{
+      delivery: delivery,
+      subtotal: subTotal,
+      couponDiscounts: couponDiscounts,
+      total: totalPrice
+    }"></mr-price>
+
+    <ion-card class="payment shadow shadow-light">
+      <div class="info-payment" text-center>
+        <p class="title">
+          <strong>Selecione como deseja pagar</strong>
+        </p>
+        <p class="subtitle"> o pagamento é realizado no momento da entrega</p>
+      </div>
+      <div class="method-payment" *ngIf="filial && filial.paymentMethods">
+        <div class="method border-right" tappable (click)="setPayment(paymentType.money)" [class.active]="isMoney && hasMoney()"
+          [class.disabled]="!hasMoney()">
+          <p> Dinheiro </p>
+        </div>
+        <div class="method border-right" tappable (click)="setPayment(paymentType.auxCard)" [class.active]="isCard && hasCard()"
+          [class.disabled]="!hasCard()">
+          <p> Cartão </p>
+        </div>
+        <div class="method" tappable (click)="setPayment(paymentType.food_stamps)" [class.active]="isFoodStamps && hasFoodStamps()"
+          [class.disabled]="!hasFoodStamps()">
+          <p> Alimentação </p>
+        </div>
+      </div>
+    </ion-card>
+
+
+
+    <ion-card class="troco shadow shadow-light" *ngIf="isMoney">
+      <ion-item>
+        <ion-label>Preciso de troco</ion-label>
+        <ion-checkbox [(ngModel)]="needChange" (ionChange)="change()"></ion-checkbox>
+      </ion-item>
+      <form [formGroup]="form" *ngIf="needChange">
+        <ion-item>
+          <ion-label> Troco para </ion-label>
+          <money-input item-content [control]="form.controls['troco']"></money-input>
+        </ion-item>
+      </form>
+    </ion-card>
+
+    <ion-card class="payment shadow shadow-light" *ngIf="isCard">
+      <div class="method-payment-card" *ngIf="filial && filial.paymentMethods">
+        <div class="method card border-right" tappable (click)="setPayment(paymentType.credit_card)" [class.active]="paymentMethod == paymentType.credit_card && hasCreditCard()"
+          [class.disabled]="!hasCreditCard()">
+          <p> Crédito </p>
+        </div>
+        <div class="method card" tappable (click)="setPayment(paymentType.debit_card)" [class.active]="paymentMethod == paymentType.debit_card && hasDebitCard()"
+          [class.disabled]="!hasDebitCard()">
+          <p> Débito </p>
+        </div>
+      </div>
+    </ion-card>
+
+    <ion-item *ngIf="isCard" class="selectFlag shadow shadow-light">
+      <ion-label>Selecionar bandeira</ion-label>
+      <ion-select multiple="true" [(ngModel)]="cardFlag" (ionChange)="setCardName(cardFlag)">
+        <ion-select-option *ngFor="let card of cards" value="{{ card.value }}">{{ card.text }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="isFoodStamps" class="selectFlag shadow shadow-light">
+      <ion-label>Selecionar bandeira</ion-label>
+      <ion-select multiple="true" [(ngModel)]="cardFoodFlag" (ionChange)="setCardName(cardFoodFlag)">
+        <ion-select-option *ngFor="let card of cards_food" value="{{ card.value }}">{{ card.text }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </div>
+
+  <div *ngIf="order?.length == 0" class="center" style="text-align: center">
+    <ion-icon color="discret" style="font-size: 20vw" name="cart"></ion-icon>
+    <h1 ion-text color="discret">Carrinho vazio</h1>
+    <p ion-text color="discret">Escolha um restaurante e adicione uns produtos no seu carrinho.</p>
+  </div>
+
+  <ion-button *ngIf="order?.length > 0" expand="block" color="primary" class="do-order-button my-font-logo" [disabled]="buttonDisabled || order.length == 0"
+    (click)="tryFinishOrder()">
+    REALIZAR PEDIDO
+  </ion-button>
+
+</ion-content>
+
+<!-- <ion-footer>
+    <ion-toolbar>
+      
+    </ion-toolbar>
+</ion-footer> -->

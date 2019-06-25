@@ -1,0 +1,85 @@
+<ion-header no-border>
+  <nano-navbar title="Relatório de vendas" icon="menus-icon-ecommerce-12">
+  </nano-navbar>
+</ion-header>
+
+<ion-content padding>
+  <nano-loading [loading]="loading">
+    <ion-grid>
+      <ion-row>
+        <ion-col col6 *ngFor="let item of orderStatistics; let i = index" class="content-month" no-padding>
+          <ion-list no-padding>
+            <span class="month-title" ion-text padding>{{item.id_name}}</span>
+            <ion-item no-lines>
+              <div>
+                <h5 ion-text text-wrap no-margin>
+                  <strong> Vendas </strong>
+                </h5>
+                <p ion-text text-wrap no-margin class="description">Valor bruto captado de todos os pedidos, correspondente a receita em
+                  <strong>caixa</strong> ou em forma de
+                  <strong>bônus</strong>.</p>
+              </div>
+              <h5 ion-text item-right text-wrap class="green" slot="end">
+                <strong> R$ {{item.done.subtotal + item.done.delivery | number : '1.2-2'}}</strong>
+              </h5>
+            </ion-item>
+            <ion-item no-lines>
+              <div>
+                <h5 ion-text text-wrap no-margin>
+                  <strong> Caixa </strong>
+                </h5>
+                <p ion-text text-wrap no-margin class="description">Valor recebido do consumidor em dinheiro, cartão de crédito e débito ou
+                  vale-alimentação.</p>
+              </div>
+              <h5 ion-text item-right text-wrap slot="end">
+                <strong> R$ {{item.done.subtotal + item.done.delivery - item.done.discounts -
+                  item.done.discountsFromTeam | number : '1.2-2'}}</strong>
+              </h5>
+            </ion-item>
+            <ion-item no-lines>
+              <div>
+                <h5 ion-text text-wrap no-margin>
+                  <strong> Cupom da empresa </strong>
+                </h5>
+                <p ion-text text-wrap no-margin class="description">Valor recebido do consumidor em
+                  <strong>cupom</strong> criado pela empresa.</p>
+              </div>
+              <h5 ion-text item-right text-wrap slot="end">
+                <strong> R$ {{item.done.discounts | number : '1.2-2'}}</strong>
+              </h5>
+            </ion-item>
+            <ion-item no-lines>
+              <div>
+                <h5 ion-text text-wrap no-margin>
+                  <strong> Cupom do Facilita </strong>
+                </h5>
+                <p ion-text text-wrap no-margin class="description">Valor recebido do consumidor em
+                  <strong>cupom</strong> criado pelo Facilita. Esse valor será abatido da fatura.</p>
+              </div>
+              <h5 ion-text item-right text-wrap slot="end">
+                <strong> R$ {{item.done.discountsFromTeam | number : '1.2-2'}}</strong>
+              </h5>
+            </ion-item>
+            <ion-item no-lines>
+              <div>
+                <h5 ion-text text-wrap no-margin>
+                  <strong> Pedidos incompletos </strong>
+                </h5>
+                <p ion-text text-wrap no-margin class="description">Pedidos que foram aceitos, mas por algum motivo foram cancelados pela gerência da
+                  empresa.</p>
+              </div>
+              <h5 ion-text item-right text-wrap slot="end">
+                <strong> R$ {{item.incomplete.subtotal + item.incomplete.delivery | number : '1.2-2'}}</strong>
+              </h5>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-card class="content-card" text-center padding *ngIf="!existsInvoice">
+      <p>Você ainda não possui estatística de venda</p>
+    </ion-card>
+
+  </nano-loading>
+</ion-content>

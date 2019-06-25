@@ -1,0 +1,47 @@
+<ion-header no-border class="app">
+  <ion-toolbar color="primary" hideBackButton="true">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="ios-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="title-default">
+      <h3 ion-text class="my-font-logo" no-margin>AVALIAÇÃO</h3>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content margin-top>
+
+  <mr-card-filial [order]="order" [filial]="order.filial_full" [phone]="true"></mr-card-filial>
+
+  <ion-item class="shadow shadow-light  ">
+    <div class="satisfaction">
+      <p text-center text-wrap>Você ficou satisfeito com esse pedido?</p>
+      <!-- <rating class="rating" [(ngModel)]="rate" (ngModelChange)="onModelChange($event)"></rating> -->
+      <rating [quantity]="5" [size]="'large'" (changeStar)="changeStar($event)"></rating>
+    </div>
+  </ion-item>
+
+  <div class="bg-white padding-left shadow shadow-light">
+    <ion-item no-padding no-lines margin-top>
+      <div margin-left>
+        <p text-wrap>Deixe seu comentário</p>
+      </div>
+    </ion-item>
+
+    <ion-item no-padding style="margin-top: -1em">
+      <ion-label></ion-label>
+      <ion-textarea [(ngModel)]="comment" name="description" rows="6" placeholder="Escreva um elogio, crítica ou sugestão para o restaurante..."></ion-textarea>
+    </ion-item>
+  </div>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-button expand="block" size="large" color="primary" class="button-bottom my-font-logo" [disabled]="!rate" (click)="finishOrder()">
+    ENVIAR AVALIAÇÃO
+  </ion-button>
+</ion-footer>

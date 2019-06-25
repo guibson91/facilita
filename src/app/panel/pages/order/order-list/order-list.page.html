@@ -1,0 +1,161 @@
+<ion-header no-border>
+  <nano-navbar title="Pedidos" icon="menus-icon-list">
+  </nano-navbar>
+  <ion-toolbar color="primary">
+    <div scrollX="true">
+      <ion-segment [(ngModel)]="segment_value" class="segment" (ionChange)="change()">
+        <ion-segment-button [value]="'all'">
+          <h4>Todos</h4>
+        </ion-segment-button>
+        <ion-segment-button [value]="orderStatus.created">
+          <h4>Solicitado</h4>
+        </ion-segment-button>
+        <ion-segment-button [value]="orderStatus.accepted">
+          <h4>Aceito</h4>
+        </ion-segment-button>
+        <ion-segment-button [value]="orderStatus.delivery">
+          <h4>Entrega</h4>
+        </ion-segment-button>
+        <ion-segment-button [value]="orderStatus.done">
+          <h4>Concluído</h4>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <card-filial-open></card-filial-open>
+  <ion-card class="content-card" margin>
+    <div class="search-order-list">
+      <ion-searchbar [(ngModel)]="input_search" (ionChange)="change()" placeholder="Filtrar pelo cliente ou filial">
+      </ion-searchbar>
+      <ion-item class="date-filter">
+
+        <ion-label stacked class="label-date">Data
+          <div class="filter-dates-modes">
+            <p (click)="changeModeFilterDate('day')" [ngClass]="{'active-mode-filter-date': modeFilterDate == 'day'}"
+              padding-horizontal>
+              <strong>Dia</strong>
+            </p>
+            <p (click)="changeModeFilterDate('month')" [ngClass]=" { 'active-mode-filter-date': modeFilterDate=='month' }"
+              class="mode-filter-month">
+              <strong>Mês</strong>
+            </p>
+          </div>
+        </ion-label>
+
+        <ion-datetime *ngIf="modeFilterDate == 'month'" displayFormat="MM/YYYY" [(ngModel)]="dateInput" (ionChange)="changeOrders()"></ion-datetime>
+        <ion-datetime *ngIf="modeFilterDate == 'day'" displayFormat="DD/MM/YYYY" [(ngModel)]="dateInput" (ionChange)="changeOrders()"></ion-datetime>
+      </ion-item>
+    </div>
+    <ion-list>
+      <div *ngFor="let order of orders | filterBy:['status']:( segment_value == 'all' ? null : segment_value ) |
+               filterBy:[ 'payment_method', 'user_full.name', 'filial_full.name', 'code', 'user_full?.phone']: input_search ; let i = index"
+        class="order" padding>
+        <h6>
+          <span *ngIf="order.code"><strong>Código: </strong>{{order.code}} </span>
+          <span *ngIf="order.filial_full?.name"><strong>Filial: </strong>{{order.filial_full?.name}} </span>
+          <span *ngIf="order.user_full?.phone"><strong>Phone: </strong>
+            <ion-icon class="icon-phone" name="md-call" item-start></ion-icon>{{order.user_full.phone}}
+          </span>
+          <span *ngIf="order.user_full?.name"><strong>Cliente: </strong>{{order.user_full?.name}} </span>
+          <ion-button style="padding-top: 5px" color="danger" fill="clear" (click)="reportUser(order.user_full)" class="button-alert">
+            <ion-icon name="alert"></ion-icon> denunciar cliente
+          </ion-button>
+        </h6>
+        <div class="infos">
+          <div class="entry">
+            <p *ngFor="let entry of order.entries">
+              {{entry.quantity}}x {{entry.product.name}}
+            </p>
+            <ion-button fill="clear" (click)="presentModal(order)" class="more" expand="block">Mais detalhes</ion-button>
+          </div>
+          <div class="delivery">
+            <p text-wrap no-margin><strong>Endereço de entrega:</strong></p>
+            <p text-wrap no-margin>
+              {{order.location?.district || "sem bairro"}}, {{order.location?.city || "sem cidade"}} -
+              {{order.location?.state_short || "sem estado"}}
+            </p>
+            <p *ngIf="order?.location?.street && order?.location?.number" text-wrap no-margin>
+              {{order.location.street}}, {{order.location.number}}.
+            </p>
+            <p *ngIf="order?.location?.complement" text-wrap no-margin>
+              <strong>Complemento: </strong>{{order.location.complement}}
+            </p>
+            <p *ngIf="order?.location?.landmark" text-wrap no-margin>
+              <strong>Ponto de referência: </strong>{{order.location.landmark}}
+            </p>
+            <p text-wrap class="total">
+              <b>Total:</b> {{order.price.subtotal + order.price.delivery - ( order.price.discounts
+              || 0 ) | noNegative | currency:'BRL':'symbol':'1.2'}}</p>
+            <p text-wrap no-margin>
+              <b>Forma de pagamento:</b>
+              <span [ngSwitch]="order.payment_method">
+                <span *ngSwitchCase="'debit_card'">
+                  Débito
+                  <span> | {{order.payment_cardType}} </span>
+                </span>
+                <span *ngSwitchCase="'credit_card'">
+                  Crédito
+                  <span> | {{order.payment_cardType}} </span>
+                </span>
+                <span *ngSwitchCase="'money'">
+                  Dinheiro
+                  <span *ngIf="order.change">, troco para: {{order.change | number: '1.2-2'}} </span>
+                </span>
+                <span *ngSwitchCase="'food_stamps'">
+                  Vale-Alimentação
+                  <span> | {{order.payment_cardType}} </span>
+                </span>
+                <span *ngSwitchDefault>Outro</span>
+              </span>
+            </p>
+          </div>
+          <div class="status-box">
+            <!-- <p>{{order.created_at | date:'HH:mm'}}</p> -->
+            <!-- <p class="label-day">{{getLabelDay(order.created_at | date:'dd/MM/yyyy')}}</p> -->
+            <p class="label-day">Aberto {{order.created_at | timestampToDate | amTimeAgo}}</p>
+            <div *ngIf="order.status === orderStatus.created">
+              <p class="status" style="color: #f1c40f">Solicitado</p>
+              <p>Você deseja aceitar ou recusar o pedido?</p>
+              <div class="status-buttons">
+                <ion-button (click)="changeStatus(order)" color="success">Aceitar</ion-button>
+                <ion-button (click)="refusedChangeStatus(order)" color="danger">Recusar</ion-button>
+              </div>
+            </div>
+            <div *ngIf="order.status === orderStatus.accepted">
+              <p class="status" style="color: #2196F3">Aceito</p>
+              <p>O pedido já saiu para entrega?</p>
+              <ion-button (click)="changeStatus(order)" color="facebook">Saiu para entrega</ion-button>
+            </div>
+            <div *ngIf="order.status === orderStatus.delivery">
+              <p class="status" style="color: #2bde9f">Saiu para Entrega</p>
+              <p>O cliente já recebeu o pedido?</p>
+              <ion-button (click)="changeStatus(order)" color="success">Concluir</ion-button>
+            </div>
+            <div *ngIf="order.status === orderStatus.done">
+              <p class="status" style="color: rgb(117, 170, 57)">Concluído</p>
+            </div>
+            <div *ngIf="order.status === orderStatus.refused">
+              <p class="status" style="color: #bf0500">Recusado</p>
+            </div>
+            <div *ngIf="order.status === orderStatus.away">
+              <p class="status" style="color: #bf0500">Pedido expirou</p>
+            </div>
+            <div *ngIf="order.status === orderStatus.incomplete">
+              <p class="status" style="color: #bf0500">Pedido incompleto</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ion-item text-center padding *ngIf="!loading" class="noOrders">
+        <p ion-text>Você ainda não possui nenhum pedido</p>
+      </ion-item>
+    </ion-list>
+    <ion-item text-center *ngIf="loading">
+      <ion-spinner></ion-spinner>
+    </ion-item>
+
+  </ion-card>
+</ion-content>

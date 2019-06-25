@@ -1,0 +1,66 @@
+<ion-content>
+  <!-- <button ion-button clear (click)="closeTutorial()" class="jump">Pular</button> -->
+  <ion-slides (ionSlideDidChange)="slideChanged()" pager="true" paginationType="bullets">
+    <ion-slide class="slide1">
+      <div class="info">
+        <p>Bem vindo ao</p>
+        <img class="logo-name" src="./assets/img/maisrangosbranco.png" />
+        <p class="subtitle ">
+          Você nunca ganhou tanto por usar um delivery
+        </p>
+      </div>
+      <div class="img-phone">
+        <img src="./assets/img/phone.png" />
+      </div>
+    </ion-slide>
+    <ion-slide class="slide3">
+      <p class="my-font-logo" margin-top>
+        Ganhe parte da sua compra de volta
+      </p>
+      <div>
+        <img src="./assets/img/phone.svg" />
+      </div>
+      <p class="text-nomal">
+        Aas dals dals dlasld lasdsatos
+      </p>
+    </ion-slide>
+    <ion-slide class="slide2">
+      <div class="info">
+        <p class="title my-font-logo">
+          Para todos os gostos
+        </p>
+        <p class="subtitle ">
+          Encontre examente o que quer comer
+        </p>
+      </div>
+      <div class="img-pizza">
+        <img src="./assets/img/pizza.png" />
+      </div>
+
+    </ion-slide>
+    <!--<ion-slide class="slide3">
+      <p class="my-font-logo" margin-top>
+        Mais que um delivery
+      </p>
+      <div>
+        <!-- <img src="./assets/img/motinha.png" /> 
+        <img src="./assets/img/motinha.png" />
+      </div>
+      <p class="my-font-logo">
+        Mais agilidade e praticidade na hora da entrega
+      </p>
+    </ion-slide>-->
+  </ion-slides>
+  <button class="btn-previous" ion-button clear icon-start *ngIf="!slides.isBeginning()" (click)="slides.slidePrev()">
+    <ion-icon name="ios-arrow-back"></ion-icon>
+    <span>Voltar</span>
+  </button>
+  <button class="btn-next" ion-button clear icon-end *ngIf="!slides.isEnd()" (click)="slides.slideNext()">
+    <span>Próximo</span>
+    <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+  </button>
+  <button class="btn-next" ion-button clear icon-end *ngIf="slides.isEnd()" (click)="closeTutorial()">
+    <span>Concluir</span>
+    <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+  </button>
+</ion-content>

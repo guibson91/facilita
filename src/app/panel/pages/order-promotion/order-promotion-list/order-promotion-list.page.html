@@ -1,0 +1,59 @@
+<ion-header no-border>
+  <nano-navbar title="Promoções geradas" icon="menus-icon-list">
+  </nano-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="content-card" margin>
+    <div class="search-order-list">
+      <ion-searchbar [(ngModel)]="input_search" (ionChange)="change()" placeholder="Filtrar pelo cliente ou filial">
+      </ion-searchbar>
+      <ion-item class="date-filter">
+
+        <ion-label stacked class="label-date">Data
+          <div class="filter-dates-modes">
+            <p (click)="changeModeFilterDate('day')" [ngClass]="{'active-mode-filter-date': modeFilterDate == 'day'}" padding-horizontal>
+              <strong>Dia</strong>
+            </p>
+            <p (click)="changeModeFilterDate('month')" [ngClass]=" { 'active-mode-filter-date': modeFilterDate=='month' }" class="mode-filter-month">
+              <strong>Mês</strong>
+            </p>
+          </div>
+        </ion-label>
+
+        <ion-datetime *ngIf="modeFilterDate == 'month'" displayFormat="MM/YYYY" [(ngModel)]="dateInput" (ionChange)="changeOrders()"></ion-datetime>
+        <ion-datetime *ngIf="modeFilterDate == 'day'" displayFormat="DD/MM/YYYY" [(ngModel)]="dateInput" (ionChange)="changeOrders()"></ion-datetime>
+      </ion-item>
+    </div>
+    <ion-list>
+      <div *ngFor="let order of orders | filterBy:[ 'user_full.name', 'filial_full.name', 'code', 'user_full?.phone']: input_search ; let i = index"
+        class="order" padding>
+        <h6>
+          <span *ngIf="order.code">
+            <strong>Código: </strong>{{order.code}} </span>
+          <span *ngIf="order.filial_full?.name">
+            <strong>Filial: </strong>{{order.filial_full?.name}} </span>
+          <span *ngIf="order.user_full?.phone">
+            <strong>Phone: </strong>
+            <ion-icon class="icon-phone" name="md-call" item-start></ion-icon>{{order.user_full.phone}}
+          </span>
+          <span *ngIf="order.user_full?.name">
+            <strong>Cliente: </strong>{{order.user_full?.name}} </span>
+        </h6>
+        <div>
+          <h3>
+            <strong>Nome da promoção: </strong> {{order.promotion_full?.name}}</h3>
+          <h3>
+            <strong>Data da criação: </strong> {{order.created_at | timestampToDate | date:'dd/MM/yyyy - HH:mm'}}</h3>
+        </div>
+      </div>
+      <ion-item text-center padding *ngIf="!loading" class="noOrders">
+        <p ion-text>Você ainda não possui nenhuma promoção gerada</p>
+      </ion-item>
+    </ion-list>
+    <ion-item text-center *ngIf="loading">
+      <ion-spinner></ion-spinner>
+    </ion-item>
+
+  </ion-card>
+</ion-content>

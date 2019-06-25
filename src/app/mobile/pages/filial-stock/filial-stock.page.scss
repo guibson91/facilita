@@ -1,0 +1,313 @@
+@font-face {
+    font-family: myFontRegular;
+    src: url("../../../../assets/fonts/Avenir.ttc");
+    font-weight: normal;
+    font-style: normal;
+}
+
+section.cover {
+    position: relative;
+    background-color: #464646;
+    color: white;
+    height: 40vw;
+    header {
+        z-index: 90;
+        position: relative;
+        ion-icon {
+            padding: 10px;
+            font-size: 1.5rem;
+            margin: 0px 5px;
+            z-index: 100;
+            /*
+            &.ripple {
+                background-position: center;
+                transition: background 0.5s;
+                &:hover {
+                    background: $focus-color radial-gradient(circle, transparent 1%, $focus-color 1%) center/15000%;
+                }
+                &:active {
+                    background-color: $active-color;
+                    background-size: 100%;
+                    transition: background 0s;
+                }
+            }*/
+        }
+    }
+    footer {
+        position: absolute;
+        bottom: 0px;
+        margin-left: 2rem;
+        z-index: 10;
+        color: white;
+        margin-right: 40vw;
+    }
+    .cover-fade {
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 3;
+        height: 40vw;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    // nano-thumb.cover-picture {
+    //     .thumb {
+    //         height: 40vw;
+    //         position: absolute;
+    //         top: 0;
+    //         width: 100%;
+    //     }
+    // }
+    // nano-thumb.profile-picture {
+    //     z-index: 5;
+    //     position: absolute;
+    //     right: 6vw;
+    //     bottom: -15vw;
+    //     .thumb {
+    //         height: 30vw !important;
+    //         width: 30vw !important;
+    //     }
+    // }
+}
+section.details {
+    background: white;
+    position: relative;
+    // z-index: -1;
+    -webkit-box-shadow: 0px 0px 5px 0.2px rgba(158, 158, 158, 0.5) !important;
+    -moz-box-shadow: 0px 0px 5px 0.2px rgba(158, 158, 158, 0.5) !important;
+    box-shadow: 0px 0px 5px 0.2px rgba(158, 158, 158, 0.5) !important;
+    header {
+        min-height: 17vw;
+    }
+    .grid-details {
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 0px;
+        .price-delivery {
+            display: flex;
+            align-items: center;
+            img {
+                width: 25px;
+                height: 25px;
+            }
+            span {
+                margin-left: 5px;
+                font-size: 14px;
+                color: var(--color-price);
+            }
+        }
+    }
+    .rating {
+        color: #e04433;
+        font-weight: bold;
+    }
+    .time {
+        font-size: 4vw;
+        margin-bottom: 0px !important;
+    }
+    .open-container {
+        color: white;
+        font-weight: bold;
+        font-size: 0.9em !important;
+        letter-spacing: 1px;
+        span {
+            padding: 3px 10px;
+            border-radius: 5px;
+        }
+        .open {
+            background-color: var(--color-price);
+        }
+        .close {
+            p {
+                margin-left: -2px !important;
+            }
+            background-color: lightcoral;
+            color: #ffffff;
+        }
+        .hour {
+            background-color: #404040;
+        }
+    }
+    footer {
+        padding: 0px 1rem;
+        margin-top: -1em;
+        padding-bottom: 0.6em;
+        .description {
+            margin-left: 7px;
+            margin-right: 7px;
+            color: var(--ion-color-medium)
+        }
+    }
+}
+section.recomendations {
+    margin-top: 10px !important;
+    ion-slides {
+        background: white;
+        margin-top: 10px !important;
+        height: auto;
+        padding: 20px 0px;
+        padding-top: 5px;
+        -webkit-box-shadow: 0px 0px 5px 0.2px rgba(158, 158, 158, 0.5) !important;
+        -moz-box-shadow: 0px 0px 5px 0.2px rgba(158, 158, 158, 0.5) !important;
+        box-shadow: 0px 0px 5px 0.2px rgba(158, 158, 158, 0.5) !important;
+        ion-slide {
+            margin-bottom: 20px;
+            width: fit-content;
+            card-product .card-item {
+                box-shadow: none !important;
+                margin: 0px !important;
+                padding-left: 16px !important;
+                .from-price {
+                    display: block !important;
+                }
+                ion-label {
+                    h5 {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 1;
+                        min-height: 1.2em;
+                        max-height: 1.2em;
+                    }
+                    p {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 3;
+                        min-height: 4em;
+                        max-height: 4em;
+                    }
+                }
+            }
+        }
+        ion-col.col {
+            text-align: left;
+        }
+        button.swiper-pagination-bullet-active {
+            background: #e04433;
+        }
+        .swiper-pagination {
+            padding-top: 10px;
+            bottom: 0px;
+        }
+        h5.text {
+            font-family: myFontRegular !important;
+            font-weight: bold;
+            font-variant-caps: all-petite-caps;
+            padding: 0px;
+            margin-top: 5px;
+        }
+        div.thumb {
+            height: 15vw;
+            width: 15vw;
+            margin: 1.5vw;
+            margin-left: 1.5vw;
+        }
+        .swiper-wrapper {
+            margin-bottom: 10px;
+        }
+    }
+}
+section.placeholder {
+    .title {
+        background: white;
+        margin-top: 10px;
+        padding-left: 10px;
+        padding-top: 10px;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+    }
+    .placeholder-image {
+        width: 15vw;
+        height: 15vw;
+        padding-left: 1vw;
+        margin-left: 4vw;
+    }
+    ion-row {
+        height: auto;
+        padding: 20px 0px;
+        padding-top: 5px;
+        background: white;
+        margin-bottom: 10px;
+        h5 {
+            padding: 0px;
+            margin-top: 5px;
+        }
+    }
+}
+
+div.divider-clean-clean {
+    h5 {
+        font-family: myFontRegular !important;
+        font-size: 1.2em!important;
+        font-weight: bold !important;
+    }
+}
+
+ion-grid.products {
+    padding: 0px;
+    padding-bottom: 30px;
+    div.list-products {
+        margin-top: 10px !important;
+    }
+    div.thumb {
+        height: 15vw;
+        width: 15vw;
+        margin: 1.5vw;
+        margin-left: 1.5vw;
+        margin-right: 1vw !important;
+    }
+    .card-item {
+        background: white;
+        margin-top: 10px;
+        .from-price {
+            display: block !important;
+            top: 8px !important;
+        }
+        .coin.with-from-price {
+            padding: 23px 8px 23px 10px !important;
+        }
+        h5 {
+            margin-top: 0px !important;
+            margin-left: 1em !important;
+        }
+        p {
+            min-height: 40px;
+            &.goneDescription {
+                display: none !important
+            }
+        }
+    }
+}
+
+
+.divider-clean-clean {
+    background: none !important;
+    .text {
+        font-size: 1.5em !important;
+    }
+    h5 {
+        margin-left: 1em !important;
+    }
+}
+p.text {
+    color: #6e6e71;
+    margin-top: 0px;
+    font-size: 1.5rem;
+}
+.recomendations {
+    card-product {
+        ion-item {
+            background: none !important;
+            -webkit-box-shadow: none !important;
+            -moz-box-shadow: none !important;
+            box-shadow: none !important;
+        }
+    }
+}
+h5.text {
+    margin-top: 0px;
+    font-size: 2rem;
+}

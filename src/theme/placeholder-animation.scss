@@ -1,0 +1,56 @@
+// --------------------------------------
+// Placeholder animation
+// --------------------------------------
+
+
+@keyframes placeHolderDiv{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+
+.placeholder-animation {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderDiv;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+    //height: 96px;
+    position: relative;
+
+    &.placeholder-text-p-complete{
+        height: 1em;
+        width: 100%;
+    }
+
+    &.placeholder-text-p-80{
+        height: 1em;
+        width: 80%;
+    }
+
+    &.placeholder-text-p-60{
+        height: 1em;
+        width: 60%;
+    }
+
+    &.placeholder-text-p-50{
+        height: 1em;
+        width: 50%;
+    }
+
+    &.placeholder-text-p-40{
+        height: 1em;
+        width: 40%;
+    }
+
+    &.placeholder-text-p-20{
+        height: 1em;
+        width: 20%;
+    }
+}

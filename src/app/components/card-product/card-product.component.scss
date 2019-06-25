@@ -1,0 +1,74 @@
+ion-item.card-product-coin {
+    
+    --background: white;
+    margin-bottom: 0.9em !important;
+    nano-thumb {
+        margin-right: 1em!important;
+    }
+    // background: white;
+    // margin-top: 10px;
+    // -webkit-box-shadow: 0px 0px 2px 0.2px rgba(200, 200, 200, 0.4) !important;
+    // -moz-box-shadow: 0px 0px 2px 0.2px rgba(200, 200, 200, 0.4) !important;
+    // box-shadow: 0px 0px 2px 0.2px rgba(200, 200, 200, 0.4) !important;
+    // h5.text {
+    //     font-family: myFontRegular !important;
+    //     font-weight: bold!important;
+    //     font-variant-caps: all-petite-caps!important;
+    //     padding: 0px!important;
+    //     line-height: 20px!important;
+    // }
+
+    // nano-thumb {
+    //     &.goneImage {
+    //         display: none !important;
+    //     }
+    // }
+    
+    .infos-product {
+        display: flex;
+        justify-content: space-between;
+
+        h5 {
+            font-weight: bold;
+            font-size: 1em;
+        }
+        &.margin-left-extra {
+            margin-left: 16px;
+        }
+        .name-and-coins {
+            display: flex;
+        }
+        .price-value {
+            color: green !important;
+        }
+        .price-old-value {
+            color: red !important;
+            text-decoration: line-through !important;
+        }
+        .description-product {
+            padding-right: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            max-height: 4em;
+            font-size: 1em !important;
+        }
+    }
+}
+
+// .card-product-coin {
+//     background: white;
+//     margin-top: 10px;
+//     -webkit-box-shadow: 0px 0px 2px 0.2px rgba(200, 200, 200, 0.4) !important;
+//     -moz-box-shadow: 0px 0px 2px 0.2px rgba(200, 200, 200, 0.4) !important;
+//     box-shadow: 0px 0px 2px 0.2px rgba(200, 200, 200, 0.4) !important;
+//     h5.text {
+//         font-family: myFontRegular !important;
+//         font-weight: bold;
+//         font-variant-caps: all-petite-caps;
+//         padding: 0px;
+//         line-height: 20px;
+//     }
+// }

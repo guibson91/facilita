@@ -1,0 +1,37 @@
+<ion-header>
+  <nano-navbar title="Avaliações" icon="menus-icon-ecommerce-3"></nano-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card class="content-card" margin>
+    <div class="search-order-list">
+      <ion-searchbar [(ngModel)]="input_search" placeholder="Filtrar pelo cliente ou filial ">
+      </ion-searchbar>
+      <ion-item class="date-filter">
+        <ion-label stacked>Data</ion-label>
+        <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="dateInput" (ionChange)="changeDate()"></ion-datetime>
+      </ion-item>
+    </div>
+    <ion-list class="list-evaluation">
+      <ion-item class="item-evaluation" *ngFor="let order of orders$ | async |
+           filterBy:['user_full.name','filial_full.name']: input_search ; let i = index">
+        <h1 ion-text>{{order.user_full.name}}
+          <span class="star-number">
+            <ion-icon name="star"></ion-icon>{{order.evaluate.rate | number : '1.1-1'}}</span>
+        </h1>
+        <p ion-text>{{order.filial_full.name}}</p>
+        <h2 ion-text *ngIf="order.evaluate.comment">Comentário: {{order.evaluate.comment}}</h2>
+        <h3 ion-text item-right (click)="presentModal(order)" class="more">Detalhes do pedido</h3>
+      </ion-item>
+      <ion-item text-center padding *ngIf="!loading" class="noEvaluation">
+        <p ion-text>Você ainda não possui nenhuma avaliação</p>
+      </ion-item>
+    </ion-list>
+    <ion-item text-center *ngIf="loading">
+      <ion-spinner></ion-spinner>
+    </ion-item>
+
+  </ion-card>
+
+</ion-content>

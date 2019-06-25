@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-toolbar color="primary">
+    <ion-title>Intervalo de tempo</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding class="form-content">
+  <ion-list>
+    <ion-item>
+      <ion-label>Hora inicial</ion-label>
+      <ion-select [(ngModel)]="interval.start">
+        <ion-select-option *ngFor="let hour of HOURS" [value]="hour">{{hour}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hora final</ion-label>
+      <ion-select [(ngModel)]="interval.end">
+        <ion-select-option *ngFor="let hour of HOURS" [value]="hour">{{hour}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <p ion-text text-center color="primary" *ngIf="check_invalid_interval">A hora final deve ser após a hora inicial</p>
+  </ion-list>
+</ion-content>
+
+
+<ion-footer>
+  <nano-buttons [canSave]="valid" [save]="success.bind(this)" [canRemove]="canRemove" [remove]="remove.bind(this)"
+    [cancel]="dismiss.bind(this)"></nano-buttons>
+</ion-footer>

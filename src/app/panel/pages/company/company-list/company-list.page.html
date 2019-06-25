@@ -1,0 +1,58 @@
+<ion-header no-border>
+  <nano-navbar title="Empresas" icon="menus-icon-building">
+  </nano-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card class="content-card">
+    <ion-searchbar [(ngModel)]="searchString" placeholder="Pesquisar" (ionChange)="detect()">
+    </ion-searchbar>
+    <nano-loading [loading]="loading">
+      <ion-list>
+        <div class="container" no-lines padding *ngFor="let company of companies$ | async | filterBy:['name']:searchString" text-wrap>
+          <h2 ion-text class="company-name" [ngClass]="{inactive: !company?.active}">{{company.name}}</h2>
+          <ion-input type="text" value="{{company.id}}"></ion-input>
+          <ion-button fill="clear" (click)="edit(company)" color="proceed">
+            <ion-icon name="md-create"></ion-icon> Editar
+          </ion-button>
+          <ion-button fill="clear" (click)="openFiliais(company)" color="proceed">
+            <ion-icon name="md-create"></ion-icon> Filiais
+          </ion-button>
+          <ion-button fill="clear" (click)="openProducts(company)" color="proceed">
+            <ion-icon name="md-create"></ion-icon> Produtos
+          </ion-button>
+          <ion-button fill="clear" (click)="openPromotions(company)" color="proceed">
+            <ion-icon name="md-create"></ion-icon> Promoções
+          </ion-button>
+          <ion-button fill="clear" (click)="openOrders(company)" color="proceed">
+            <ion-icon name="md-create"></ion-icon> Pedidos
+          </ion-button>
+          <ion-button fill="clear" (click)="openOrdersPromotion(company)" color="proceed">
+            <ion-icon name="md-create"></ion-icon> Promoções geradas
+          </ion-button>
+          <ion-button fill="clear" (click)="openFinancial(company)" color="proceed">
+            <ion-icon name="md-create"></ion-icon> Vendas
+          </ion-button>
+          <ion-button fill="clear" (click)="openEmployee(company)" color="proceed">
+            <ion-icon name="md-create"></ion-icon> Funcionários
+          </ion-button>
+          <ion-button fill="clear" (click)="openEvaluate(company)" color="proceed">
+            <ion-icon name="md-create"></ion-icon> Avaliações
+          </ion-button>
+          <ion-item class="active-button">
+            <ion-label>Ativo</ion-label>
+            <ion-toggle [(ngModel)]="company.active" (ionChange)="changeActiveStatus(company)"></ion-toggle>
+          </ion-item>
+        </div>
+      </ion-list>
+    </nano-loading>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,17 @@
+<ion-header>
+  <nano-navbar title="Denúncias de Usuários" icon="menus-icon-ecommerce-3"></nano-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card class="content-card" margin>
+
+    <ion-item *ngFor="let user of users">
+      <h1>{{user.name}}</h1>
+      <div *ngFor="let denunciation of user.denunciations">
+        <p>{{denunciation}}</p>
+      </div>
+    </ion-item>
+
+  </ion-card>
+</ion-content>

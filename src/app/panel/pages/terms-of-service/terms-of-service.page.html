@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title text-center><strong>Termos de uso</strong></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div [hidden]="loading">
+    <p>
+      Facilita e Parceiro são doravante denominados, individual e indistintamente, “Parte” e, conjuntamente, “Partes”.
+      As Partes acordam que o presente contrato é totalmente paritário e firmado por duas pessoas jurídicas ou físicas
+      capazes na forma da legislação brasileira, do qual este
+      instrumento será disciplinado pelas cláusulas aqui estabelecidas, bem como legislação brasileira civil aplicável.
+
+      <br />
+      As Partes acima identificadas têm, entre si, justo e acertado, o presente documento, que se regerá pelas
+      seguintes cláusulas e condições:
+
+      <br />
+      <strong>I.</strong> Que a <b>facilita</b>​ é uma empresa cuja atividade principal é a intermediação,
+      desenvolvimento e gerenciamento de uma plataforma digital (“​App​” ou “​plataforma​”) a qual permite que uma
+      pessoa física ou jurídica (“Usuário-comprador” ou “comprador”) solicite um ou mais produtos disponíveis na
+      plataforma digital <b>facilita</b> oferecidos por estabelecimentos comerciais locais (“​<b>Parceiro</b>​”) de
+      algumas cidades do território brasileiro para que seja entregue em local específico e determinado pelo
+      Usuário-comprador aquela determinada aquisição, sendo necessário, por parte do comprador, efetivar a aquisição
+      através de pagamento do produto por intermédio de um dos meios de pagamento disponibilizados pelo <b>Parceiro</b>.
+
+      <br />
+      <strong>II.</strong> Que a <b>facilita</b> atuará, essencialmente, como plataforma intermediária entre o
+      Usuário-comprador e <b>Parceiro</b>
+
+      <br />
+      <strong>III.</strong> Que o <b>PARCEIRO</b> está interessado em comercializar seus produtos e/ou serviços ao
+      Usuário-comprador da <b>facilita</b>
+      por​ meio deste App e se beneficiar da
+      intermediação com terceiros.
+
+      <br />
+      <strong>IV. </strong> Que o <b>Parceiro</b> repassará ao <b>facilita</b> um valor base de R$ 90,00 ou % de tudo
+      que for
+      comercializado pelo
+      <b>Parceiro</b> através do app <b>facilita</b>, pelo uso da plataforma e equipamento dispositivo disponibilizado
+      ao <b>PARCEIRO</b>,
+      em conformidade com a cláusula do T&C.
+      <strong>V. </strong> O não pagamento das taxas devidas pelo uso dos serviços ofertados pela <b>facilita</b>,
+      acarretará
+      o automático
+      cancelamento do serviço após 30 dias contados a partir do último pagamento não realizado.
+
+      <br />
+      <strong>VI. </strong> Que o presente instrumento integra em totalidade o “Termos e Condições para Parceiro
+      facilita” (“T&C”) o qual
+      declara haver lido, compreendido e aceitado. Sendo que as Partes firmam sua concordância conforme assinatura
+      indicada abaixo.
+
+      <br />
+      <strong>VII. </strong>Que, havendo as Partes estabelecido a forma, os termos e as condições que irão reger a sua
+      relação contratual, têm entre si, justas e acordadas o presente instrumento.
+
+    </p>
+    <ion-item>
+      <ion-label text-wrap>Eu aceito os termos de uso</ion-label>
+      <ion-checkbox slot="start" [(ngModel)]="acceptedterms" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+    </ion-item>
+    <ion-button padding expand="block" (click)="acceptTermsOfUse()" [disabled]="!acceptedterms">
+      <p ion-text>Continuar</p>
+    </ion-button>
+
+  </div>
+  <div class="spinner-center" [hidden]="!loading" padding padding>
+    <ion-spinner></ion-spinner>
+  </div>
+</ion-content>

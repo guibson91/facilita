@@ -1,0 +1,72 @@
+<ion-header no-border>
+  <nano-navbar title="Estabelecimentos" icon="menus-icon-shop" [helpPage]="4">
+  </nano-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card class="content-card">
+    <ion-searchbar [(ngModel)]="searchString" placeholder="Pesquisar" (ionChange)="detect()">
+    </ion-searchbar>
+
+    <nano-loading [loading]="loading">
+      <ion-list>
+        <div class="filial-div" *ngFor="let filial of filials | filterBy:['name', 'location.street', 'location.district', 'location.state', 'location.country', 'location.city']:searchString">
+          <div padding text-wrap>
+
+            <nano-thumb large="true" [src]="filial.image"></nano-thumb>
+
+            <div class="content-filial" text-wrap padding-start>
+              <h1>{{filial.name}}</h1>
+              <p>{{filial.location?.street}}, {{filial.location?.number}} - {{filial.location?.district}},
+                {{filial.location?.city}},
+                {{filial.location?.state}}
+              </p>
+            </div>
+
+          </div>
+          <div class="flex-content" padding>
+            <div class="buttons">
+              <ion-button class="negative-margin" (click)="openStock(filial)" fill="clear" color="proceed" *ngIf="company?.delivery">
+                <div class="menus-icon menus-icon-menu"></div> Estoque
+              </ion-button>
+
+              <ion-button class="negative-margin" (click)="openStockPromotion(filial)" fill="clear" color="proceed" *ngIf="company?.promotion">
+                <div class="menus-icon menus-icon-menu"></div> Estoque de promoções
+              </ion-button>
+
+              <ion-button class="negative-margin" (click)="openInvoice(filial)" fill="clear" color="proceed">
+                <div class="menus-icon menus-icon-credit-card"></div> Fatura
+              </ion-button>
+
+              <ion-button class="negative-margin" (click)="openStatistics(filial)" fill="clear" color="proceed">
+                <div class="menus-icon menus-icon-ecommerce-12"></div><span></span> Vendas
+              </ion-button>
+
+              <ion-button fill="clear" (click)="edit(filial)" color="proceed">
+                <ion-icon name="md-create"></ion-icon> Editar
+              </ion-button>
+
+            </div>
+            <ion-item class="active" *ngIf="isTEAM">
+              <ion-label style="display: block">Ativo</ion-label>
+              <ion-toggle [(ngModel)]="filial.active" (ionChange)="changeActiveStatus(filial)"></ion-toggle>
+            </ion-item>
+          </div>
+          <card-filial-open [filial]="filial" [inside]="true"></card-filial-open>
+        </div>
+
+        <ion-item text-center padding *ngIf="!existsFilials">
+          <p ion-text>Você ainda não possui filial</p>
+        </ion-item>
+      </ion-list>
+    </nano-loading>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="company">
+    <ion-fab-button color="primary" (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

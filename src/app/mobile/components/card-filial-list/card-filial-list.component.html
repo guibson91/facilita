@@ -1,0 +1,45 @@
+<ion-card *ngIf="filial" [ngClass]="{'closed': !filial.open}">
+  <div class="container">
+
+    <div>
+      <ion-avatar slot="start">
+        <img [src]="filial.image" />
+      </ion-avatar>
+    </div>
+
+    <div style="width: 80%; margin-left: 4px;">
+
+      <div class="top-right">
+        <h1>{{filial.name}}</h1>
+        <div class="container-star">
+          <ion-icon name="star" *ngIf="filial?.rating?.quantity >= 5"></ion-icon>
+          <span id="star-number" *ngIf="filial?.rating?.quantity >= 5">{{filial.rating.rate | number : '1.1-1'}}</span>
+          <span class="quantity" *ngIf="!filial?.rating || !filial?.rating?.quantity || filial?.rating?.quantity < 5">
+            <strong class="new-filial-rate">Novo</strong>
+          </span>
+        </div>
+      </div>
+
+      <p class="description" text-wrap>{{filial.description}}</p>
+
+      <p class="details" *ngIf="filial.delivery">
+        <span *ngIf="filial.delivery.timeMin && filial.delivery.timeMax">{{filial.delivery.timeMin}} min a
+          {{filial.delivery.timeMax}} min - </span>
+        <span *ngIf="filial.distance && filial.distance >= 1" class="distance">
+          {{filial.distance | number: '1.2-2' }} km
+        </span>
+        <span *ngIf="filial.distance && filial.distance < 1" class="distance">
+          {{filial.distance | formatDistance }} m
+        </span>
+      </p>
+      <p *ngIf="filial.subtypes?.length > 0" class="subtype" text-wrap>
+        <span *ngFor="let subtype of filial.subtypes; let i = index" class="subtype">
+          {{subtype.name}}
+          <br *ngIf="i == 3 || i == 6" />
+        </span>
+      </p>
+
+    </div>
+
+  </div>
+</ion-card>

@@ -1,0 +1,49 @@
+<ion-header no-border>
+  <nano-navbar title="Promoções" icon="menus-icon-ecommerce-41">
+  </nano-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card class="content-card">
+    <ion-searchbar [(ngModel)]="searchString" placeholder="Pesquisar" (ionChange)="change()">
+    </ion-searchbar>
+
+    <nano-loading [loading]="loading">
+      <ion-list>
+        <div *ngFor="let promotion of promotions | filterBy:['name', 'description']:searchString; let i = index">
+          <ion-item no-lines padding text-wrap class="product">
+            <!-- Imagem -->
+            <nano-thumb [ngClass]="{ 'goneImage' : !promotion?.image }" item-left [src]="promotion.image"></nano-thumb>
+            <!-- Nome -->
+            <h2 text-wrap padding-top padding-horizontal>
+              {{promotion.name}}
+            </h2>
+            <!-- Descrição -->
+            <p text-wrap padding-horizontal>{{promotion.description}}</p>
+
+            <p text-wrap padding-horizontal>
+              R$ {{promotion.priceBase | number : '1.2-2'}}
+            </p>
+            <div item-right>
+              <ion-button (click)="edit(promotion)" fill="clear" color="proceed">
+                <ion-icon name="md-create"></ion-icon> Editar
+              </ion-button>
+            </div>
+          </ion-item>
+        </div>
+
+        <ion-item text-center padding *ngIf="!existsPromotions">
+          <p ion-text>Você ainda não possui nenhuma promoção</p>
+        </ion-item>
+      </ion-list>
+    </nano-loading>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,25 @@
+<ion-item class="card-product-coin" no-lines>
+  <nano-thumb [src]="product?.image" [ngClass]="{ 'goneImage' : !product?.image , 'withImage' : product?.image}"
+    item-left></nano-thumb>
+
+  <div class="infos-product" [ngClass]="{'margin-left-extra': !product?.image }">
+    <div>
+      <h5 ion-text text-wrap>{{product.name}}</h5>
+      <p class="description-product" [ngClass]="{ 'goneDescription' : !product?.description}" ion-text text-wrap>{{product.description}}</p>
+      <!-- Valor do produto, com ou sem desconto, com ou sem "a partir de" -->
+      <div class="content">
+        <p *ngIf="!newPrice && product?.minimumPrice !== product?.priceBase" class="text-new-price">
+          <strong>A partir de </strong>
+          <strong class="price-value">R$ {{ product?.minimumPrice | number : '1.2-2' }}</strong>
+        </p>
+        <p *ngIf="!newPrice && !(product?.minimumPrice !== product?.priceBase)" class="text-new-price">
+          <strong class="price-value">R$ {{ product?.minimumPrice | number : '1.2-2' }}</strong>
+        </p>
+        <p class="value line" *ngIf="newPrice">De
+          <strong class="price-old-value">R$ {{ product?.minimumPrice | number : '1.2-2' }}</strong> Por
+          <strong class="price-value">R$ {{ newPrice | number : '1.2-2' }}</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</ion-item>

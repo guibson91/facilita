@@ -1,0 +1,26 @@
+<ion-content padding class="hideScrollbar">
+  <form [formGroup]="form">
+    <ion-item no-padding>
+      <ion-label position="stacked" color="tertiary">Nome</ion-label>
+      <ion-input formControlName="name" #input></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label position="stacked" color="tertiary">Descrição</ion-label>
+      <ion-input formControlName="description"></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label position="stacked" color="tertiary">Preço </ion-label>
+      <money-input item-content [control]="form.controls['price']"></money-input>
+    </ion-item>
+    <div>
+      <ion-button fill="clear" color="medium" (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+        Cancelar
+      </ion-button>
+      <ion-button color="proceed" [disabled]="!form.valid" (click)="saveOption()">
+        <ion-icon name="md-checkmark"></ion-icon>
+        Salvar
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

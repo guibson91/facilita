@@ -1,0 +1,120 @@
+<ion-header no-border class="app">
+</ion-header>
+
+<ion-content class="hideScrollbar">
+
+  <section class="cover shadow shadow-3">
+    <header>
+      <ion-row>
+        <ion-col>
+          <ion-icon name="ios-arrow-back" tappable (click)="goBack()"></ion-icon>
+        </ion-col>
+        <ion-col text-right *ngIf="!isFavorite && !loading" (click)="clickFavorite()">
+          <ion-icon name="ios-heart" style="font-size: 2rem; margin-top: -5px;"></ion-icon>
+        </ion-col>
+        <ion-col text-right *ngIf="isFavorite && !loading" (click)="clickFavorite()">
+          <ion-icon name="ios-heart" style="font-size: 2rem; color: red;margin-top: -5px;"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </header>
+
+    <footer>
+      <h1 ion-text>{{filial?.name || "..."}}</h1>
+    </footer>
+
+    <div class="cover-fade"></div>
+    <nano-thumb [cover_picture]="true" [src]="filial?.cover"></nano-thumb>
+    <nano-thumb [profile_picture]="true" class="shadow shadow-light" [src]="filial?.image" [large]="true" [banner]="true"></nano-thumb>
+  </section>
+
+  <section class="details">
+    <header>
+      <ion-grid class="grid-details">
+        <ion-row>
+          <ion-col size="5">
+            <!--<h5 class="my-font-bold" ion-text>{{filial?.subtype?.name || "Tipo do restaurante"}}</h5>-->
+            <p class="time" ion-text>{{filial?.delivery?.timeMin || "-"}} min ~ {{filial?.delivery?.timeMax || "-"}}
+              min</p>
+            <div class="price-delivery">
+              <img src="./assets/img/motinha_sem_fogo.png">
+              <span class="text-new-price">
+                <strong class="price-value" *ngIf="priceDelivery">R$ {{ priceDelivery | number : '1.2-2'}}</strong>
+                <strong class="price-value" *ngIf="!priceDelivery">Grátis</strong>
+              </span>
+            </div>
+          </ion-col>
+          <ion-col size="3">
+            <p ion-text class="rating" *ngIf="(filial?.rating?.quantity || 0) < 5">
+              <ion-icon name="md-star"></ion-icon>Novo
+            </p>
+
+            <p ion-text class="rating" *ngIf="(filial?.rating?.quantity || 0) >= 5">
+              <ion-icon name="md-star"></ion-icon>{{filial.rating.rate | number : '1.1-1'}}
+            </p>
+          </ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+        <ion-row *ngIf="filial">
+          <ion-col>
+            <p ion-text class="open-container">
+              <span *ngIf="filial.open" class="open">Aberto</span>
+              <span *ngIf="!filial.open && !filial.next_open_hour" class="close">Fechado</span>
+              <span *ngIf="!filial.open && filial.next_open_hour" class="hour">{{filial.next_open_hour}}</span>
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </header>
+    <footer>
+      <p ion-text text-wrap class="description">{{filial?.description}}</p>
+    </footer>
+  </section>
+
+  <!-- Recomendações do Chefe -->
+  <!-- <section class="recomendations" *ngIf="!loading && recomendationProductsStock && recomendationProductsStock.length > 0">
+    <ion-item-divider class="divider-clean-clean">
+      <h5 ion-text>Recomendações do chefe</h5>
+    </ion-item-divider>
+    <ion-slides ion-slides [pager]="true">
+      <ion-slide *ngFor="let product of recomendationProductsStock | filterBy:['name', 'description']:searchString | matchesCategory:categoriesSelected; let i = index"
+        (click)="orderProduct(product)">
+        <card-product [product]="product" [filial]="filial"> </card-product>
+      </ion-slide>
+    </ion-slides>
+  </section> -->
+
+  <!-- Lista de produtos e categorias -->
+  <ion-grid class="products" *ngIf="!loading && productsStock">
+    <div *ngFor="let product of productsStock | filterBy:['name', 'description']:searchString | matchesCategory:categoriesSelected; let i = index"
+      (click)="orderProduct(product)" tappable>
+      <div class="list-products" *ngIf="i == 0 || product.category != tempCategory" class="divider-clean-clean">
+        <h5 text-wrap>{{getCategoryName(product)}}</h5>
+      </div>
+      <card-product class="card-item" [product]="product" [filial]="filial">
+      </card-product>
+    </div>
+  </ion-grid>
+
+  <!-- Auxiliar para renderizar loading dos componentes -->
+  <div *ngIf="loading">
+    <section class="placeholder" *ngFor="let id of [1, 2, 3]">
+      <ion-row class="title">
+        <h5 ion-text class="placeholder-animation placeholder-text-p-60"></h5>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="placeholder-animation placeholder-image"></div>
+        </ion-col>
+        <ion-col size="9">
+          <h5 ion-text class="placeholder-animation placeholder-text-p-80"></h5>
+          <p ion-text class="placeholder-animation placeholder-text-p-60"></p>
+        </ion-col>
+      </ion-row>
+    </section>
+  </div>
+
+</ion-content>
+
+
+<!-- Float button do(s) pedido(s) -->
+<fab-order></fab-order>

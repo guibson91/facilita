@@ -1,0 +1,70 @@
+<ion-header no-border class="app">
+  <ion-toolbar class="header-toolbar" color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="ios-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <h3 ion-text text-uppercase color="light" class="my-font-logo">DETALHES PEDIDO</h3>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content *ngIf="order">
+
+  <mr-card-filial [filial]="filial" [phone]="true"></mr-card-filial>
+
+  <span class="obs-delivery">Entrega realizada em:</span>
+  <ion-card class="shadow shadow-light card-delivery-address">
+    <div class="info-delivery">
+      <p class="title-delivery">
+        {{ order?.location.street }}, {{ order?.location.number }}
+        <span *ngIf="order?.location?.district">, {{order.location.district}}</span>
+        <span *ngIf="order?.location?.city">, {{order.location.city}}</span>
+        <span *ngIf="order?.location?.state_short">- {{order.location.state_short}}</span>
+        <span *ngIf="order?.location?.complement">, {{order.location.complement}}</span>
+      </p>
+    </div>
+  </ion-card>
+
+  <div *ngFor="let entry of order.entries; let i = index" padding style="background-color: white">
+    <ion-badge id="notifications-badge" color="danger">x{{ entry.quantity }}</ion-badge>
+    <card-product [product]="entry.product" [filial]="filial" [entry]="entry"> </card-product>
+    <div class="shadow shadow-light-2 text-complements" *ngIf="entry.complement_resume && entry.complement_resume.length"
+      style="padding-top: 1em" padding-bottom>
+      <h4 ion-text padding-left>Complementos escolhidos: </h4>
+      <p ion-text class="list-complement" color="discret" padding-horizontal>
+        <span ion-text *ngFor="let resume of entry.complement_resume; let i = index">
+          {{resume}}</span>
+      </p>
+      <h4 ion-text padding-left *ngIf="entry.observation">Observações: </h4>
+      <p ion-text class="list-complement" color="discret" padding-horizontal *ngIf="entry.observation">
+        {{entry.observation}}
+      </p>
+    </div>
+  </div>
+
+  <ion-item no-lines class="shadow shadow-light payment" margin-top>
+    <b>Forma de pagamento: </b>
+    <span [ngSwitch]="order.payment_method" style="margin-top: 5px; margin-left: 4px">
+      <span *ngSwitchCase="'debit_card'"> Débito
+        <span> | {{order.payment_cardType | uppercase}} </span>
+      </span>
+      <span *ngSwitchCase="'credit_card'"> Crédito
+        <span> | {{order.payment_cardType | uppercase}} </span>
+      </span>
+      <span *ngSwitchCase="'money'"> Dinheiro
+        <span *ngIf="order.change">, troco para: {{order.change | number: '1.2-2'}} </span>
+      </span>
+      <span *ngSwitchCase="'food_stamps'">
+        Vale-Alimentação
+        <span> | {{order.payment_cardType | uppercase}} </span>
+      </span>
+      <span *ngSwitchDefault>Outro</span>
+    </span>
+  </ion-item>
+  <mr-price [price]="order.price"></mr-price>
+
+  <mr-status-order [order]="order"></mr-status-order>
+
+</ion-content>

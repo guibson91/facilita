@@ -1,0 +1,36 @@
+<ion-header class="app">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" left color="light">
+      <ion-button icon-only (click)="dismiss()" color="light">
+        <ion-icon name="ios-arrow-back" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="title-default">
+      <h3 ion-text class="my-font-logo" no-margin>TELEFONE</h3>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-item color="transparent" no-lines>
+      <h5 ion-text text-center color="medium" text-wrap class="text-description">
+        Para realizar um pedido você deve informar um Telefone válido, isso garante maior segurança e eficácia tanto para o estabelecimento
+        quanto para você
+      </h5>
+    </ion-item>
+    <form [formGroup]="form">
+      <ion-item class="input-small input-phone shadow shadow-light" tappable>
+        <ion-label position="stacked" color="primary"> Telefone </ion-label>
+        <ion-input type="tel" formControlName="phone" maxlength="15" name="phone" [brmasker]="{form: form.get('phone'), phone: true}"></ion-input>
+      </ion-item>
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer no-margin no-padding>
+  <ion-button no-margin no-padding size="large" expand="block" text-center type="submit" [disabled]="!form.get('phone').value || !isNewPhone" color="primary"
+    (click)="registerPhone()">
+    Salvar
+  </ion-button>
+</ion-footer>

@@ -1,0 +1,20 @@
+<nano-error [error]="error"></nano-error>
+
+<div class="nano-buttons" style="display: flex" padding>
+	<div style="text-align: start; flex-grow: 1">
+		<ion-button icon-left fill="clear" (click)="click_remove()" *ngIf="canRemove" type="submit" color="danger">
+			<ion-icon name="trash"></ion-icon>
+			Remover
+		</ion-button>
+	</div>
+	<div>
+		<ion-button icon-left fill="clear" (click)="cancel_button()" type="submit" color="medium">
+			<ion-icon name="close"></ion-icon>
+			Cancelar
+		</ion-button>
+		<ion-button icon-left (click)="click_save()" [disabled]="!canSave"  type="submit" color="proceed">
+			<ion-icon name="md-checkmark"></ion-icon>
+			Salvar
+		</ion-button>
+	</div>
+</div>

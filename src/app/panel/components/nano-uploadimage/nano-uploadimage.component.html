@@ -1,0 +1,17 @@
+<!-- Imagem -->
+<input #fileInput type="file" accept="image/*" style="visibility: hidden; height: 0px" (change)="processWebImage($event)" />
+
+<div class="profile-image-wrapper" (click)="getPicture()">
+  <div class="profile-image-placeholder" *ngIf="!imageBlob && !this._control.value">
+    <ion-icon name="add"></ion-icon>
+    <div>
+      Escolha uma imagem
+    </div>
+  </div>
+  <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="imageBlob || this._control.value"></div>
+</div>
+
+<!--Barra de progresso-->
+<div style="height: 14px;">
+  <progress style="display: block; margin: auto;" [max]="snapshot?.totalBytes" [value]="snapshot?.bytesTransferred" [hidden]="!isUploadingImage"></progress>
+</div>

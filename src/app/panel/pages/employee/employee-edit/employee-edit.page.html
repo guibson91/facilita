@@ -1,0 +1,78 @@
+<ion-header no-border>
+  <nano-navbar title="Cadastrar/Editar funcionário" icon="menus-icon-servant-outline" [helpPage]="9"></nano-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card class="content-card">
+    <form [formGroup]="form" class="form-content">
+      <ion-list>
+
+        <!-- Imagem e barra de progresso -->
+        <nano-uploadimage [form]="this.form" [storagePath]="'users'"></nano-uploadimage>
+
+        <!--Nome-->
+        <ion-item padding-horizontal>
+          <ion-label position="stacked" color="tertiary">Nome</ion-label>
+          <ion-input formControlName="name"></ion-input>
+        </ion-item>
+
+        <!--Email-->
+        <ion-item padding-horizontal>
+          <ion-label position="stacked" color="tertiary">Email</ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
+
+        <!--Senha-->
+        <ion-item padding-horizontal>
+          <ion-label position="stacked" color="tertiary" *ngIf="!employee">Senha</ion-label>
+          <ion-label position="stacked" color="tertiary" *ngIf="employee">Nova senha</ion-label>
+          <ion-input type="text" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"></ion-input>
+          <ion-button fill="clear" (click)="generatePassword()" color="tertiary">Gerar senha aleatória</ion-button>
+        </ion-item>
+
+        <!-- Se o usuário é da empresa ou da filial -->
+        <h4 ion-text padding-horizontal>Tipo de funcionário:</h4>
+        <ion-radio-group [(ngModel)]="typeOfEmployee" [ngModelOptions]="{standalone: true}">
+          <ion-item padding-horizontal>
+            <ion-label>Administrador da empresa</ion-label>
+            <ion-radio value="company"></ion-radio>
+          </ion-item>
+          <ion-item padding-horizontal>
+            <ion-label>Funcionário de uma filial</ion-label>
+            <ion-radio value="filial"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+
+        <!-- Permissão -->
+        <div *ngIf="typeOfEmployee === 'filial'">
+          <h4 ion-text padding-horizontal text-bold>Permissões do funcionário da filial:</h4>
+          <ion-radio-group [(ngModel)]="levelOfFilialPermission" [ngModelOptions]="{standalone: true}">
+            <ion-item padding-horizontal>
+              <ion-label>Gerenciar todo o estabelecimento</ion-label>
+              <ion-radio value="manager"></ion-radio>
+            </ion-item>
+            <ion-item padding-horizontal>
+              <ion-label>Gerenciar somente os pedidos</ion-label>
+              <ion-radio value="cashier"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+        <!-- Filial -->
+        <nano-loading [loading]="loadingFilials" [hidden]="typeOfEmployee !== 'filial'">
+          <ion-item padding-horizontal>
+            <ion-label position="stacked" color="tertiary">Filial do funcionário</ion-label>
+            <ion-select formControlName="filialId" submitText="Ok" cancelText="Cancelar">
+              <ion-select-option class="dropdown-filials" *ngFor="let filial of filials$ | async" [value]="filial.id">{{filial.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </nano-loading>
+
+        <nano-error [error]="error"></nano-error>
+        <nano-buttons [canSave]="form.valid" [save]="save.bind(this)" [canRemove]="employee" [remove]="remove.bind(this)"
+          [cancel]="back.bind(this)"></nano-buttons>
+
+      </ion-list>
+    </form>
+  </ion-card>
+</ion-content>

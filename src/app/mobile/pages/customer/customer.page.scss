@@ -1,0 +1,210 @@
+ion-header {
+    
+    ion-title {
+        font-family: myFontBold !important;
+    }
+    ion-icon {
+        font-size: 1.2em;
+        margin: 0px 5px;
+    }
+}
+
+ion-content {
+
+    div.orders {
+        background: white!important;
+        margin-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        div.container-top {
+            display: flex;
+            align-items: center;
+
+            div.top-right {
+                margin-left: 8px;
+            }
+        }
+
+        .filial-name {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-weight: bold;
+        }
+
+        .number-star {
+            font-size: 0.9em;
+            color: var(--ion-color-primary);
+        }
+        .icon-star {
+            font-size: 0.9em;
+            color: var(--ion-color-primary);
+        }
+        .already-rated {
+            color: darkgray;
+            margin-left: 5px;
+            font-size: 0.8em;
+        }
+
+        .order-cancel{
+            color: var(--ion-color-danger);
+            display: flex;
+            flex-direction: column;
+            span {
+                white-space: normal;
+            }
+        }
+
+        .date {
+            font-size: 0.8em;
+            color: var(--ion-color-medium);
+        }
+
+        footer.top-product {
+            border-top: 2px solid rgba(2, 2, 2, 0.18)!important;
+            padding-bottom: 14px;
+            p {
+                color: black !important;
+                margin-bottom: 2px;
+            }
+        }
+
+        ion-button {
+            padding-bottom: 6px;
+        }
+
+    }
+
+    ion-item {
+        --background: white;
+        --color: #666;
+        display: flex!important;
+    }
+
+    h2 {
+        color: var(--color-discret);
+        font-size: 1em;
+    }
+
+    .name-user {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-right: 30px;
+    }
+    .address {
+        border-top: solid 2px #ddd !important;
+        border-bottom: solid 2px #ddd !important;
+    }
+    .phone {
+        border-bottom: solid 2px #ddd !important;
+    }
+    .place-icon {
+        color: var(--ion-color-primary) !important;
+    }
+    coin-ranguitos {
+        .content {
+            display: flex;
+            justify-content: flex-start;
+        }
+    }
+ 
+    ion-label {
+        p.danger {
+            position: absolute;
+            top: 2em;
+            right: 1em;
+            color: var(--ion-color-danger)!important;
+            margin-top: -8px;
+            font-size: 1.2em;
+        }
+    }
+    .scroll-content {
+        padding: 0px;
+    }
+    
+    section.profile {
+        background: white;
+        .profile-img {
+            margin-top: 15px !important;
+            padding-bottom: 13px;
+        }
+        ion-label {
+            padding: 0px 10px 0px 10px;
+        }
+        .street {
+            border-top: 1px solid #eceff1;
+            border-bottom: 1px solid #eceff1;
+        }
+    }
+    .center {
+        background-color: white;
+        color: #666;
+        padding: 16px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        article {
+            display: flex;
+            aside {
+                align-self: center;
+                margin: 12px;
+            }
+            nano-thumb {
+                align-self: center;
+            }
+            h3,
+            h5,
+            h6 {
+                font-weight: 100;
+            }
+        }
+        section {
+            margin: 16px;
+        }
+    }
+    .order-item-placeholder {
+        .image {
+            width: 56px;
+            height: 56px;
+        }
+    }
+    section.placeholder {
+        position: relative;
+        margin-top: 1em;
+        h1 {
+            min-height: 1em;
+        } //Imagem flutuante do restaurante
+        .image {
+            width: 60px;
+            height: 60px;
+            float: left;
+            border-radius: 50px;
+        }
+        div.card-bottom {
+            float: right;
+            width: 80%;
+            margin-top: -15px;
+            padding-left: 10px;
+        }
+        ion-card {
+            box-shadow: none;
+            border-radius: 0px!important;
+            .status {
+                margin-top: 4px;
+            }
+        }
+    }
+    ion-list {
+        ion-item {
+            --margin-bottom: 10px !important;
+            // margin-bottom: 10px !important;
+        }
+    }
+    
+    .bold {
+        font-weight: bold;
+    }
+
+}

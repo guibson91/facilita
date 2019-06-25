@@ -1,0 +1,84 @@
+<h5 class="status-label" text-center color="primary">Status do pedido</h5>
+<ion-card class="status shadow shadow-light" *ngIf="order.created_at">
+  <div class="circle" [ngClass]="{'activated' : order.status === OrderStatus.created}">
+    <div class="sub-circle">
+
+    </div>
+  </div>
+  <div class="info">
+    <p>Pedido realizado</p>
+    <span>
+      <ion-icon name="md-time"></ion-icon><span class="time">{{order.created_at | timestampToDate | date:'shortTime'}}</span>
+    </span>
+  </div>
+</ion-card>
+<ion-card class="status shadow shadow-light" *ngIf="order.accepted_at">
+  <div class="circle" [ngClass]="{'activated' : order.status === OrderStatus.accepted}">
+    <div class="sub-circle">
+
+    </div>
+  </div>
+  <div class="info">
+    <p>Confirmado</p>
+    <span>
+      <ion-icon name="md-time"></ion-icon><span class="time">{{order.accepted_at | timestampToDate |
+        date:'shortTime'}}</span>
+    </span>
+  </div>
+</ion-card>
+<ion-card class="status shadow shadow-light" *ngIf="order.delivery_at">
+  <div class="circle" [ngClass]="{'activated'  : order.status === OrderStatus.delivery}">
+    <div class="sub-circle">
+
+    </div>
+  </div>
+  <div class="info ">
+    <p>Saiu para entrega</p>
+    <span>
+      <ion-icon name="md-time"></ion-icon><span class="time">{{order.delivery_at | timestampToDate | date:'shortTime'}}</span>
+    </span>
+  </div>
+</ion-card>
+<ion-card class="status shadow shadow-light" *ngIf="order.done_at">
+  <div class="circle" [ngClass]="{'activated' : order.status === OrderStatus.done}">
+    <div class="sub-circle">
+
+    </div>
+  </div>
+  <div class="info">
+    <p>Concluído</p>
+    <span>
+      <ion-icon name="md-time"></ion-icon> <span class="time">{{order.done_at | timestampToDate |
+        date:'shortTime'}}</span>
+    </span>
+  </div>
+</ion-card>
+<ion-card class="status shadow shadow-light" *ngIf="order.refused_at || order.away_at">
+  <div class="circle" [ngClass]="{'activated' :  order.status === OrderStatus.away || order.status === OrderStatus.refused}">
+    <div class="sub-circle">
+
+    </div>
+  </div>
+  <div class="info">
+    <p>Recusado</p>
+    <span>
+      <ion-icon name="md-time"></ion-icon> <span class="time">{{(order.refused_at || order.away_at) |
+        timestampToDate | date:'shortTime'}}</span>
+    </span>
+  </div>
+</ion-card>
+
+<ion-card class="status shadow shadow-light" *ngIf="order.incomplete_at">
+  <div class="circle" [ngClass]="{'activated' : order.status === OrderStatus.incomplete }">
+    <div class="sub-circle">
+
+    </div>
+  </div>
+  <div class="info">
+    <p>Cancelado</p>
+    <span>
+      <ion-icon name="md-time"></ion-icon><span class="time">{{ order.incomplete_at | timestampToDate |
+        date:'shortTime'}}</span>
+    </span>
+  </div>
+</ion-card>

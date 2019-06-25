@@ -1,0 +1,91 @@
+<div class="fast-access">
+  <!--<h2 class="label-plus">Acesso rápido</h2>-->
+  <ion-grid class="item-access-grid" no-margin no-padding>
+    <ion-row>
+      <ion-col class="orders-card" col-12>
+        <ion-card no-margin>
+
+          <ion-card-content>
+
+            <ion-row class="top-card">
+              <ion-col col-sm-12 col-lg-6 col-md-6 col-xs-6>
+                <h2 class="my-font-bold">Pedidos</h2>
+              </ion-col>
+              <ion-col col-sm-12 col-lg-6 col-md-6 col-xs-6>
+                <ion-row class="swap-period" style="float: right;">
+                  <ion-col col-xs-4 [ngClass]="{'selected': periodType === 'day'}" (click)="changePeriodType('day')">
+                    <p>Dia</p>
+                  </ion-col>
+                  <ion-col col-xs-4 [ngClass]="{'selected': periodType === 'week'}" (click)="changePeriodType('week')">
+                    <p>Semana</p>
+                  </ion-col>
+                  <ion-col col-xs-4 [ngClass]="{'selected': periodType === 'month'}" (click)="changePeriodType('month')">
+                    <p>Mês</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p>
+                  Acompanhe seus pedidos
+                </p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="card-middle">
+              <ion-item text-center *ngIf="loading" class="big-loading">
+                <ion-spinner></ion-spinner>
+              </ion-item>
+              <ion-col col-md-12 col-lg-12 col-xl-10 [hidden]="loading">
+                <canvas #lineCanvas class="canvas-chart"></canvas>
+              </ion-col>
+              <!--<ion-col col-md-12 col-lg-12 col-xl-2 class="center-vertical-row" [hidden]="loading">
+                <ion-grid class="stats">
+                  <ion-row tappable (click)="goToOrderPage()">
+                    <ion-col col-xl-12 *ngIf="periodType === 'day'">
+                      <div class="stat">
+                        <div>
+                          <h2 class="my-font-bold">{{pendentOrders | number : '1.0-0'}}</h2>
+                        </div>
+                        <div class="color-aux my-font-bold">Pendentes</div>
+                      </div>
+                    </ion-col>
+
+                    <ion-col col-xl-12>
+                      <div class="stat">
+                        <div>
+                          <h2 class="my-font-bold">{{finishOrders | number : '1.0-0'}}</h2>
+                        </div>
+                        <div class="color-aux my-font-bold">Concluídos</div>
+                      </div>
+                    </ion-col>
+
+                    <ion-col col-xl-12>
+                      <div class="stat">
+                        <div>
+                          <h2 class="my-font-bold">{{averageTime | number : '1.0-0'}}
+                            <span style="font-size: 12px; margin: 0px; padding: 0px">min</span>
+                          </h2>
+                        </div>
+                        <div class="color-aux my-font-bold">Tempo médio</div>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-col> -->
+            </ion-row>
+            <ion-item>
+              <ion-button fill="clear" slot="end" color="proceed">
+                VER PEDIDOS
+              </ion-button>
+            </ion-item>
+
+          </ion-card-content>
+
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

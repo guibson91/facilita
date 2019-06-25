@@ -1,0 +1,43 @@
+<ion-card class="card-filial shadow shadow-light" *ngIf="filial">
+  <div class="info-filial">
+    <p class="title">
+      {{filial?.name}}
+    </p>
+    <p class="detail" *ngIf="order?.code" style="margin-top: -0.5em; margin-left: 1.5em">
+      <span>Pedido:
+        <strong>{{ order.code }}</strong>
+      </span>
+    </p>
+    <p class="detail">
+      <ion-icon class="space-right" color="primary" name="pin"> </ion-icon>
+      {{ filial?.location.street }}, {{ filial?.location.number }}
+      <span *ngIf="filial?.location?.district">, {{filial.location.district}}</span>
+      <span *ngIf="filial?.location?.city">, {{filial.location.city}}</span>
+      <span *ngIf="filial?.location?.state_short">- {{filial.location.state_short}}</span>
+      <span *ngIf="filial?.location?.complement">, {{filial.location.complement}}</span>
+    </p>
+    <p class="detail" *ngIf="phone && filial?.phone1">
+      <ion-icon class="space-right" color="primary" name="md-call"> </ion-icon>
+      <a href="tel: {{filial?.phone1}}">{{ filial?.phone1}}</a>
+    </p>
+    <p class="detail" *ngIf="phone && filial?.phone2">
+      <ion-icon class="space-right" color="primary" name="md-call"> </ion-icon>
+      <a href="tel: {{filial?.phone2}}">{{ filial?.phone2}}</a>
+    </p>
+    <p class="detail" *ngIf="!order?.created_at && showDelivery">
+      <ion-icon class="space-right" color="primary" name="ios-time"> </ion-icon>
+      Entrega: {{ filial?.delivery.timeMin}} min ~ {{ filial?.delivery.timeMax}} min
+    </p>
+    <p class="detail" *ngIf="order?.created_at">
+      <ion-icon class="space-right" color="primary" name="ios-time"> </ion-icon>
+      Pedido realizado às
+      <strong style="font-size: 1.1em">{{order.created_at | timestampToDate | date: 'HH:mm'}}</strong>
+      <br />
+      <span style="margin-left: 20px">Entrega: {{ filial?.delivery.timeMin}} min ~ {{ filial?.delivery.timeMax}} min</span>
+    </p>
+
+  </div>
+  <ion-avatar item-end class="logo-filial">
+    <img [src]="filial?.image">
+  </ion-avatar>
+</ion-card>

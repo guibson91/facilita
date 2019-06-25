@@ -1,0 +1,198 @@
+ion-card.content-card {
+    margin: 10px !important;
+}
+
+.toolbar {
+    padding: 0;
+}
+
+ion-scroll {
+    height: 60px;
+    .scroll-content {
+        padding: 18px 0 !important;
+    }
+    .segment {
+        display: block;
+        white-space: nowrap;
+        font-size: 0;
+        overflow: auto;
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
+        }
+        ion-segment-button.segment-button {
+            display: inline-block;
+            min-width: 100px;
+            padding: 0 25px;
+            width: auto;
+            color: #fff;
+            border-bottom-color: transparent;
+            h4 {
+                padding-top: 10px;
+                font-size: 16px;
+                font-weight: bold;
+                margin: 0;
+            }
+            &.segment-activated {
+                border-color: #fff;
+                ;
+            }
+        }
+    }
+}
+
+.button-alert {
+    font-size: 10px;
+    margin-top: -0.8em;
+}
+
+.noOrders {
+    display: none;
+    &:first-child {
+        display: block !important;
+    }
+}
+
+.date-filter {
+    width: 300px;
+    @media (max-width: 420px) {
+        width: 100%;
+    }
+    .item-inner {
+        border-bottom: 1px solid var(--ion-color-primary) !important;
+    }
+    .label-date {
+        display: flex;
+        justify-content: space-between;
+        .filter-dates-modes {
+            z-index: 999;
+            display: flex !important;
+            p {
+                &:hover {
+                    cursor: pointer;
+                }
+                margin: 0px;
+                &.mode-filter-month {
+                    margin-left: 5px !important;
+                }
+                &.active-mode-filter-date {
+                    color: var(--ion-color-primary) !important;
+                }
+            }
+        }
+    }
+}
+
+.content-card {
+    @media (max-width: 420px) {
+        margin: 10px !important;
+    }
+}
+
+.search-order-list {
+    display: flex;
+    align-items: center; // justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: solid 2px #dddddd;
+    ion-item {
+        padding-bottom: 5px;
+    }
+    .datetime-md {
+        padding: 7px 8px 7px 0px !important;
+    }
+    ion-searchbar {
+        border-bottom: solid 0px transparent !important;
+        height: 73px;
+        width: 70%;
+        min-width: 330px;
+        @media (max-width: 500px) {
+            width: 100%;
+        }
+    }
+    .date-filter {
+        width: 30%;
+        @media (max-width: 520px) {
+            width: 100%;
+        }
+    }
+}
+
+.searchbar-input {
+    padding-right: 6px !important;
+}
+
+.order {
+    border-bottom: 1px solid lightgrey;
+    h2 {
+        span {
+            margin-right: 20px;
+        }
+    }
+    .info-order {
+        @media(max-width: 420px) {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .more {
+        text-align: left !important;
+        cursor: pointer;
+        color: var(--ion-color-primary);
+        width: auto !important;
+        margin-left: -5px;
+    }
+    @media (max-width: 625px) {
+        .more {
+            margin: 0 auto;
+            margin-top: 8px;
+        }
+    }
+    .infos {
+        display: flex;
+        @media (max-width: 625px) {
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            .datetime-md {
+                padding: 2px 8px 5px 0px !important;
+            }
+        }
+        .entry {
+            width: 35%;
+            @media (max-width: 625px) {
+                width: 100% !important;
+                max-width: 100%;
+            }
+        }
+        .delivery {
+            width: 36.69%;
+            @media (max-width: 625px) {
+                width: 100% !important;
+                max-width: 100%;
+            }
+            .phone {
+                @media (max-width: 625px) {
+                    width: 100%;
+                    text-align: center;
+                    display: inline-block;
+                    margin: 0;
+                }
+            }
+            .total {
+                margin-top: 10px;
+            }
+        }
+        .status-box {
+            width: 27.3%;
+            @media (max-width: 625px) {
+                width: 100% !important;
+                max-width: 100%;
+            }
+            .status {
+                font-size: 1.3em;
+                font-weight: bold;
+            }
+        }
+    }
+}

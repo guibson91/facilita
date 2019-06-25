@@ -1,0 +1,112 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+    <h1 ion-text text-center class="menus-icon-pizza">
+      Cadastrar/Editar complemento
+    </h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="form" class="form-content">
+    <ion-grid>
+      <!--Título-->
+      <ion-item>
+        <ion-label class="label" position="stacked" color="tertiary">Título</ion-label>
+        <ion-input class="input" formControlName="title"></ion-input>
+      </ion-item>
+      <!--Tipo de complemento-->
+      <ion-label padding-horizontal id="label-choose" position="stacked" color="tertiary">Tipo de escolha do usuário</ion-label>
+      <ion-radio-group formControlName="type">
+        <ion-item>
+          <ion-label text-wrap>Só pode escolher uma opção</ion-label>
+          <ion-radio checked="true" value="single"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label text-wrap>Pode escolher várias opções</ion-label>
+          <ion-radio value="multiple"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label text-wrap>Cada opção terá uma quantidade associada</ion-label>
+          <ion-radio value="quantity"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <div *ngIf="form.value.type != 'single'">
+        <!--Mínimo-->
+        <ion-item>
+          <ion-label class="label" position="stacked" color="tertiary">Mínimo (deixe em branco para não impor limite
+            mínimo)</ion-label>
+          <ion-input type="number" class="input" formControlName="min" step="1" min="0"></ion-input>
+        </ion-item>
+
+        <!--Máximo-->
+        <ion-item>
+          <ion-label class="label" position="stacked" color="tertiary">Máximo (deixe em branco para não impor limite
+            máximo)</ion-label>
+          <ion-input type="number" class="input" formControlName="max" step="1" min="0"></ion-input>
+        </ion-item>
+      </div>
+
+      <ion-label id="label-choose" position="stacked" color="tertiary" *ngIf="form.value.type == 'single'">Obrigatoriedade
+        de escolha</ion-label>
+      <ion-row *ngIf="form.value.type == 'single'">
+        <!-- Escolha obrigatória -->
+        <ion-item>
+          <ion-label>Usuário é obrigado a escolher uma opção</ion-label>
+          <ion-checkbox formControlName="required"></ion-checkbox>
+        </ion-item>
+      </ion-row>
+
+      <ion-list class="options-list">
+        <ion-list-header>
+          LISTA DE OPÇÕES
+        </ion-list-header>
+
+        <!-- Adicionar Opções do produto -->
+        <ion-button fill="clear" color="tertiary" (click)="addOption()">
+          <ion-icon name="add"></ion-icon>
+          <h6>Adicionar opção</h6>
+        </ion-button>
+
+        <ion-item class="option-item" *ngFor="let option of options; let i = index" [hidden]="!option">
+          <!--<ion-icon name="leaf" item-start></ion-icon>-->
+          <h2 text-wraper>{{option?.name}}</h2>
+          <ion-button class="set-priority-category-button first-button" icon-only fill="clear" (click)="upOption(option, i)"
+            color="proceed">
+            <ion-icon name="arrow-up"></ion-icon>
+          </ion-button>
+          <ion-button class="set-priority-category-button" icon-only fill="clear" (click)="downOption(option, i)" color="proceed">
+            <ion-icon name="arrow-down"></ion-icon>
+          </ion-button>
+          <p class="option-price">{{(option?.price || 0) | currency:'BRL':'symbol' | formatCurrency}}</p>
+          <ion-toggle [checked]="option.active !== false" (ionChange)="updateActiveOption(option)"></ion-toggle>
+
+          <div slot="end">
+            <ion-button color="proceed" margin-right icon-only fill="clear" (click)="editOption(option)">
+              <ion-icon name="md-create"></ion-icon>
+            </ion-button>
+            <ion-button color="danger" fill="clear" icon-only (click)="removeOption(option)">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+
+          </div>
+
+        </ion-item>
+      </ion-list>
+
+    </ion-grid>
+
+
+    <div class="mybuttons" padding>
+      <ion-button fill="clear" margin-vertical color="medium" (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+        Cancelar
+      </ion-button>
+      <ion-button color="proceed" [disabled]="!form.valid" (click)="save()">
+        <ion-icon name="md-checkmark"></ion-icon>
+        Salvar
+      </ion-button>
+    </div>
+
+  </form>
+</ion-content>

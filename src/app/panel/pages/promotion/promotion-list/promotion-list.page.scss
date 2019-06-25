@@ -1,0 +1,93 @@
+ion-content {
+    background-color: #f8f8f8 !important;
+}
+
+ion-grid {
+    ion-icon {
+        margin-top: 14px;
+        font-size: 2.2em;
+    }
+}
+
+ion-item-divider {
+    border-bottom: none !important;
+    ion-label {
+        margin-bottom: 0px !important;
+    }
+    h1 {
+        color: rgb(51, 51, 51) !important;
+        font-family: myFontBold !important;
+        padding-top: 16px;
+        font-size: 2.0em;
+        text-align: left !important;
+        margin: 0 0.7em;
+        border-bottom: 1px dashed #999;
+    }
+}
+
+ion-item {
+    padding: 8px 16px 8px 16px !important;
+    @media (max-width: 400px) {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+    }
+    ion-label {
+        padding-left: 8px !important;
+        h2 {
+            font-weight: bold !important;
+        }
+    }
+    nano-thumb {
+        &.goneImage {
+            display: none !important;
+        }
+    }
+    button {
+        padding: 8px !important;
+    }
+}
+
+.category-name {
+    font-family: myFontBold;
+    padding-top: 16px;
+    font-size: 2.0em;
+    text-align: left;
+    margin: 0 0.7em;
+    border-bottom: 1px dashed #999;
+    margin-bottom: 10px !important;
+}
+
+.products {
+    margin: auto;
+    .list-item {
+        display: flex;
+        margin: 0.6em 0 0.6em 1.6em;
+        background-color: white !important;
+        .product-item {
+            align-self: center;
+            margin-right: 1.2em;
+            .name {
+                font-size: 1.4em;
+                color: #666;
+            }
+            .description {
+                font-size: 1em;
+                color: #999;
+            }
+            .price {
+                white-space: nowrap;
+                font-size: 1.4em;
+                color: #4c4;
+            }
+        }
+    }
+}
+
+.myfilter {
+    display: flex;
+    button {
+        align-self: center;
+        margin-right: 8px !important;
+    }
+}

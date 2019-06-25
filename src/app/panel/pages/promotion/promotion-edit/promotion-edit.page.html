@@ -1,0 +1,66 @@
+<ion-header no-border>
+  <nano-navbar title="Cadastrar/Editar promoção" icon="menus-icon-ecommerce-41"></nano-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="content-card">
+    <nano-loading [loading]="loading">
+      <!-- Informações gerais do produto -->
+      <form [formGroup]="form" class="form-content">
+        <ion-list>
+          <!--<ion-list class="myformlist" color="light">-->
+
+          <!-- Imagem e barra de progresso -->
+          <nano-uploadimage [form]="this.form" [storagePath]="'promotions'"></nano-uploadimage>
+
+          <!--Nome-->
+          <ion-item padding-horizontal>
+            <ion-label position="stacked" color="tertiary">Nome</ion-label>
+            <ion-input class="input" formControlName="name" maxlength="50"></ion-input>
+          </ion-item>
+
+          <!--Descrição-->
+          <ion-item padding-horizontal>
+            <ion-label position="stacked" color="tertiary">Descrição</ion-label>
+            <ion-textarea class="input" rows="5" formControlName="description"></ion-textarea>
+          </ion-item>
+
+          <!-- Preço -->
+          <ion-item padding-horizontal item-content>
+            <ion-label position="stacked" color="tertiary">Preço base (em R$)</ion-label>
+            <money-input item-content [control]="form.controls['priceBase']"></money-input>
+          </ion-item>
+
+          <!-- Ativar preço promocional -->
+          <ion-item padding-horizontal>
+            <ion-label>Ativar promoção</ion-label>
+            <ion-toggle slot="end" color="primary" formControlName="promotionActive"></ion-toggle>
+          </ion-item>
+          <ion-radio-group [hidden]="!form.controls['promotionActive'].value" [(ngModel)]="promotionType" [ngModelOptions]="{standalone: true}" (ionChange)="detect()">
+            <ion-item padding-horizontal>
+              <ion-label>Definir valor de desconto</ion-label>
+              <ion-radio value="money"></ion-radio>
+            </ion-item>
+            <ion-item padding-horizontal>
+              <ion-label>Definir porcentagem de desconto</ion-label>
+              <ion-radio value="percentage"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+          <!--Preço Promocional por valor-->
+          <ion-item padding-horizontal [hidden]="!(form.controls['promotionActive'].value && promotionType == 'money')">
+            <ion-label position="stacked" color="tertiary">Valor de desconto (em R$)</ion-label>
+            <money-input [control]="form.controls['promotionPrice']"></money-input>
+          </ion-item>
+
+          <!--Preço Promocional por porcentagem-->
+          <ion-item padding-horizontal item-content [hidden]="!(form.controls['promotionActive'].value && promotionType == 'percentage')">
+            <ion-label position="stacked" class="label" color="tertiary">Porcentagem de desconto</ion-label>
+            <money-input item-content [control]="form.controls['promotionPercentage']"></money-input>
+          </ion-item>
+        </ion-list>
+      </form>
+    </nano-loading>
+    <nano-buttons [canSave]="form.valid" [save]="save.bind(this)" [canRemove]="promotion" [remove]="remove.bind(this)"
+      [cancel]="cancel.bind(this)"></nano-buttons>
+  </ion-card>
+</ion-content>

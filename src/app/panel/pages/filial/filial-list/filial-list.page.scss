@@ -1,0 +1,55 @@
+
+
+ion-item.active {
+    margin-left: 10px;
+    ion-label {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: var(--ion-color-primary);
+    }
+}
+
+.active {
+    ion-label {
+        &.gone {
+            display: none !important;
+        }
+    }
+}
+
+.filial-div {
+    border-top: solid 1px #ddd !important;
+}
+
+nano-thumb {
+    display: inline-block;
+}
+
+.content-filial {
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.flex-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+ion-item {
+    button {
+        &.negative-margin {
+            margin-left: -6px !important;
+        }
+        span {
+            color: var(--ion-color-proceed) !important;
+            font-size: 1.1em !important;
+        }
+    }
+    .text-md-filial {
+        color: var(--ion-color-proceed) !important;
+    }
+    .buttons {
+        display: flex;
+        align-items: center;
+    }
+}

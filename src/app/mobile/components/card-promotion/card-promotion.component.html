@@ -1,0 +1,50 @@
+<!-- Se for passado a filial com todas as suas promoções -->
+<ion-card *ngIf="filial?.promotions_full?.length > 0">
+  <div class="container" tappable (click)="openDetail(filial, promotion)" *ngFor="let promotion of filial.promotions_full">
+    <div class="left" slot="start">
+      <img src="{{promotion.image}}" />
+    </div>
+    <div class="right">
+      <h1 *ngIf="promotion.name">{{promotion.name}}</h1>
+      <p class="distance" *ngIf="filial.distance && filial.distance >= 1">{{filial.distance | number: '1.2-2' }} km</p>
+      <p class="distance" *ngIf="filial.distance && filial.distance < 1">{{filial.distance | formatDistance }} m</p>
+      <p *ngIf="promotion.description" class="max-lines">{{promotion.description}}</p>
+      <div class="container-bottom">
+        <ion-card-subtitle>por apenas
+          <span class="money" *ngIf="promotion.promotionPercentage">{{ (100 - promotion.promotionPercentage)/100
+            * promotion.priceBase | noNegative |
+            currency:'BRL':'symbol':'1.2'}}</span>
+          <span class="money" *ngIf="promotion.promotionPrice">{{ promotion.priceBase - promotion.promotionPrice
+            | noNegative |
+            currency:'BRL':'symbol':'1.2'}}</span>
+        </ion-card-subtitle>
+      </div>
+    </div>
+  </div>
+</ion-card>
+
+<!-- Passado as promoções que o usuário possui -->
+<ion-card *ngIf="coupons">
+  <div class="container" tappable (click)="openDetail(coupon.filial_full, coupon.promotion_full)" *ngFor="let coupon of coupons">
+    <div class="left" slot="start">
+      <img src="{{coupon.promotion_full.image}}" />
+    </div>
+    <div class="right">
+      <h1 *ngIf="coupon.promotion_full.name">{{coupon.promotion_full.name}}</h1>
+      <p class="distance">{{coupon.promotion_full.code }}</p>
+      <p *ngIf="coupon.promotion_full.description" class="max-lines">{{coupon.promotion_full.description}}</p>
+      <div class="container-bottom">
+        <ion-card-subtitle>por apenas
+          <span class="money" *ngIf="coupon.promotion_full.promotionPercentage">{{ (100 -
+            coupon.promotion_full.promotionPercentage)/100
+            * coupon.promotion_full.priceBase | noNegative |
+            currency:'BRL':'symbol':'1.2'}}</span>
+          <span class="money" *ngIf="coupon.promotion_full.promotionPrice">{{ coupon.promotion_full.priceBase -
+            coupon.promotion_full.promotionPrice
+            | noNegative |
+            currency:'BRL':'symbol':'1.2'}}</span>
+        </ion-card-subtitle>
+      </div>
+    </div>
+  </div>
+</ion-card>

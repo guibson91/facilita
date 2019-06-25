@@ -1,0 +1,196 @@
+<ion-header no-border class="app">
+  <ion-toolbar color="primary" hideBackButton="true">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="ios-arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="title-default">
+      <h3 ion-text class="my-font-logo" no-margin>MEU PERFIL</h3>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section class="profile shadow shadow-light" margin-vertical>
+    <header>
+      <ion-item no-lines>
+        <nano-thumb class="profile-img" [round]="true" [src]="shared.user?.image" item-start></nano-thumb>
+        <ion-label>
+          <h2 style="font-weight: bold" ion-text class="name-user">{{shared.user?.name}}</h2>
+          <p tappable (click)="logout()" class="danger">Sair</p>
+        </ion-label>
+      </ion-item>
+    </header>
+
+    <ion-item class="address" (click)="editAddress()" no-lines>
+      <ion-icon class="place-icon" name="md-pin" slot="start"></ion-icon>
+      <p *ngIf="shared?.user?.location; else noAddress" tappable>
+        <span class="line1 bold">{{shared.user.location.street}}, {{shared.user.location.number}} </span>
+        <br />
+        <span class="line2">{{shared.user.location.district}} - {{shared.user.location.city}}</span>
+      </p>
+      <ng-template #noAddress>
+        <p tappable>
+          <span class="line1">Endereço não cadastrado</span>
+          <br />
+          <span class="line2">Clique aqui</span>
+        </p>
+      </ng-template>
+      <ion-icon name="md-create" slot="end"></ion-icon>
+      <!-- <ion-icon name="md-create" item-end></ion-icon> -->
+    </ion-item>
+
+    <ion-item class="phone" (click)="editPhone()" no-lines>
+      <ion-icon class="place-icon" name="md-call" slot="start"></ion-icon>
+      <p *ngIf="shared?.user?.phone; else noPhone" tappable>
+        <span class="line1 bold">Telefone:</span>
+        <br />
+        <span class="line2">{{shared.user.phone}}</span>
+      </p>
+      <ng-template #noPhone>
+        <p tappable>
+          <span class="line1">Telefone não cadastrado</span>
+          <br />
+          <span class="line2">Clique aqui</span>
+        </p>
+      </ng-template>
+      <ion-icon name="md-create" slot="end"></ion-icon>
+      <!-- <ion-icon name="md-create" item-end></ion-icon> -->
+    </ion-item>
+
+    <footer>
+      <ion-segment color="primary" [(ngModel)]="segment">
+        <ion-segment-button tappable value="orders">
+          Pedidos
+        </ion-segment-button>
+        <ion-segment-button tappable value="favorites">
+          Favoritos
+        </ion-segment-button>
+        <ion-segment-button tappable value="coupon">
+          Cupons
+        </ion-segment-button>
+      </ion-segment>
+    </footer>
+  </section>
+
+  <!-- Lista de Pedidos -->
+  <ion-list [hidden]="segment !== 'orders'">
+
+    <ion-item *ngIf="!existsOrders" color="transparent" no-lines>
+      <h2 ion-text text-center color="discret" text-wrap>Você ainda não possui nenhum pedido no seu histórico</h2>
+    </ion-item>
+
+    <!-- Animação de loading -->
+    <div *ngIf="loadingOrders">
+      <section margin-top class="placeholder" *ngFor="let f of [1, 2, 3, 4]">
+        <ion-card padding>
+          <div class="placeholder-animation image"></div>
+          <div class="card-bottom">
+            <h2 class="placeholder-animation placeholder-text-p-50"></h2>
+            <p class="placeholder-animation placeholder-text-p-80"></p>
+            <div class="status placeholder-animation placeholder-text-p-60"></div>
+          </div>
+        </ion-card>
+      </section>
+    </div>
+
+    <!-- Pedido -->
+    <div class="orders shadow shadow-light" *ngFor="let order of orders$ | async" no-lines tappable (click)="goDetailOrder(order)">
+      <div class="container-top" *ngIf="order.filial_full">
+        <div class="top-left">
+          <nano-thumb [src]="order.filial_full.image" slot="start"></nano-thumb>
+        </div>
+        <div class="top-right">
+          <div class="filial-name">
+            <h2>{{order.filial_full.name}}</h2>
+          </div>
+          <div *ngIf="order?.filial_full?.rating?.rate">
+            <ion-icon name="star" color="primary" class="icon-star"></ion-icon>
+            <span class="number-star">
+              <strong>{{order.filial_full.rating.rate | number : '1.1-1'}}</strong>
+            </span>
+            <span class="already-rated" *ngIf="order?.evaluate?.rate">(sua avaliação
+              <strong>{{order?.evaluate?.rate | number: '1.1-1'}})</strong>
+            </span>
+          </div>
+          <div class="order-cancel" *ngIf="order?.status === OrderStatus.incomplete || order?.status === OrderStatus.away || order?.status === OrderStatus.refused">
+            <span class="already-rated">
+              Pedido cancelado
+            </span>
+            <span class="already-rated" *ngIf="order?.cancellation_reason">
+              <strong>Motivo: </strong>{{order?.cancellation_reason}}</span>
+          </div>
+          <p class="date">{{getDateFormat(order.created_at)}}</p>
+        </div>
+      </div>
+      <footer class="top-product">
+        <p ion-text text-wrap class="max-lines max-lines-1">
+          <span *ngFor="let entrie of order.entries; let i = index">
+            <span *ngIf="i>0">, </span>{{entrie.product.name}}</span>
+        </p>
+      </footer>
+      <ion-button expand="block" fill="clear" (click)="evaluate(order)" *ngIf="!order?.evaluate?.rate && order?.status === OrderStatus.done">Avalie
+        esse pedido</ion-button>
+    </div>
+
+  </ion-list>
+
+  <!-- Lista de Favoritos -->
+  <ion-list [hidden]="segment !== 'favorites'">
+    <ion-item *ngIf="!existsFavorites" color="transparent" no-lines>
+      <h2 ion-text text-center color="discret" text-wrap>Você ainda não favoritou nenhum restaurante</h2>
+    </ion-item>
+
+    <!-- Filiais favoritadas -->
+
+    <card-filial-list *ngFor="let filial of filials$ | async | orderBy:'-open'" [filial]="filial" (click)="goFilialMenu(filial)"
+      [hidden]="loadingFavorites"></card-filial-list>
+
+    <!-- Efeito visual de carregando componentes -->
+    <div *ngIf="loadingFavorites">
+      <section margin-top class="placeholder" *ngFor="let f of [1, 2, 3, 4]">
+        <ion-card padding>
+          <div class="placeholder-animation image"></div>
+          <div class="card-bottom">
+            <h2 class="placeholder-animation placeholder-text-p-50"></h2>
+            <p class="placeholder-animation placeholder-text-p-80"></p>
+            <div class="status placeholder-animation placeholder-text-p-60"></div>
+          </div>
+        </ion-card>
+      </section>
+    </div>
+  </ion-list>
+
+  <!-- Lista de Cupons -->
+  <ion-list [hidden]="segment !== 'coupon'">
+    <ion-item *ngIf="!existsCoupon" color="transparent" no-lines>
+      <h2 ion-text text-center color="discret" text-wrap>Você ainda não possui nenhum cupom.</h2>
+    </ion-item>
+
+    <div *ngIf="!loadingCoupons && existsCoupon && coupons && coupons[0].promotion_full">
+      <card-promotion [coupons]="coupons"></card-promotion>
+    </div>
+
+    <!-- Efeito visual de carregando componentes -->
+    <div *ngIf="loadingCoupons">
+      <section margin-top class="placeholder" *ngFor="let f of [1, 2, 3, 4]">
+        <ion-card padding>
+          <div class="placeholder-animation image"></div>
+          <div class="card-bottom">
+            <h2 class="placeholder-animation placeholder-text-p-50"></h2>
+            <p class="placeholder-animation placeholder-text-p-80"></p>
+            <div class="status placeholder-animation placeholder-text-p-60"></div>
+          </div>
+        </ion-card>
+      </section>
+    </div>
+  </ion-list>
+
+  <br>
+  <br>
+  <br>
+</ion-content>
+
+<!-- Float button com informações sobre o pedido-->
+<fab-order></fab-order>

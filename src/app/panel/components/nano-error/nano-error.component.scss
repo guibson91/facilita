@@ -1,0 +1,13 @@
+//Estilizar mensagem de error
+.error {
+    margin-top: 20px !important;
+    margin-left: 12px !important;
+    margin-right: 5px !important;
+    width: 97% !important;
+    text-align: center !important;
+    background-color: rgb(217, 74, 87) !important;
+    p {
+        color: white !important;
+        font-weight: bold !important;
+    }
+}

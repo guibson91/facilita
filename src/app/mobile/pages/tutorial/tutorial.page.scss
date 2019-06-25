@@ -1,0 +1,100 @@
+// .jump {
+//     position: absolute;
+//     top: .5em;
+//     left: .5em;
+//     color: #fff !important;
+//     z-index: 10 !important;
+//   }
+//   ion-slide {
+//     background-image: url('./../../../assets/img/background-tutorial.png');
+//     p {
+//       margin: 0;
+//       color: white;
+//     }
+//     .slide-zoom {
+//       height: 100%;
+//     }
+//     img {
+//       width: 70% !important;
+//     }
+//   }
+//   .btn-next {
+//     z-index: 1;
+//     position: absolute;
+//     top: 5px;
+//     right: 5px;
+//     color: #fff;
+//     ion-icon {
+//       padding-bottom: 3px
+//     }
+//   }
+//   .btn-previous {
+//     z-index: 1;
+//     position: absolute;
+//     top: 5px;
+//     left: 5px;
+//     color: #fff;
+//     ion-icon {
+//       padding-bottom: 3px
+//     }
+//   }
+//   .swiper-pagination {
+//     bottom: none;
+//     top: 17px !important;
+//     .swiper-pagination-bullet-active {
+//       background-color: #fff !important;
+//     }
+//   }
+//   .slide1 {
+//     .slide-zoom {
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: space-between;
+//     }
+//     .info {
+//       margin-top: 15%;
+//       padding: 0 40px;
+//       p {
+//         &.subtitle {
+//           padding-top: 15px;
+//           text-transform: uppercase;
+//           font-size: 1.5rem;
+//         }
+//       }
+//       .logo-name {
+//         margin-top: 16px !important;
+//       }
+//     }
+//     .img-phone {
+//       margin-bottom: -7px;
+//     }
+//   }
+//   .slide2 {
+//     .slide-zoom {
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: space-around;
+//     }
+//     .info {
+//       .title {
+//         text-transform: uppercase;
+//       }
+//       .subtitle {
+//         padding: 15px 20px 0px 20px;
+//       }
+//     }
+//   }
+//   .slide3 {
+//     .slide-zoom {
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: space-around;
+//     }
+//     p {
+//       text-transform: uppercase;
+//       padding: 0 10%;
+//     }
+//     .text-nomal {
+//       text-transform: none;
+//     }
+//   }

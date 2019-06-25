@@ -1,0 +1,95 @@
+<ion-header no-border>
+	<nano-navbar title="Estoque" icon="menus-icon-menu">
+	</nano-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-card class="content-card">
+
+		<div class="myfilter">
+			<ion-searchbar clear [(ngModel)]="searchString" placeholder="Pesquisar" (ionChange)="detect()"></ion-searchbar>
+		</div>
+
+		<nano-loading [loading]="loading">
+
+			<ion-list>
+
+				<div *ngFor="let product of recomendationProductsStock | filterBy:['name', 'description']:searchString; let i = index" class="products">
+					<div class="category-name" *ngIf="i == 0">Recomendações da loja</div>
+					<div class="list-item">
+						<nano-thumb class="product-item" [src]="product.image" [border]="true"></nano-thumb>
+						<div class="product-item" style="flex-grow: 1">
+							<div class="name">
+								{{product.name}}
+								<ion-button class="set-priority-category-button first-button"  icon-only fill="clear" (click)="upRecomendation(product, i)"
+								 color="facebook">
+									<ion-icon name="arrow-up"></ion-icon>
+								</ion-button>
+								<ion-button class="set-priority-category-button" icon-only fill="clear" (click)="downRecomendation(product, i)" color="google">
+									<ion-icon name="arrow-down"></ion-icon>
+								</ion-button>
+							</div>
+							<div class="description">{{product.description}}</div>
+							<ion-button fill="clear" color="success" (click)="removeRecomendation(product)">Remover recomendação</ion-button>
+						</div>
+						<div class="product-item">
+							<ion-button fill="clear" class="price" *ngIf="product.minimumPrice == product.priceBase">R$ {{product.priceBase | number: '1.2-2'}}</ion-button>
+							<ion-button fill="clear" class="price" *ngIf="product.minimumPrice !== product.priceBase">A partir de R$ {{product.minimumPrice | number : '1.2-2'}}</ion-button>
+							<!-- <span *ngIf="product.minimumPrice !== product.priceBase">A partir de </span>R$ {{product.minimumPrice | number : '1.2-2'}} -->
+						</div>
+					</div>
+				</div>
+				<div *ngFor="let product of productsStock | filterBy:['name', 'description']:searchString | matchesCategory:categoriesSelected; let i = index"
+				 class="products">
+					<div class="category-name" *ngIf="i == 0 || product.category?.id != tempCategory">
+						{{getCategoryName(product.category)}}
+						<ion-button class="set-priority-category-button first-button" icon-only fill="clear" (click)="upCategoryPriority(product.category)"
+						 [disabled]="i == 0" color="primary">
+							<ion-icon name="arrow-up"></ion-icon>
+						</ion-button>
+						<ion-button class="set-priority-category-button" icon-only fill="clear" (click)="downCategoryPriority(product.category)"
+						 [disabled]="optionsCategories[optionsCategories.length - 1]?.id == product.category?.id">
+							<ion-icon name="arrow-down"></ion-icon>
+						</ion-button>
+					</div>
+					<div class="list-item">
+						<nano-thumb class="product-item" [ngClass]="{'inactive': !product.active}" [src]="product.image" [border]="true"></nano-thumb>
+						<div class="product-item" style="flex-grow: 1">
+							<div class="name" [ngClass]="{'inactive': !product.active}">
+								{{product.name}}
+								<ion-button class="set-priority-category-button first-button" icon-only fill="clear" (click)="upProductPriority(product, i)"
+								 [disabled]="false" color="facebook">
+									<ion-icon name="arrow-up"></ion-icon>
+								</ion-button>
+								<ion-button class="set-priority-category-button" icon-only fill="clear" (click)="downProductPriority(product, i)" [disabled]="false"
+								 color="google">
+									<ion-icon name="arrow-down"></ion-icon>
+								</ion-button>
+							</div>
+							<div class="description">{{product.description}}</div>
+							<ion-button fill="clear" color="success" *ngIf="!product.active" (click)="addProduct(product, i)">Adicionar</ion-button>
+							<ion-button fill="clear" color="danger" *ngIf="product.active" (click)="removeProduct(product, i)">Remover</ion-button>
+							<ion-button fill="clear" color="success" *ngIf="product.active && !product.recomendation" (click)="addRecomendation(product, i)">Adicionar recomendação</ion-button>
+							<ion-button fill="clear" color="success" *ngIf="product.active && product.recomendation" (click)="removeRecomendation(product, i)">Remover recomendação</ion-button>
+						</div>
+						<!-- <div class="product-item">
+							<button clear ion-button class="price">R$ {{product.priceBase | number: '1.2-2'}}</button>
+						</div> -->
+						<div class="product-item">
+							<ion-button fill="clear" class="price" *ngIf="product.minimumPrice == product.priceBase">R$ {{product.priceBase | number: '1.2-2'}}</ion-button>
+							<ion-button fill="clear" class="price" *ngIf="product.minimumPrice !== product.priceBase">A partir de R$ {{product.minimumPrice | number : '1.2-2'}}</ion-button>
+							<!-- <span *ngIf="product.minimumPrice !== product.priceBase">A partir de </span>R$ {{product.minimumPrice | number : '1.2-2'}} -->
+						</div>
+					</div>
+				</div>
+
+				
+				<ion-item text-center padding *ngIf="!existsProducts">
+					<p ion-text>Você ainda não possui nenhum produto</p>
+				  </ion-item>
+			</ion-list>
+		</nano-loading>
+
+	</ion-card>
+
+</ion-content>

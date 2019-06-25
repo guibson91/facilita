@@ -1,0 +1,20 @@
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" color="primary" *ngIf="!empty" [ngClass]="{'up-fab': (pending_orders && pending_orders.length > 0)}"
+  [style.marginBottom]="moveItem ? '54px' : '0'">
+  <ion-fab-button (click)="openCart()">
+    <ion-icon name="ios-cart"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" color="primary" *ngIf="pending_orders?.length > 0 && empty"
+  [ngClass]="{'up-fab': (pending_orders && pending_orders.length > 0)}">
+  <ion-fab-button (click)="openTrackOrder()">
+    <ion-icon name="md-bicycle"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-fab vertical="bottom" horizontal="start" slot="fixed" color="primary" *ngIf="pending_orders?.length > 0 && !empty"
+  [ngClass]="{'up-fab': (pending_orders && pending_orders.length > 0)}">
+  <ion-fab-button (click)="openTrackOrder()">
+    <ion-icon name="md-bicycle"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

@@ -1,0 +1,79 @@
+<ion-header>
+  <nano-navbar title="Criar/Editar Cupons" icon="menus-icon-ecommerce-46"></nano-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="content-card">
+    <nano-loading [loading]="loading">
+
+      <!-- Informações do  CUPOM -->
+      <form [formGroup]="form" class="form-content">
+        <ion-list>
+
+          <!-- Nome -->
+          <ion-item padding-horizontal>
+            <ion-label position="stacked" color="tertiary">Nome</ion-label>
+            <ion-input class="input-name" style="text-transform: uppercase !important;" formControlName="name"
+              maxlength="50"></ion-input>
+          </ion-item>
+
+          <!-- Descrição -->
+          <ion-item padding-horizontal>
+            <ion-label position="stacked" color="tertiary">Descrição</ion-label>
+            <ion-textarea class="input" rows="5" formControlName="description"></ion-textarea>
+          </ion-item>
+
+          <!-- Definir se o cupom será por valor ou por porcentagem -->
+          <h5 ion-text padding-horizontal margin-top margin-bottom>
+            Definir o tipo do cupom
+          </h5>
+          <ion-radio-group [(ngModel)]="couponType" [ngModelOptions]="{standalone: true}">
+            <ion-item padding-horizontal>
+              <ion-label>Definir valor de desconto</ion-label>
+              <ion-radio value="money"></ion-radio>
+            </ion-item>
+            <ion-item padding-horizontal>
+              <ion-label>Definir porcentagem de desconto</ion-label>
+              <ion-radio value="percentage"></ion-radio>
+            </ion-item>
+            <ion-item padding-horizontal>
+              <ion-label>Definir frete grátis</ion-label>
+              <ion-radio value="free"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+
+          <!-- Preço do CUPOM por valor -->
+          <ion-item padding-horizontal item-content *ngIf="couponType == 'money' ">
+            <ion-label position="stacked" color="tertiary">Valor de desconto (em R$)</ion-label>
+            <money-input item-content [control]="form.controls['money']"></money-input>
+          </ion-item>
+
+          <!-- Preço do CUPOM por porcentagem -->
+          <ion-item padding-horizontal item-content *ngIf="couponType == 'percentage'">
+            <ion-label position="stacked" color="tertiary">Porcentagem de desconto</ion-label>
+            <money-input item-content [control]="form.controls['percentage']"></money-input>
+          </ion-item>
+
+          <!-- Data de expiração -->
+          <ion-item class="date-filter">
+            <ion-label position="stacked" color="tertiary">Data de expiração</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" cancelText="Cancelar" doneText="Ok" formControlName="finished_at"
+              [min]="currentYear" [max]="nextYear"></ion-datetime>
+          </ion-item>
+
+          <!-- Lista de Filiais disponíveis para ativação do cupom -->
+          <h5 ion-text padding-horizontal margin-top margin-bottom>
+            Escolha os estabelecimentos que serão permitidos o uso do CUPOM
+          </h5>
+          <ion-item *ngFor="let option of options">
+            <ion-label>{{option.name}}</ion-label>
+            <ion-checkbox [(ngModel)]="option.active" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+          </ion-item>
+
+        </ion-list>
+      </form>
+    </nano-loading>
+    <nano-buttons [canSave]="form.valid" [save]="save.bind(this)" [canRemove]="coupon" [remove]="remove.bind(this)"
+      [cancel]="cancel.bind(this)"></nano-buttons>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,366 @@
+// http://ionicframework.com/docs/theming/
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+// Fontes
+@import "assets/fonts/app/styles.css";
+@import "assets/fonts/food/flaticon.css";
+
+@font-face {
+    font-family: myFontRegular;
+    src: url("./assets/fonts/Avenir.ttc");
+    font-weight: normal;
+    font-style: normal;
+}
+
+// App Global Sass
+//Centralizar elemento horizontalmente e verticalmente
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+//Cor de fundo padrão da aplicação
+body {
+    font-family: myFontRegular !important;
+}
+
+ion-header.app {
+    ion-toolbar {
+        --padding-top: 0p;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        h1,h2,h3,h4,h5,h6 {
+            margin-top: 12px!important;
+        }
+
+    }
+    ion-title {
+        h1,h2,h3 {
+            padding-bottom: 7px;
+        }
+    }
+    button {
+        font-size: 1.1em;
+    }
+    ion-button {
+        font-size: 1.1em;
+    }
+}
+
+ion-item {
+    --border-style: none;
+    --border-width: 0px;
+    --highlight-background: transparent;
+}
+
+ion-slide {
+    --border-style: none;
+    --border-width: 0px;
+    --highlight-background: transparent;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: myFontRegular !important;
+}
+
+.my-font-regular {
+    font-family: myFontRegular !important;
+}
+
+.my-font-bold {
+    font-family: myFontRegular !important;
+    font-weight: bold !important;
+}
+
+.my-font-logo {
+    font-family: myFontBold !important;
+}
+
+//Background do gif load
+.back-loading {
+    margin: 0 auto;
+    width: 8em;
+    height: 8em;
+    padding: 20px !important;
+    background: white !important;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 0px 19px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 19px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 19px -3px rgba(0, 0, 0, 0.75);
+}
+
+//Esconde o scrollbar da página (inserir em ion-content)
+.hideScrollbar {
+    ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+//Spinner de loading (enquanto a página está sendo carregada)
+div.loading-page {
+    text-align: center;
+    position: absolute;
+    margin-top: 50vh;
+    margin-left: 50vw;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.remove-border-item {
+    --border-style: none;
+    --border-width: 0px;
+    --highlight-background: transparent;
+}
+
+.remove-padding-item{
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+}
+
+/**
+ *
+ *
+ *  CSS DO MENU LATERAL
+ *
+ *
+ */
+
+ion-menu {
+    max-width: 270px !important;
+}
+
+/**
+ *
+ *
+ *  CSS GLOBAL DO CONTENT E HEADER
+ *
+ *
+ */
+
+.title-default {
+    h3 {
+        font-size: 18px !important;
+    }
+}
+
+ion-card.content-card {
+    --ion-item-background: white;
+    --ion-background-color: white; //     margin: auto;
+    margin-bottom: 60px;
+    ion-searchbar {
+        flex-grow: 1;
+        border-bottom: solid 2px #dddddd;
+    }
+    ion-button {
+        font-weight: bold;
+    }
+    ion-item {
+        --border-style: none;
+    }
+} // ion-item {
+//     button.button.item-button {
+//         font-size: 15px;
+//         height: 30px;
+//         ion-icon{
+//             margin-right: 5px;
+//         }
+//         .menus-icon{
+//             font-size: 24px;
+//         }
+//     }
+//
+// Adicionar foto de fundo no toolbar, no botão direito
+//
+ion-header {
+    font-family: myFontBold !important;
+    align-items: center;
+    h1,
+    h2,
+    h3 {
+        font-size: 1.2em;
+    }
+    button {
+        margin-top: 3px;
+    }
+    ion-buttons[right] button {
+        font-size: 1.2em;
+    }
+}
+
+.background-toolbar-right {
+    background-image: url("./assets/img/icon_identidade_toolbar.png") !important;
+    position: absolute;
+    height: 105%;
+    width: 75px;
+    top: -1px;
+    right: -1px;
+    background-size: cover;
+}
+
+.form-content {
+    background-color: var(--color-background-application);
+    ion-item {
+        --border-style: none;
+        --border-width: 0px;
+        --highlight-background: transparent;
+    }
+    ion-input,
+    ion-textarea,
+    ion-select {
+        --padding-start: 8px;
+        background-color: white;
+        box-shadow: 0 0 0 transparent inset, 0 0 0 1px #e0e0e0 inset;
+    }
+    ion-input[readonly] {
+        background-color: var(--ion-color-light-shade);
+    }
+    ion-item-divider:first-child {
+        margin-top: 0px;
+        --ion-item-border-color: transparent;
+    }
+    ion-item-divider {
+        background-color: darken(white, 9%);
+        margin-top: 20px;
+    }
+    .item-inner {
+        padding-right: 0px !important;
+    }
+}
+
+.mybuttons {
+    text-align: end;
+}
+
+.searchbar-input {
+    // background-color: #f4f4f4 !important;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+// --------------------------------------
+// AUXILIADORES DE CSS GLOBAL
+// --------------------------------------
+//
+// item-divider-primary
+//
+ion-item-divider.divider-primary {
+    background: --ion-color-primary;
+    .text {
+        color: white;
+        font-family: myFontRegular !important;
+        font-weight: bold;
+        padding: 0px;
+        margin: 0px;
+        font-size: 1.2em;
+        line-height: 1em;
+    }
+}
+
+//
+// item-divider-clean
+//
+ion-item-divider.divider-clean {
+    background: white;
+    .text {
+        color: #595959;
+        font-family: myFontBold !important;
+        font-weight: normal;
+        padding: 0px;
+        margin: 0px;
+        font-size: 1.2em;
+        line-height: 1em;
+    }
+}
+
+//
+// item-divider-clean-clean
+//
+ion-item-divider.divider-clean-clean {
+    background: transparent;
+    margin-bottom: -15px;
+    border-bottom: none;
+    .text {
+        color: #595959;
+        font-family: myFontBold !important;
+        font-weight: normal;
+        padding: 0px;
+        margin: 0px;
+        font-size: 1.2em;
+        line-height: 1em;
+    }
+}
+
+.my-font-logo {
+    font-size: 1.2em !important;
+}
+
+//
+// Custom alert message
+//
+.custom-alert-message {
+    background-color: rgba(0, 0, 0, 0.25882352941176473);
+    .popover-content {
+        border-radius: 15px;
+        width: 80vw;
+        left: 10vw;
+    }
+}
+
+.spinner-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+//
+// Alternativas para o ion-scroll que foi deprecated
+//
+//<div scrollY="true" id="myFixZone">
+//    <ion-list>
+//          <ion-item *ngFor...>
+//          </ion-item>
+//     </ion-list>
+//</div>
+.fixed[scrollx=true],
+div[scrolly=true] {
+    position: relative;
+    overflow: hidden;
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.fixed[scrollx=true] {
+    overflow-x: auto;
+}
+
+.fixed[scrolly=true] {
+    overflow-y: auto;
+}
+
+.editOptionsComplementPage{
+    .popover-content{
+        width: 300px !important;
+    }
+}

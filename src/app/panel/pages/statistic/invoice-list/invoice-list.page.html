@@ -1,0 +1,57 @@
+<ion-header no-border>
+  <nano-navbar title="Fatura" icon="menus-icon-credit-card">
+  </nano-navbar>
+</ion-header>
+
+<ion-content padding>
+  <nano-loading [loading]="loading">
+    <ion-grid>
+      <ion-row>
+        <ion-col col6 *ngFor="let item of invoices; let i = index" class="content-month" no-padding>
+          <ion-list no-padding>
+            <span class="month-title" ion-text padding>{{item.id_name}}</span>
+            <ion-item no-lines>
+              <div>
+                <h5 ion-text text-wrap no-margin>
+                  <strong> Comissão </strong>
+                </h5>
+                <p ion-text text-wrap no-margin class="description">Foi vendido <strong>R$ {{item.sales}}</strong> e a taxa de comissão é <strong>{{(item.fee*100) | number : '1.0-1'}}%</strong></p>
+              </div>
+              <h5 ion-text item-right text-wrap class="green" slot="end">
+                <strong> R$ {{(item.sales * item.fee ) | number : '1.2-2'}}</strong>
+              </h5>
+            </ion-item>
+            <ion-item no-lines>
+              <div>
+                <h5 ion-text text-wrap no-margin>
+                  <strong> Mensalidade </strong>
+                </h5>
+                <p ion-text text-wrap no-margin class="description">O valor da mensalidade é <strong>{{item.monthly_payment}}</strong> e
+                  foi passado <strong>{{(item.days*100) | number : '1.0-1'}}%</strong> do mês.</p>
+              </div>
+              <h5 ion-text item-right text-wrap slot="end">
+                <strong> R$ {{(item.monthly_payment * item.days ) | number : '1.2-2'}}</strong>
+              </h5>
+            </ion-item>
+            <ion-item no-lines>
+              <div>
+                <h5 ion-text text-wrap no-margin>
+                  <strong> Fatura a ser paga </strong>
+                </h5>
+                <p ion-text text-wrap no-margin class="description">O maior valor entre a mensalidade e a comissão.</p>
+              </div>
+              <h5 ion-text item-right text-wrap slot="end">
+                <strong> R$ {{item.total | number : '1.2-2'}}</strong>
+              </h5>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-card class="content-card" text-center padding *ngIf="!existsInvoice">
+      <p>Você ainda não possui faturas</p>
+    </ion-card>
+
+  </nano-loading>
+</ion-content>

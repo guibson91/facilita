@@ -1,0 +1,29 @@
+.company-name {
+    margin-top: 0px !important;
+}
+
+div.container {
+    border-bottom: 1px solid #eee;
+    h2 {
+        font-weight: bold;
+        color: var(--ion-color-primary);
+    }
+    h2.inactive {
+        font-weight: normal;
+        color: lightgrey;
+        text-decoration: line-through;
+    }
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    ion-item.active-button{
+        width: 10em;
+    }
+    ion-item {
+        ion-label {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--ion-color-primary);
+        }
+    }
+}
