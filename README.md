@@ -1,6 +1,6 @@
 # Facilita
 
-Facilita é um sistema criado em *Ionic 4 e Firebase* destinado a melhorar os serviços de atendimento, delivery, relacionamento e financeiro de estabelecimentos que utilizem um cardápio para ofertar seus produtos.
+Facilita é um sistema criado em **Ionic 4 e Firebase** destinado a melhorar os serviços de atendimento, delivery, relacionamento e financeiro de estabelecimentos que utilizem um cardápio para ofertar seus produtos.
 
 ## Firebase
 
