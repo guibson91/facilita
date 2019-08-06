@@ -230,7 +230,7 @@ export class AuthenticationService {
             .pipe(catchError((err) => {
               throw this.catchSignInWithCredential(err)
             }))
-            .pipe(flatMap((res: firebase.User) => {
+            .pipe(flatMap((res: any) => {
               return this.authState$.pipe(map(() => res));
             }))
         }))
@@ -257,7 +257,7 @@ export class AuthenticationService {
           .catch((err) => {
             throw this.catchSignInWithCredential(err)
           });
-      })).pipe(flatMap((res: firebase.User) => {
+      })).pipe(flatMap((res: any) => {
         return this.authState$.pipe(map(() => res));
       }))
     }

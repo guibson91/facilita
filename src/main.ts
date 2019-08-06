@@ -32,9 +32,9 @@ if (environment.production) {
   enableProdMode();
 }
 firebase.initializeApp(FIREBASE_CONFIG);
-firestore().settings({
-  timestampsInSnapshots: true
-})
+// firestore().settings({
+//   timestampsInSnapshots: true
+// })
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.log(err));
