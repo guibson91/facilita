@@ -254,7 +254,7 @@ export class OrderListPage implements OnInit, OnDestroy {
 
     let confirm = await this.alertCtrl.create({
       header: 'Denunciar usuário',
-      message: `Você tem certeza que deseja abrir uma denúncia contra o <b>${user.name}</b>? Você só deve fazer isso caso o usuário tenha agido de má fé ao realizar o pedido.`,
+      message: `Você tem certeza que deseja abrir uma denúncia contra o ${user.name}? Você só deve fazer isso caso o usuário tenha agido de má fé ao realizar o pedido.`,
       buttons: [
         {
           text: 'Cancelar'
@@ -327,6 +327,7 @@ export class OrderListPage implements OnInit, OnDestroy {
     });
     alert.present();
   }
+  
 	/**
 	 * Altera o status do pedido
 	 */

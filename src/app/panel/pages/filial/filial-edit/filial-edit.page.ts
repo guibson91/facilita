@@ -273,7 +273,7 @@ export class FilialEditPage implements OnInit {
   async removeDistrict(deliveryDistrict) {
     let confirm = await this.alertCtrl.create({
       header: 'Remoção de bairro',
-      message: `Você tem certeza que gostaria de remover o bairro <b>${deliveryDistrict.location.district}</b>?`,
+      message: `Você tem certeza que gostaria de remover o bairro ${deliveryDistrict.location.district}?`,
       buttons: [
         {
           text: 'Cancelar'

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { of, combineLatest, Subscription, timer } from 'rxjs';
-import { map, flatMap, catchError } from 'rxjs/operators';
+import { map, flatMap } from 'rxjs/operators';
 import { Filial, FilialSubType, RESTAURANT_SUBTYPES, FilialType } from '../../../../models/filial';
 import { NavController, MenuController, ModalController, AlertController, ToastController } from '@ionic/angular';
 import { SharedService } from '../../../services/shared.service';

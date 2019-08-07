@@ -225,7 +225,7 @@ export class AddressEditPage implements OnInit {
   public async handlerNotFoundAddress() {
     const confirm = await this.alertCtrl.create({
       header: 'CEP não encontrado',
-      message: `Você tem certeza que o CEP <b>${this.search_address}</b> está correto?`,
+      message: `Você tem certeza que o CEP ${this.search_address} está correto?`,
       buttons: [
         {
           text: 'Não',

@@ -1,5 +1,5 @@
-import { Observable, of, from, combineLatest, Subscription } from 'rxjs';
-import { map, tap, flatMap, first, catchError } from 'rxjs/operators';
+import { Observable, of, from, combineLatest, Subscription, pipe } from 'rxjs';
+import { map, tap, flatMap, first, catchError, mergeMap } from 'rxjs/operators';
 import { NavController, ModalController, AlertController, ToastController, IonApp } from '@ionic/angular';
 import { OrderStatus, Order } from '../../../../models/order';
 import { Component, ChangeDetectorRef } from '@angular/core';
@@ -90,6 +90,7 @@ export class CustomerPage {
   private loadCoupons() {
     console.log("1");
     this.shared.user$.pipe(flatMap((user) => {
+      console.log("Obtido user: ", user)
       return OrderPromotion.list([{
         name: 'user.id',
         operator: '==',
@@ -97,8 +98,8 @@ export class CustomerPage {
       }])
     }))
       .pipe(flatMap((coupons: OrderPromotion[]) => {
-        if (!coupons || coupons.length == 0) return of([])
         console.log("cupons: ", coupons);
+        if (!coupons || coupons.length == 0) return of([])
         this.coupons = coupons
         return combineLatest(coupons.map((coupon) => Filial.object(coupon.filial.id)))
       }))
@@ -136,7 +137,7 @@ export class CustomerPage {
             this.change.detectChanges()
           }, 10)
         }
-      }, catchError((err) => {
+      }, pipe(catchError((err) => {
         console.log("ocorreu um erro", err);
         this.system.logEvent("filials_not_found")
         if (err.code == 1) {
@@ -164,6 +165,7 @@ export class CustomerPage {
         this.change.detectChanges()
         return of([]);
       }))
+      )
   }
 
   /**

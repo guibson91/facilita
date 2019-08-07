@@ -151,7 +151,7 @@ export class CustomerAddressPage implements OnInit {
   async removeLocationHistory(location: Location) {
 
     let alert = await this.alertCtrl.create({
-      header: `Você deseja excluir  <b>${location.street}</b> do seu histórico ?`,
+      header: `Você deseja excluir ${location.street} do seu histórico ?`,
       buttons: [{
         text: 'Cancelar',
         role: 'cancel'

@@ -1,9 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NavController, ModalController } from '@ionic/angular';
 import { PromotionFilterAppPage } from '../promotion-filter-app/promotion-filter-app.page';
-import { Promotion } from '../../../../models/promotion';
-import { Observable, Subscription, of, from, combineLatest } from 'rxjs';
-import { map, tap, flatMap, first, catchError } from 'rxjs/operators';
+import { Subscription, of, combineLatest, pipe } from 'rxjs';
+import { map, flatMap, catchError } from 'rxjs/operators';
 import { SharedService } from '../../../services/shared.service';
 import { User } from '../../../../models/user';
 import { Location } from '../../../panel/components/nano-address/nano-address.component';
@@ -12,7 +11,6 @@ import { Filial } from '../../../../models/filial';
 import { getDistanceBetweenPoints } from '../../../util/util';
 import { SystemService } from '../../../services/system.service';
 import { Company } from '../../../../models/company';
-import { PromotionDetailAppPage } from '../promotion-detail-app/promotion-detail-app.page';
 
 @Component({
   selector: 'app-promotion-app',
@@ -39,7 +37,9 @@ export class PromotionAppPage implements OnInit {
   }
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public shared: SharedService,
-    public placesProvider: PlacesService, public system: SystemService, public change: ChangeDetectorRef) { }
+    public placesProvider: PlacesService, public system: SystemService, public change: ChangeDetectorRef) {
+      
+    }
 
   ngOnInit() {
     this.loadPromotions();
@@ -150,7 +150,7 @@ export class PromotionAppPage implements OnInit {
               this.change.detectChanges()
             }, 10)
           }
-        }, catchError((err) => {
+        }, pipe(catchError((err) => {
           this.system.logEvent("filials_not_found")
           if (err.code == 1) {
             this.error = {
@@ -176,7 +176,7 @@ export class PromotionAppPage implements OnInit {
           this.loading = false;
           this.change.detectChanges()
           return of([]);
-        }))
+        })));
       this.change.detectChanges()
     })
   }
