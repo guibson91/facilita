@@ -10,7 +10,7 @@ const routes: Routes = [
   //ROOT PAGE
   {
     path: '',
-    redirectTo: environment.isApp ? "home-app" : 'home',
+    redirectTo: environment.isApp ? "mobile/filial-search" : 'home',
     pathMatch: 'full'
   },
 

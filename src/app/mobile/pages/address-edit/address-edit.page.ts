@@ -158,7 +158,9 @@ export class AddressEditPage implements OnInit {
   }
 
   goToLastSlide() {
+    console.log('ir para ultimo slide: ', this.activeIndex);
     this.activeIndex = 5;
+    this.change.detectChanges();
   }
 
   /**
@@ -254,6 +256,7 @@ export class AddressEditPage implements OnInit {
   }
 
   selectAddress(address: any) {
+    console.log('Cliquei no endereco: ', address);
     let a = address.address_components
     a = a.slice(0).reverse();
     let index = 0
@@ -587,7 +590,7 @@ export class AddressEditPage implements OnInit {
         street: street.name
       })
     }
-    this.next()
+    this.goToLastSlide();
   }
 
 
