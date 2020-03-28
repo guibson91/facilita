@@ -34,13 +34,13 @@
         text-wrap *ngIf="address_not_found">Não encontrei meu cep</button> -->
     </div>
     <div *ngSwitchCase="1">
-      <ion-content class="slide-content">
+      <div class="slide-content">
         <div class="slide-header" padding>
           <h5 ion-text class="bold" no-margin> Qual o seu estado?</h5>
         </div>
         <ion-item *ngFor="let state of states" (click)="selectState(state)" class="slide-body">{{state.title}}
           - {{state.value}}</ion-item>
-      </ion-content>
+        </div>
     </div>
     <div *ngSwitchCase="2">
       <div class="slide-header" padding>
@@ -98,9 +98,10 @@
         </div>
     </div>
     <div class="form-slide" *ngSwitchCase="5">
-      <ion-content class="slide-content">
-        <form [formGroup]="form">
-          <ion-card class="form" formGroupName="location">
+      <div class="slide-content">
+        <form [formGroup]="form.controls.location">
+          <!-- <ion-card class="form" formGroupName="location"> -->
+          <ion-card class="form">
             <div class="state-city">
               <ion-item class="input-small remove-padding-item" tappable>
                 <ion-label position="stacked" color="tertiary" class="disabled"> Estado </ion-label>
@@ -135,7 +136,7 @@
             </ion-item>
           </ion-card>
         </form>
-      </ion-content>
+      </div>
     </div>
   </div>
   <div #suggestionscity></div>

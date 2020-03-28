@@ -40,9 +40,9 @@
     <p class="title"> Histórico </p>
   </ion-item>
   <div *ngIf="shared?.user?.locations_history?.length > 0; else noLocationHistory" margin-top>
-    <ion-card *ngFor="let location of shared.user.locations_history" class="card-delivery-address historic" tappable (click)="changeLocation(location)">
-      <ion-icon name="pin" slot="start"></ion-icon>
-      <div class="info-delivery">
+    <ion-card *ngFor="let location of shared.user.locations_history" class="card-delivery-address historic" tappable>
+      <ion-icon name="pin" slot="start" (click)="changeLocation(location)"></ion-icon>
+      <div class="info-delivery" (click)="changeLocation(location)">
         <p class="title-delivery" text-wrap>
           <strong>{{ location.street}}, {{ location.number}}
             <span *ngIf="location.complement">

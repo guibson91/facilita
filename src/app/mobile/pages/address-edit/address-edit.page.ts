@@ -131,7 +131,7 @@ export class AddressEditPage implements OnInit {
     if (this.location) {
       this.new_address = false
       this.form.patchValue({
-        location: location
+        location: this.location
       });
       this.goToLastSlide()
     }
@@ -161,6 +161,7 @@ export class AddressEditPage implements OnInit {
     console.log('ir para ultimo slide: ', this.activeIndex);
     this.activeIndex = 5;
     this.change.detectChanges();
+    console.log('fui para ultimo slide: ', this.activeIndex, this.form);
   }
 
   /**
