@@ -2,8 +2,8 @@
   <ion-toolbar color="primary">
 
     <ion-buttons slot="start">
-      <ion-button icon-only (click)="openHomeApp()">
-        <ion-icon name="menu"></ion-icon>
+      <ion-button icon-only style="width: 42px;" [disabled]="true">
+        &nbsp;	
       </ion-button>
     </ion-buttons>
 
@@ -82,11 +82,11 @@
     </section>
   </div>
 
-  <div text-center padding *ngIf="!existsFilials && shared.locationUser" class="exists-filials" no-lines>
+  <div text-center padding *ngIf="!existsFilials" class="exists-filials" no-lines>
     <div class="gps-error-img"></div>
     <h3 ion-text text-wrap>Pooxa vida!! Ainda não entregamos para o seu endereço :/</h3>
     <p ion-text text-wrap>Mas não se preocupe, iremos notificá-lo assim que tivermos novidades. </p>
-    <ion-button fill="clear" text-center (click)="suggestRestaurant()" color="primary">SUGERIR ESTABELECIMENTO</ion-button>
+    <!-- <ion-button fill="clear" text-center (click)="suggestRestaurant()" color="primary">SUGERIR ESTABELECIMENTO</ion-button> -->
   </div>
 
   <div text-center padding *ngIf="error" class="exists-filials" no-lines>

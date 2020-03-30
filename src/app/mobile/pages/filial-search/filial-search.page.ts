@@ -121,7 +121,7 @@ export class FilialSearchPage implements OnDestroy, OnInit {
     console.log("load filials");
     //Definir padrão de busca de filiais como restaurantes
     if (!type) type = FilialType.RESTAURANT;
-
+    console.log('carregar filiais do tipo: ', type)
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
       this.userSubscription = undefined
@@ -131,6 +131,7 @@ export class FilialSearchPage implements OnDestroy, OnInit {
     this.error = undefined;
 
     this.userSubscription = this.shared.user$.subscribe((user: User) => {
+      console.log('Usuário: ', user);
       this.error = undefined;
 
       let obs$ = of(null)
@@ -163,11 +164,14 @@ export class FilialSearchPage implements OnDestroy, OnInit {
       }))
         .pipe(flatMap((filials: Filial[]) => {
 
+          console.log('filials 1', filials)
+
           if (!filials || filials.length <= 0) return of([])
 
           return combineLatest(filials.map((filial) => Company.object(filial.company.id)))
             .pipe(map((restaurants: Company[]) => {
 
+              console.log('restaurants', restaurants);
               for (let i = 0; i < restaurants.length; i++) {
                 filials[i].company_full = restaurants[i];
               }
@@ -178,6 +182,9 @@ export class FilialSearchPage implements OnDestroy, OnInit {
             }))
         }))
         .pipe(map((filials: Filial[]) => {
+
+          console.log('filials 2', filials)
+
           if (!filials || filials.length <= 0) return []
           let start = {
             lat: this.locationUser.latitude,
@@ -206,6 +213,8 @@ export class FilialSearchPage implements OnDestroy, OnInit {
             else return filial.distance <= filial.delivery.distanceMax
           });
         })).pipe(flatMap((filials: Filial[]) => {
+
+          console.log('filials 3 ', filials)
           if (!filials || filials.length <= 0) return of([])
           return combineLatest(filials.map((filial: Filial) => this.productProvider.getBestRecomendation(filial)))
             .pipe(map((products: Product[]) => {
@@ -215,8 +224,9 @@ export class FilialSearchPage implements OnDestroy, OnInit {
               return filials;
             }))
         })).subscribe((filials: Filial[]) => {
+          console.log('Filiais: ', filials);
           // Verificar se não existe filiais.
-          if (!filials || filials.length <= 0) {
+          if (!filials || filials.length == 0) {
             this.filials = [];
             this.existsFilials = false;
             this.loading = false;
@@ -273,7 +283,7 @@ export class FilialSearchPage implements OnDestroy, OnInit {
                 this.filial_subtypes.pop()
               }
             }
-          }
+          } 
 
           if (this.timerSubscription) {
             this.timerSubscription.unsubscribe();
@@ -287,7 +297,7 @@ export class FilialSearchPage implements OnDestroy, OnInit {
             this.change.detectChanges()
           }, 10)
         }, (err) => {
-
+          console.log('Error = ', err);
           this.system.logEvent("filials_not_found")
           if (err.code == 1) {
             this.error = {

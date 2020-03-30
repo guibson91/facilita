@@ -403,7 +403,7 @@ export class SharedService {
     /**
      * @todo Adicionar as páginas
      */
-    return environment.isApp ? "home-app" : "login-panel"
+    return environment.isApp ? "mobile/filial-search" : "login-panel"
   }
 
   /**
