@@ -61,29 +61,46 @@ export class LoginAppPage {
       method$ = this.authProvider.signInFacebook()
     }
     method$.pipe(first())
-      .pipe(flatMap((data) => {
-        var user: User = {
-          name: data.displayName as string,
-          email: data.email as string,
-          image: data.photoURL as string,
-          phone_social: data.phoneNumber as string,
-          permissions: [Permission.CUSTOMER]
-        };
+      .pipe(flatMap((data: any) => {
+        console.log('Dados recebidos do login: ', data);
+        var user: User
+        if (data.email) {
+          user = {
+            name: data.displayName as string,
+            email: data.email as string,
+            image: data.photoURL as string,
+            phone_social: data.phoneNumber as string,
+            permissions: [Permission.CUSTOMER]
+          };
+        }
+        else if (data.user) {
+          user = {
+            name: data.user.displayName as string,
+            email: data.user.email as string,
+            image: data.user.photoURL as string,
+            phone_social: data.user.phoneNumber as string,
+            permissions: [Permission.CUSTOMER]
+          };
+        }
 
+        console.log('User: ', user);
         //Excluir atributos undefined
         user = cleanObject(user);
+        console.log('Clean USER: ', user);
 
-        return User.object(data.uid).pipe(first()).pipe(flatMap((userDatabase: any) => {
+        let uid = data.uid ? data.uid : data.user.uid;
+
+        return User.object(uid).pipe(first()).pipe(flatMap((userDatabase: any) => {
           //Usuário já tem localização definida
           if (userDatabase && userDatabase.location) {
-            return User.update(data.uid, user)
+            return User.update(uid, user)
           }
           //Usuário ainda não tem localização definida
           else {
             //Atribuir ao endereço principal o último endereço adicionado no histórico
             if (user.locations_history && user.locations_history.length > 0) {
               user.location = user.locations_history[user.locations_history.length - 1];
-              return User.update(data.uid, user)
+              return User.update(uid, user)
             }
             //Obter pelo GPS
             else {
@@ -91,11 +108,12 @@ export class LoginAppPage {
                 locationUser.isGps = true;
                 user.location = locationUser;
                 user.physical_location = user.location;
-                return User.update(data.uid, user);
+                return User.update(uid, user)
               }))
                 .pipe(catchError(() => {
+                  console.log('algo deu errado na localizacao: ', user);
                   // ALgo deu errado ao conseguir a localização do usuário
-                  return User.update(data.uid, user);
+                  return User.update(uid, user)
                 }))
             }
           }
@@ -127,6 +145,7 @@ export class LoginAppPage {
         loading.dismiss()
         this.system.logEvent(`login_success_${method}`)
       }, error => {
+        console.log('Deu errado auth: ', error)
         loading.dismiss()
         this.system.showErrorAlert(error, `Autenticação pelo ${method}`, true);
       });

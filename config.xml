@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="br.com.nanocode.facilita" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Coca Cola</name>
+    <name>KOnnect Consumidor</name>
     <description>Aplicativo para entrega de produtos variados</description>
     <author email="developer@nanocode.com.br" href="http://nanocode.com.br/">Nanocode</author>
     <content src="index.html" />
