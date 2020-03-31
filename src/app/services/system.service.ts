@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Firebase } from '@ionic-native/firebase/ngx';
 import { Log } from '../../models/log';
 import { Platform, AlertController } from '@ionic/angular';
-import { firestore } from "firebase"
+import { firestore } from "firebase";
 import "firebase/firestore";
 
 @Injectable({
@@ -11,8 +10,7 @@ import "firebase/firestore";
 export class SystemService {
 
   constructor(public alertCtrl: AlertController,
-    public platform: Platform,
-    public firebase: Firebase) { }
+    public platform: Platform) { }
 
   public async showNanoErrorAlert(error: NanoError) {
     if (error.report) {
@@ -122,31 +120,31 @@ export class SystemService {
 
 
   setScreenName(name: string) {
-    if (this.platform.is('cordova')) {
-      this.firebase.setScreenName(name).then((data) => {
-      })
-    }
+    // if (this.platform.is('cordova')) {
+    //   this.firebase.setScreenName(name).then((data) => {
+    //   })
+    // }
   }
 
   logEvent(name: string, data?: any) {
-    if (this.platform.is('cordova')) {
-      this.firebase.logEvent(name, data || {}).then((data) => {
-      })
-    }
+    // if (this.platform.is('cordova')) {
+    //   this.firebase.logEvent(name, data || {}).then((data) => {
+    //   })
+    // }
   }
 
   setUserId(userId) {
-    if (this.platform.is('cordova')) {
-      this.firebase.setUserId(userId).then((data) => {
-      })
-    }
+    // if (this.platform.is('cordova')) {
+    //   this.firebase.setUserId(userId).then((data) => {
+    //   })
+    // }
   }
 
   setUserProperty(name?: string, data?: any) {
-    if (this.platform.is('cordova')) {
-      this.firebase.setUserProperty(name, data || {}).then((data) => {
-      })
-    }
+    // if (this.platform.is('cordova')) {
+    //   this.firebase.setUserProperty(name, data || {}).then((data) => {
+    //   })
+    // }
   }
 
 }

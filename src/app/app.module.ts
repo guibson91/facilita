@@ -2,7 +2,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { Facebook } from '@ionic-native/facebook/ngx';
-import { Firebase } from '@ionic-native/firebase/ngx';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -60,7 +59,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     StatusBar,
     SplashScreen,
-    Firebase,
     Vibration,
     Facebook,
     GooglePlus,

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Order } from '../../../../models/order';
 import { ToastController, NavController, NavParams, LoadingController, AlertController, ModalController } from '@ionic/angular';
 import { SystemService } from '../../../services/system.service';
-import { firestore } from "firebase"
+import { firestore } from "firebase";
 
 import "firebase/firestore"
 
