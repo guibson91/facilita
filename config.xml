@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="br.com.nanocode.facilita" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Sorocaba Delivery</name>
+<widget id="br.com.nanocode.facilita" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Coca Cola</name>
     <description>Aplicativo para entrega de produtos variados</description>
     <author email="developer@nanocode.com.br" href="http://nanocode.com.br/">Nanocode</author>
     <content src="index.html" />
@@ -108,7 +108,6 @@
     <plugin name="cordova-plugin-firebase" spec="^2.0.5" />
     <plugin name="cordova-plugin-vibration" spec="^3.1.0" />
     <plugin name="cordova-plugin-nativeaudio" spec="^3.0.9" />
-    <plugin name="cordova-sqlite-storage" spec="^2.5.1" />
     <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
     <plugin name="onesignal-cordova-plugin" spec="^2.4.5" />
     <plugin name="cordova-plugin-geolocation" spec="4.0.1">

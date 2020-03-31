@@ -60,7 +60,7 @@
     "cordova-plugin-statusbar": "2.4.2",
     "cordova-plugin-vibration": "3.1.0",
     "cordova-plugin-whitelist": "1.3.3",
-    "cordova-sqlite-storage": "2.6.0",
+    "cordova-sqlite-storage": "^5.0.0",
     "cordova.plugins.diagnostic": "4.0.10",
     "core-js": "2.6.0",
     "es6-promise-plugin": "4.2.2",
@@ -112,7 +112,6 @@
         "APP_NAME": "Facilita",
         "FACEBOOK_ANDROID_SDK_VERSION": "4.38.1"
       },
-      "cordova-sqlite-storage": {},
       "cordova-plugin-screen-orientation": {},
       "onesignal-cordova-plugin": {},
       "cordova-plugin-geolocation": {
@@ -131,11 +130,8 @@
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.409247652916-2i8ip1jsfvr9ses09hgkd6bpkfpabm3a",
         "PLAY_SERVICES_VERSION": "11.8.0"
       },
-      "kr.co.joycorp.cordova.exitapp": {}
-    },
-    "platforms": [
-      "android",
-      "ios"
-    ]
+      "kr.co.joycorp.cordova.exitapp": {},
+      "cordova-sqlite-storage": {}
+    }
   }
 }
