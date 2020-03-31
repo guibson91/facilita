@@ -248,7 +248,7 @@ export class AuthenticationService {
     this.system.logEvent("try_login_google")
     if (this.platform.is('cordova')) {
       return from(this.googlePlus.login({
-        'webClientId': '409247652916-tf7ics6lrietukbld1gf13oqesaopln6.apps.googleusercontent.com'
+        'webClientId': '10498885020-3v39fs8qhsbeu28hu0toq2ge6126auat.apps.googleusercontent.com'
       })).pipe(catchError((err) => {
         throw this.catchSignInWithGoogle(err)
       })).pipe(flatMap((res) => {

@@ -121,7 +121,7 @@
         <variable name="APP_NAME" value="Facilita" />
     </plugin>
     <plugin name="cordova-plugin-googleplus" spec="^6.0.0">
-        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.409247652916-2i8ip1jsfvr9ses09hgkd6bpkfpabm3a" />
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.10498885020-3v39fs8qhsbeu28hu0toq2ge6126auat" />
         <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
     </plugin>
     <plugin name="kr.co.joycorp.cordova.exitapp" spec="~1.0.0" />

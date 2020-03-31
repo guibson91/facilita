@@ -20,7 +20,7 @@ export class PrintPermissionPipe implements PipeTransform {
     } else if (elementIsInsideArray(Permission.ORDER, value) || elementIsInsideArray(Permission.ORDER_READ, value)) {
       permissionString = "Caixa"
     } else if (elementIsInsideArray(Permission.TEAM, value)) {
-      permissionString = "Nanocode"
+      permissionString = "Administrador"
     }
 
     return permissionString;
