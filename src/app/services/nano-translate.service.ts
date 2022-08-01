@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root'
 })
 export class NanoTranslateService {
+  
   /**
    * Linguagens suportadas pela aplicação.
    */
