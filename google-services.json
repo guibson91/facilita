@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "10498885020-hlj22cqmtd7844b2src84156jrmg7mkp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.nanocode.facilita",
+            "certificate_hash": "ad76c1492c10bb95f6b5768cc6625f38eb486e47"
+          }
+        },
+        {
           "client_id": "10498885020-3v39fs8qhsbeu28hu0toq2ge6126auat.apps.googleusercontent.com",
           "client_type": 3
         }

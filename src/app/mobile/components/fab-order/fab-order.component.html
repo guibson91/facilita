@@ -8,13 +8,13 @@
 <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="primary" *ngIf="pending_orders?.length > 0 && empty"
   [ngClass]="{'up-fab': (pending_orders && pending_orders.length > 0)}">
   <ion-fab-button (click)="openTrackOrder()">
-    <ion-icon name="md-bicycle"></ion-icon>
+    <ion-icon name="calendar"></ion-icon>
   </ion-fab-button>
 </ion-fab>
 
 <ion-fab vertical="bottom" horizontal="start" slot="fixed" color="primary" *ngIf="pending_orders?.length > 0 && !empty"
   [ngClass]="{'up-fab': (pending_orders && pending_orders.length > 0)}">
   <ion-fab-button (click)="openTrackOrder()">
-    <ion-icon name="md-bicycle"></ion-icon>
+    <ion-icon name="calendar"></ion-icon>
   </ion-fab-button>
 </ion-fab>

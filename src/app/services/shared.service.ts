@@ -167,24 +167,25 @@ export class SharedService {
     this.audio.volume = 1;
     this.audio.loop = true;
 
+    //@todo está dando problemas na API de time... comentado por ora!!
 
-    this.cloudFunction.time()
-      .pipe(catchError(err => {
-        return of(null)
-          .pipe(delay(2000))
-          .pipe(tap(() => {
-            throw Error()
-          }))
-      }))
-      .pipe(retry(1234567))
-      .subscribe((d: Date) => {
-        this.offsetTime = d.getMilliseconds() - new Date().getMilliseconds()
-        if (this.offsetTime > 10 * 60 * 1000) {
-          this.system.logEvent("user_local_hour_wrong", {
-            value: this.offsetTime
-          })
-        }
-      })
+    // this.cloudFunction.time()
+    //   .pipe(catchError(err => {
+    //     return of(null)
+    //       .pipe(delay(2000))
+    //       .pipe(tap(() => {
+    //         throw Error()
+    //       }))
+    //   }))
+    //   .pipe(retry(1234567))
+    //   .subscribe((d: Date) => {
+    //     this.offsetTime = d.getMilliseconds() - new Date().getMilliseconds()
+    //     if (this.offsetTime > 10 * 60 * 1000) {
+    //       this.system.logEvent("user_local_hour_wrong", {
+    //         value: this.offsetTime
+    //       })
+    //     }
+    //   })
 
     this.user$.subscribe(user => {
       if (user) {

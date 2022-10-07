@@ -245,7 +245,6 @@ export class AuthenticationService {
   }
 
   signInGoogle(): Observable<firebase.User> {
-    this.system.logEvent("try_login_google")
     if (this.platform.is('cordova')) {
       return from(this.googlePlus.login({
         'webClientId': '10498885020-3v39fs8qhsbeu28hu0toq2ge6126auat.apps.googleusercontent.com'

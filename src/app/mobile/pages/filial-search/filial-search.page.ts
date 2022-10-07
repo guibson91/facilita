@@ -448,10 +448,6 @@ export class FilialSearchPage implements OnDestroy, OnInit {
     modal.present();
   }
 
-  openHomeApp() {
-    this.nav.navigateRoot(['home-app'])
-  }
-
   async openAddress() {
     if (this.shared.user) {
       let modal = await this.modalCtrl.create({

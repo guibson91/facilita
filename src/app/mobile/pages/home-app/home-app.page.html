@@ -12,7 +12,7 @@
 <ion-content>
 
   <ion-grid no-padding margin-top>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col size="6" (click)="clickCategory('restaurant')">
         <img src="./../../../../assets/images/RESTAURANTES.png" />
         <h1>RESTAURANTES</h1>
@@ -21,19 +21,24 @@
         <img src="./../../../../assets/images/SUPERMERCADOS2.png" />
         <h1>SUPERMERCADOS</h1>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
     <ion-row>
-      <ion-col size="6" (click)="clickCategory('drogstore')" class="opacity">
+      <!-- <ion-col size="6" (click)="clickCategory('drogstore')" class="opacity">
         <img src="./../../../../assets/images/FARMACIAS2.png" />
         <h1>FARMÁCIAS</h1>
+      </ion-col> -->
+      <ion-col size="6" (click)="clickCategory('promotion')">
+        <img src="./../../../../assets/images/PROMOCOES.png" />
+        <h1>PROMOÇÕES</h1>
       </ion-col>
-      <ion-col size="6" (click)="clickCategory('warehouse')">
+      <!-- @todo warehouse categoria para depósitos -->
+      <ion-col size="6" (click)="clickCategory('restaurant')">
         <img src="./../../../../assets/images/DEPOSITOS.png" />
-        <h1>DEPÓSITOS</h1>
-        <p>(ÁGUA, GÁS E BEBIDAS)</p>
+        <h1>PRODUTOS AGRÍCOLAS</h1>
+        <p>(adubo, vacinas etc)</p>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col size="6" (click)="clickCategory('promotion')">
         <img src="./../../../../assets/images/PROMOCOES.png" />
         <h1>PROMOÇÕES</h1>
@@ -42,7 +47,7 @@
         <img src="./../../../../assets/images/PERFIL.png" />
         <h1>PERFIL</h1>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-grid>
 
 </ion-content>

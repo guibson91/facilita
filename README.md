@@ -37,3 +37,14 @@ npm run compodoc
 Realizar download do pacote de ícones desejado, e copiar src/assets/menus_fonts.
 
 3 - Utiliza o [Cron-Job](https://cron-job.org/en/) para agendamentos de requisições. Conta jvmdo2008@gmail.com.
+
+
+## Knowledge BUGS
+
+### Error 10 - Auth Google
+
+```
+http://uttesh.blogspot.com/2017/08/error-10-cordova-google-plus-login-ionic.html
+
+OBS: Pra gerar SHA1 ou SHA256: https://developers.google.com/android/guides/client-auth
+```

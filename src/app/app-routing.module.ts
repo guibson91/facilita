@@ -11,6 +11,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: environment.isApp ? "mobile/filial-search" : 'home',
+    // redirectTo: environment.isApp ? "home-app" : 'home',
     pathMatch: 'full'
   },
 

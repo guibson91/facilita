@@ -15,7 +15,7 @@
   <section class="profile shadow shadow-light" margin-vertical>
     <header>
       <ion-item no-lines>
-        <nano-thumb class="profile-img" [round]="true" [src]="shared.user?.image" item-start></nano-thumb>
+        <nano-thumb class="profile-img" [round]="true" [src]="shared.user?.image" item-start *ngIf="shared.user?.image"></nano-thumb>
         <ion-label>
           <h2 style="font-weight: bold" ion-text class="name-user">{{shared.user?.name}}</h2>
           <p tappable (click)="logout()" class="danger">Sair</p>
