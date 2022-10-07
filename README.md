@@ -43,6 +43,9 @@ Realizar download do pacote de ícones desejado, e copiar src/assets/menus_fonts
 
 ### Error 10 - Auth Google
 
+- ID configurado SHA1: br.com.nanocode.facilita
+- Pra virar pra produção, precisamos configurar SHA1 pra apk release também
+
 ```
 http://uttesh.blogspot.com/2017/08/error-10-cordova-google-plus-login-ionic.html
 

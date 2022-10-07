@@ -83,7 +83,8 @@ export class AppComponent implements OnInit {
 
         // this.statusBar.styleDefault();
         this.statusBar.styleLightContent();
-        this.statusBar.backgroundColorByHexString('#3AAA35');
+        // this.statusBar.backgroundColorByHexString('#3AAA35');
+        this.statusBar.backgroundColorByHexString('#D32F2F');
         this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
         this.hideSplashScreen();
       }
