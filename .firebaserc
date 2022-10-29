@@ -3,5 +3,18 @@
     "default": "facilita-homologation",
     "homologation": "facilita-homologation",
     "production": "facilita-production"
-  }
+  },
+  "targets": {
+    "facilita-homologation": {
+      "hosting": {
+        "coca": [
+          "mobiup-konnect-consumidor"
+        ],
+        "verding": [
+          "facilita-homologation"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

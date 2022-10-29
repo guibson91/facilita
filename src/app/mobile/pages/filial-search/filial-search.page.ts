@@ -303,7 +303,7 @@ export class FilialSearchPage implements OnDestroy, OnInit {
             this.error = {
               code: 1,
               title: "Geolocalização não autorizada",
-              message: "Por favor autorize o aplicativo Facilita a obtê-la ou cadastre um novo endereço para que possamos exibir os estabelecimentos próximos a você"
+              message: "Por favor autorize o aplicativo Konnect-Consumidor a obtê-la ou cadastre um novo endereço para que possamos exibir os estabelecimentos próximos a você"
             }
           }
           else if (err.code == 2) {
@@ -344,7 +344,7 @@ export class FilialSearchPage implements OnDestroy, OnInit {
 
   async suggestRestaurant() {
     let alert = await this.alertCtrl.create({
-      header: "Qual estabelecimento você gostaria de ver no Facilita?",
+      header: "Qual estabelecimento você gostaria de ver no Konnect-Consumidor?",
       inputs: [
         {
           name: "place",

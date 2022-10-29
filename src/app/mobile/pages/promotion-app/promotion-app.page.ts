@@ -156,7 +156,7 @@ export class PromotionAppPage implements OnInit {
             this.error = {
               code: 1,
               title: "Geolocalização não autorizada",
-              message: "Por favor autorize o aplicativo Facilita a obtê-la ou cadastre um novo endereço para que possamos exibir os estabelecimentos próximos a você"
+              message: "Por favor autorize o aplicativo Konnect-Consumidor a obtê-la ou cadastre um novo endereço para que possamos exibir os estabelecimentos próximos a você"
             }
           }
           else if (err.code == 2) {

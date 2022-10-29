@@ -1,3 +1,21 @@
+# Deploy
+
+Foi realizado configuração de múltiplos hosting
+
+target: 'coca',
+site_id: 'mobiup-konnect-consumidor',
+url: https://mobiup-konnect-consumidor.web.app
+
+firebase deploy --only hosting:TARGET_NAME
+
+Mais informações: https://firebase.google.com/docs/hosting/multisites
+
+- Criar SITE_ID
+firebase hosting:sites:create mobiup-konnect-consumidor
+
+- Criar target para novo website:
+firebase target:apply hosting coca mobiup-konnect-consumidor
+
 # Facilita
 
 Facilita é um sistema criado em **Ionic 4 e Firebase** destinado a melhorar os serviços de atendimento, delivery, relacionamento e financeiro de estabelecimentos que utilizem um cardápio para ofertar seus produtos.

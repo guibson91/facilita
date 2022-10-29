@@ -218,7 +218,7 @@ export class AuthenticationService {
           let alert: NanoError = {
             nanoerror: true,
             title: "Algo de errado aconteceu",
-            message: `Janela fechada pelo usuário antes de concluir a autenticação ou não autorizado a permissão do aplicativo Facilita. Tente novamente. código: ${JSON.stringify(err)}`,
+            message: `Janela fechada pelo usuário antes de concluir a autenticação ou não autorizado a permissão do aplicativo Konnect-Consumidor. Tente novamente. código: ${JSON.stringify(err)}`,
             report: true
           }
           throw alert

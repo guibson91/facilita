@@ -55,7 +55,7 @@ export class GpsGuard implements CanActivate {
                   case this.diagnostic.permissionStatus.NOT_REQUESTED:
                   case this.diagnostic.permissionStatus.DENIED:
                   case this.diagnostic.permissionStatus.DENIED_ALWAYS:
-                    this.system.showErrorAlert("Permissão bloqueada! Vá para Configurações -> Aplicativos -> Facilita -> Permissões e então habilite o Local");
+                    this.system.showErrorAlert("Permissão bloqueada! Vá para Configurações -> Aplicativos -> Konnect-Consumidor -> Permissões e então habilite o Local");
                     console.log("Negado")
                     resolve(false)
                     break;
