@@ -16,7 +16,7 @@ More information: https://firebase.google.com/docs/hosting/multisites
 
 # Facilita
 
-Facilita is a system created in **Ionic 4 and Firebase** (developer@nanocode.com.br) aimed at improving the customer service, delivery, relationship, and financial services of establishments that use a menu to offer their products.
+Facilita is a system created in **Ionic 4, Angular and Firebase** (developer@nanocode.com.br) aimed at improving the customer service, delivery, relationship, and financial services of establishments that use a menu to offer their products.
 
 ## OneSignal
 
