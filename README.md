@@ -1,10 +1,6 @@
 # Facilita
 
 <p align="center">
-  <img src="src/assets/logo.png" alt="Facilita Logo" width="200"/>
-</p>
-
-<p align="center">
   <a href="#"><img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version 1.0.0"></a>
   <a href="#"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License MIT"></a>
 </p>
