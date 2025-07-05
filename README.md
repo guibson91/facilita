@@ -231,10 +231,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📬 Contact
 
-Developed by Nanocode - [developer@nanocode.com.br](mailto:developer@nanocode.com.br)
+Developed by Guibson Martins - [guibson1991@gmail.com](mailto:guibson1991@gmail.com)
 
 ---
 
 <p align="center">
-  Made with ❤️ by the Facilita Team
+  Made with ❤️ by Guibson Martins
 </p>
