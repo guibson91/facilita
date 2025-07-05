@@ -1,7 +1,7 @@
 # Facilita
 
 <p align="center">
-  <img src="path/to/logo.png" alt="Facilita Logo" width="200"/>
+  <img src="assets/logo.png" alt="Facilita Logo" width="200"/>
 </p>
 
 <p align="center">
@@ -36,10 +36,6 @@
 Facilita is a comprehensive system built with **Ionic 4, Angular, and Firebase**, designed to
 enhance customer service, delivery operations, relationship management, and financial services for
 establishments that utilize menu-based product offerings.
-
-<p align="center">
-  <img src="path/to/screenshot.png" alt="Facilita App Screenshot" width="600"/>
-</p>
 
 ## ✨ Features
 
