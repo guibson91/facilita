@@ -1,7 +1,7 @@
 # Facilita
 
 <p align="center">
-  <img src="assets/logo.png" alt="Facilita Logo" width="200"/>
+  <img src="src/assets/logo.png" alt="Facilita Logo" width="200"/>
 </p>
 
 <p align="center">
