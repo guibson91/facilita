@@ -85,7 +85,8 @@
     "@ionic/angular-toolkit": "1.2.0",
     "@types/jasmine": "2.8.6",
     "@types/jasminewd2": "2.0.3",
-    "@types/node": "10.12.15",
+    "@types/minimatch": "^6.0.0",
+    "@types/node": "^10.12.15",
     "codelyzer": "4.5.0",
     "jasmine-core": "2.99.1",
     "jasmine-spec-reporter": "4.2.1",
@@ -95,6 +96,7 @@
     "karma-jasmine": "1.1.1",
     "karma-jasmine-html-reporter": "0.2.2",
     "protractor": "5.4.0",
+    "sass": "^1.89.2",
     "ts-node": "7.0.0",
     "tslint": "5.11.0",
     "typescript": "2.9.2"
